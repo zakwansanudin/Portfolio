@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Portfolio Zakwan</title>
+  <title>Zakwan · Portfolio Redesign</title>
   <!-- Bootstrap 5 + Icons -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
-  <!-- Google Font (inter) -->
+  <!-- Google Font (Inter) -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet" />
@@ -25,14 +25,13 @@
       scroll-behavior: smooth;
     }
 
-    /* dark glassmorphism navbar */
+    /* ---------- glass navbar ---------- */
     .navbar-glass {
       background: rgba(11, 26, 51, 0.75);
       backdrop-filter: blur(12px) saturate(180%);
       -webkit-backdrop-filter: blur(12px) saturate(180%);
       border-bottom: 1px solid rgba(255, 255, 255, 0.08);
       box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-      transition: all 0.2s ease;
     }
 
     .navbar-glass .navbar-brand {
@@ -61,12 +60,12 @@
       background: rgba(255, 255, 255, 0.08);
     }
 
-    /* hero – gradient with animated grain */
+    /* ---------- hero ---------- */
     .hero {
       position: relative;
       background: linear-gradient(145deg, #0b1a33 0%, #1a2f4f 45%, #2c3f66 100%);
       color: white;
-      padding: 120px 0 100px;
+      padding: 130px 0 100px;
       overflow: hidden;
       border-bottom: 1px solid rgba(255, 255, 255, 0.05);
     }
@@ -125,7 +124,7 @@
       color: #0b1a33;
     }
 
-    /* section titles */
+    /* ---------- section titles ---------- */
     .section-title {
       font-weight: 700;
       font-size: 2.2rem;
@@ -151,7 +150,28 @@
       font-weight: 400;
     }
 
-    /* cards – modern clean */
+    /* ---------- profile image (round) ---------- */
+    .profile-img {
+      width: 160px;
+      height: 160px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 4px solid white;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+      transition: 0.3s;
+    }
+
+    .profile-img:hover {
+      transform: scale(1.02);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+    }
+
+    .profile-img-lg {
+      width: 200px;
+      height: 200px;
+    }
+
+    /* ---------- cards ---------- */
     .card-modern {
       background: white;
       border: none;
@@ -203,7 +223,7 @@
       border-color: #7c8dff;
     }
 
-    /* skill pills */
+    /* ---------- skill pills ---------- */
     .skill-pill {
       background: white;
       border-radius: 60px;
@@ -227,13 +247,22 @@
       margin-right: 8px;
     }
 
-    /* contact section */
+    /* ---------- about with image ---------- */
+    .about-card {
+      background: white;
+      border-radius: 40px;
+      padding: 2.5rem 2rem;
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.02);
+      border: 1px solid rgba(0, 0, 0, 0.02);
+    }
+
+    /* ---------- contact ---------- */
     .contact-box {
       background: white;
       border-radius: 48px;
       padding: 3rem 2rem;
       box-shadow: 0 12px 40px rgba(0, 0, 0, 0.02);
-      border: 1px solid rgba(0,0,0,0.02);
+      border: 1px solid rgba(0, 0, 0, 0.02);
     }
 
     .contact-box .contact-item {
@@ -264,7 +293,7 @@
       color: white;
     }
 
-    /* footer */
+    /* ---------- footer ---------- */
     .footer-dark {
       background: #0a1428;
       color: rgba(255, 255, 255, 0.6);
@@ -280,20 +309,24 @@
       color: white;
     }
 
-    /* responsiveness */
+    /* ---------- responsive ---------- */
     @media (max-width: 768px) {
       .hero h1 {
         font-size: 2.8rem;
       }
       .hero {
-        padding: 80px 0 70px;
+        padding: 90px 0 70px;
+      }
+      .profile-img-lg {
+        width: 140px;
+        height: 140px;
       }
     }
   </style>
 </head>
 <body>
 
-  <!-- Navbar (glass) -->
+  <!-- ====== NAVBAR ====== -->
   <nav class="navbar navbar-expand-lg navbar-glass fixed-top">
     <div class="container">
       <a class="navbar-brand" href="#">
@@ -312,7 +345,7 @@
     </div>
   </nav>
 
-  <!-- Hero -->
+  <!-- ====== HERO ====== -->
   <section class="hero" id="home">
     <div class="container hero-content text-center">
       <div class="mb-4">
@@ -335,30 +368,50 @@
     </div>
   </section>
 
-  <!-- About -->
+  <!-- ====== ABOUT with PROFILE IMAGE ====== -->
   <section id="about" class="py-5">
     <div class="container py-4">
       <div class="text-center mb-5">
-        <h2 class="section-title">About</h2>
+        <h2 class="section-title">About Me</h2>
         <p class="text-muted mt-4 section-sub" style="max-width: 620px; margin: 0 auto;">
           Crafting robust, human-centered applications with clean code and modern architecture.
         </p>
       </div>
+
       <div class="row justify-content-center">
-        <div class="col-lg-8">
-          <div class="card-modern text-center p-4 p-md-5">
-            <p style="font-size: 1.1rem; line-height: 1.7; color: #1f3452;">
-              I'm a passionate developer with a focus on <strong>Laravel</strong>, <strong>PHP</strong>, and 
-              <strong>ASP.NET Core</strong>. I love turning complex problems into elegant, 
-              scalable solutions. Currently exploring cloud-native development and 
-              microservices.
-            </p>
-            <div class="d-flex flex-wrap justify-content-center gap-2 mt-4">
-              <span class="skill-pill"><i class="bi bi-laptop"></i> Laravel</span>
-              <span class="skill-pill"><i class="bi bi-code-slash"></i> PHP</span>
-              <span class="skill-pill"><i class="bi bi-database"></i> MySQL</span>
-              <span class="skill-pill"><i class="bi bi-braces"></i> JavaScript</span>
-              <span class="skill-pill"><i class="bi bi-window"></i> ASP.NET</span>
+        <div class="col-lg-10">
+          <div class="about-card">
+            <div class="row align-items-center g-4">
+              <!-- profile image column -->
+              <div class="col-md-4 text-center">
+                <img 
+                  src="https://ui-avatars.com/api/?name=Zakwan+Sanudin&size=200&background=7c8dff&color=fff&bold=true&font-size=0.5" 
+                  alt="Zakwan profile" 
+                  class="profile-img profile-img-lg"
+                />
+                <!-- you can replace the src with your own image URL -->
+                <div class="mt-3">
+                  <span class="badge bg-light text-dark px-3 py-2 rounded-pill">
+                    <i class="bi bi-camera me-1"></i> #buildwithpassion
+                  </span>
+                </div>
+              </div>
+              <!-- text column -->
+              <div class="col-md-8">
+                <p style="font-size: 1.1rem; line-height: 1.7; color: #1f3452;">
+                  I'm a passionate developer with a focus on <strong>Laravel</strong>, <strong>PHP</strong>, and 
+                  <strong>ASP.NET Core</strong>. I love turning complex problems into elegant, 
+                  scalable solutions. Currently exploring cloud-native development and 
+                  microservices.
+                </p>
+                <div class="d-flex flex-wrap gap-2 mt-3">
+                  <span class="skill-pill"><i class="bi bi-laptop"></i> Laravel</span>
+                  <span class="skill-pill"><i class="bi bi-code-slash"></i> PHP</span>
+                  <span class="skill-pill"><i class="bi bi-database"></i> MySQL</span>
+                  <span class="skill-pill"><i class="bi bi-braces"></i> JavaScript</span>
+                  <span class="skill-pill"><i class="bi bi-window"></i> ASP.NET</span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -366,7 +419,7 @@
     </div>
   </section>
 
-  <!-- Skills (minimal, integrated) -->
+  <!-- ====== SKILLS MINI (optional) ====== -->
   <section class="py-4" style="background: #f1f5fc;">
     <div class="container">
       <div class="row text-center align-items-center g-3">
@@ -378,7 +431,7 @@
     </div>
   </section>
 
-  <!-- Projects -->
+  <!-- ====== PROJECTS ====== -->
   <section id="projects" class="py-5">
     <div class="container py-3">
       <div class="text-center mb-5">
@@ -388,7 +441,6 @@
 
       <div class="row g-4">
 
-        <!-- 1 -->
         <div class="col-md-4">
           <div class="card-modern">
             <div class="card-icon"><i class="bi bi-people-fill"></i></div>
@@ -404,7 +456,6 @@
           </div>
         </div>
 
-        <!-- 2 -->
         <div class="col-md-4">
           <div class="card-modern">
             <div class="card-icon"><i class="bi bi-box-seam-fill"></i></div>
@@ -420,7 +471,6 @@
           </div>
         </div>
 
-        <!-- 3 -->
         <div class="col-md-4">
           <div class="card-modern">
             <div class="card-icon"><i class="bi bi-play-circle-fill"></i></div>
@@ -440,7 +490,7 @@
     </div>
   </section>
 
-  <!-- Contact -->
+  <!-- ====== CONTACT ====== -->
   <section id="contact" class="py-5" style="background: #f1f5fc;">
     <div class="container py-3">
       <div class="text-center mb-5">
@@ -451,7 +501,7 @@
         <div class="col-lg-8">
           <div class="contact-box text-center">
             <div class="d-flex flex-column flex-md-row justify-content-center align-items-center gap-4">
-              <div class="contact-item"><i class="bi bi-envelope-fill"></i> zakwan@example.com</div>
+              <div class="contact-item"><i class="bi bi-envelope-fill"></i> zakwansanudin02@gmail.com</div>
               <div class="contact-item"><i class="bi bi-telephone-fill"></i> +60 11-3303 5718</div>
             </div>
             <div class="mt-4 d-flex flex-wrap justify-content-center gap-3">
@@ -465,7 +515,7 @@
     </div>
   </section>
 
-  <!-- Footer -->
+  <!-- ====== FOOTER ====== -->
   <footer class="footer-dark py-4">
     <div class="container text-center">
       <p class="mb-0 small">
