@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Zakwan · Portfolio Redesign</title>
+    <title>Zakwan · revamped</title>
     <!-- Bootstrap 5 + Icons -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
@@ -28,11 +28,12 @@
 
         /* ---------- glass navbar ---------- */
         .navbar-glass {
-            background: rgba(11, 26, 51, 0.75);
-            backdrop-filter: blur(12px) saturate(180%);
-            -webkit-backdrop-filter: blur(12px) saturate(180%);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            background: rgba(11, 26, 51, 0.8);
+            backdrop-filter: blur(14px) saturate(180%);
+            -webkit-backdrop-filter: blur(14px) saturate(180%);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+            transition: background 0.2s;
         }
 
         .navbar-glass .navbar-brand {
@@ -64,9 +65,9 @@
         /* ---------- hero ---------- */
         .hero {
             position: relative;
-            background: linear-gradient(145deg, #0b1a33 0%, #1a2f4f 45%, #2c3f66 100%);
+            background: linear-gradient(145deg, #0b1a33 0%, #1a2f4f 50%, #2c3f66 100%);
             color: white;
-            padding: 130px 0 100px;
+            padding: 140px 0 110px;
             overflow: hidden;
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
@@ -75,8 +76,8 @@
             content: '';
             position: absolute;
             inset: 0;
-            background: radial-gradient(circle at 80% 20%, rgba(120, 140, 255, 0.15), transparent 60%),
-                radial-gradient(circle at 20% 80%, rgba(0, 200, 255, 0.08), transparent 50%);
+            background: radial-gradient(circle at 70% 30%, rgba(120, 140, 255, 0.12), transparent 60%),
+                radial-gradient(circle at 30% 80%, rgba(0, 200, 255, 0.06), transparent 50%);
             pointer-events: none;
         }
 
@@ -87,7 +88,7 @@
 
         .hero h1 {
             font-weight: 800;
-            font-size: 3.8rem;
+            font-size: 4rem;
             letter-spacing: -1px;
             line-height: 1.1;
         }
@@ -100,18 +101,24 @@
         }
 
         .hero .lead {
-            font-size: 1.35rem;
+            font-size: 1.4rem;
             font-weight: 400;
             color: rgba(255, 255, 255, 0.8);
             max-width: 600px;
             margin: 0 auto;
         }
 
+        .hero .badge-pill {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
         .hero .btn-hero {
             background: white;
             color: #0b1a33;
             font-weight: 600;
-            padding: 0.8rem 2.4rem;
+            padding: 0.8rem 2.6rem;
             border-radius: 60px;
             box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
             transition: 0.25s;
@@ -128,7 +135,7 @@
         /* ---------- section titles ---------- */
         .section-title {
             font-weight: 700;
-            font-size: 2.2rem;
+            font-size: 2.4rem;
             letter-spacing: -0.5px;
             position: relative;
             display: inline-block;
@@ -140,7 +147,7 @@
             left: 50%;
             bottom: -12px;
             transform: translateX(-50%);
-            width: 60px;
+            width: 64px;
             height: 4px;
             background: linear-gradient(90deg, #7c8dff, #b6c8ff);
             border-radius: 4px;
@@ -179,7 +186,7 @@
             border-radius: 28px;
             box-shadow: 0 8px 30px rgba(0, 0, 0, 0.04);
             transition: all 0.25s ease;
-            padding: 1.5rem 1.5rem 2rem;
+            padding: 1.8rem 1.8rem 2.2rem;
             height: 100%;
             border: 1px solid rgba(0, 0, 0, 0.02);
         }
@@ -191,7 +198,7 @@
         }
 
         .card-modern .card-icon {
-            font-size: 2.4rem;
+            font-size: 2.6rem;
             color: #2c3f66;
             margin-bottom: 1rem;
             display: inline-block;
@@ -206,6 +213,7 @@
         .card-modern p {
             color: #3d4e6b;
             font-size: 0.95rem;
+            line-height: 1.6;
         }
 
         .btn-outline-primary-custom {
@@ -228,7 +236,7 @@
         .skill-pill {
             background: white;
             border-radius: 60px;
-            padding: 0.6rem 1.6rem;
+            padding: 0.6rem 1.8rem;
             font-weight: 600;
             color: #0b1a33;
             border: 1px solid rgba(0, 0, 0, 0.04);
@@ -252,7 +260,7 @@
         .about-card {
             background: white;
             border-radius: 40px;
-            padding: 2.5rem 2rem;
+            padding: 2.8rem 2.5rem;
             box-shadow: 0 12px 40px rgba(0, 0, 0, 0.02);
             border: 1px solid rgba(0, 0, 0, 0.02);
         }
@@ -261,7 +269,7 @@
         .contact-box {
             background: white;
             border-radius: 48px;
-            padding: 3rem 2rem;
+            padding: 3.2rem 2.5rem;
             box-shadow: 0 12px 40px rgba(0, 0, 0, 0.02);
             border: 1px solid rgba(0, 0, 0, 0.02);
         }
@@ -317,12 +325,20 @@
             }
 
             .hero {
-                padding: 90px 0 70px;
+                padding: 100px 0 70px;
             }
 
             .profile-img-lg {
                 width: 140px;
                 height: 140px;
+            }
+
+            .about-card {
+                padding: 1.8rem 1.2rem;
+            }
+
+            .contact-box {
+                padding: 2rem 1.2rem;
             }
         }
     </style>
@@ -353,7 +369,7 @@
     <section class="hero" id="home">
         <div class="container hero-content text-center">
             <div class="mb-4">
-                <span class="badge bg-white bg-opacity-15 text-white px-4 py-2 rounded-pill fw-normal">
+                <span class="badge badge-pill text-white px-4 py-2 rounded-pill fw-normal">
                     <i class="bi bi-stars me-1"></i> full-stack · laravel · asp.net
                 </span>
             </div>
@@ -388,11 +404,7 @@
                         <div class="row align-items-center g-4">
                             <!-- profile image column -->
                             <div class="col-md-4 text-center">
-                                <img
-                                    src="https://ui-avatars.com/api/?name=Zakwan+Sanudin&size=200&background=7c8dff&color=fff&bold=true&font-size=0.5"
-                                    alt="Zakwan profile"
-                                    class="profile-img profile-img-lg" />
-                                <!-- you can replace the src with your own image URL -->
+                                <img src="https://ui-avatars.com/api/?name=Zakwan+Sanudin&size=200&background=7c8dff&color=fff&bold=true&font-size=0.5" alt="Zakwan profile" class="profile-img profile-img-lg" />
                                 <div class="mt-3">
                                     <span class="badge bg-light text-dark px-3 py-2 rounded-pill">
                                         <i class="bi bi-camera me-1"></i> #buildwithpassion
@@ -447,7 +459,7 @@
                 <div class="col-md-4">
                     <div class="card-modern">
                         <div class="card-icon"><i class="bi bi-people-fill"></i></div>
-                        <h5>kampungonline</h5>
+                        <h5>Kampung Online</h5>
                         <p class="card-text">A digital community platform for KampungOnline with user management, updates, and real-time engagement features.</p>
                         <div class="d-flex gap-2 flex-wrap mt-3">
                             <span class="badge bg-light text-dark rounded-pill px-3 py-2 fw-normal">Laravel</span>
@@ -535,7 +547,8 @@
     </footer>
 
     <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
+    </script>
     <script>
         document.getElementById('year').textContent = new Date().getFullYear();
     </script>
