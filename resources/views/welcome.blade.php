@@ -581,7 +581,7 @@
   <div class="hero-right">
     <div class="profile-wrap">
       <img
-        src="https://ui-avatars.com/api/?name=Zakwan+Sanudin&size=220&background=3B4EFF&color=fff&bold=true&font-size=0.45&rounded=false"
+        src="{{ asset('img/profile.png') }}"
         alt="Zakwan Sanudin"
         class="profile-img"
       />
