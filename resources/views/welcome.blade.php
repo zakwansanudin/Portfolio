@@ -3,516 +3,803 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Zakwan · Full Stack Developer</title>
+  <title>Zakwan Sanudin · Full Stack Developer</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,200..800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg:        #F5F3F0;
-      --white:     #FFFFFF;
-      --card:      #FFFFFF;
-      --border:    #E8E2DA;
-      --text:      #1C1814;
-      --muted:     #7A736A;
-      --accent:    #E35F3A;
-      --accent-light: #F5E3DD;
-      --shadow:    0 8px 30px rgba(0,0,0,0.06);
-      --radius:    20px;
+      --page:    #FAFAF8;
+      --panel:   #F2F1ED;
+      --text:    #111827;
+      --muted:   #6B7280;
+      --border:  #E4E2DC;
+      --indigo:  #3B4EFF;
+      --indigo-light: #EEF0FF;
+      --indigo-mid: #C7CDFF;
+      --white:   #FFFFFF;
     }
+
+    html { scroll-behavior: smooth; }
 
     body {
-      font-family: 'DM Sans', sans-serif;
-      background: var(--bg);
+      font-family: 'Inter', sans-serif;
+      background: var(--page);
       color: var(--text);
-      display: flex;
-      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
     }
 
-    /* ─── SIDEBAR ─── */
-    .sidebar {
-      width: 280px;
-      min-height: 100vh;
-      background: var(--white);
-      padding: 3rem 2rem 2.5rem;
-      border-right: 1px solid var(--border);
-      position: sticky;
-      top: 0;
-      height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      flex-shrink: 0;
-    }
-
-    .sidebar-brand {
-      font-size: 1.4rem;
-      font-weight: 700;
-      letter-spacing: -0.03em;
-    }
-    .sidebar-brand span { color: var(--accent); }
-
-    .sidebar-bio {
-      font-size: 0.92rem;
-      color: var(--muted);
-      line-height: 1.6;
-      margin: 1.2rem 0 2.5rem;
-    }
-
-    .sidebar-nav {
-      display: flex;
-      flex-direction: column;
-      gap: 0.6rem;
-    }
-    .sidebar-nav a {
-      font-weight: 500;
-      color: var(--muted);
-      text-decoration: none;
-      padding: 0.6rem 1rem;
-      border-radius: 12px;
-      transition: 0.2s;
-      font-size: 0.95rem;
-    }
-    .sidebar-nav a:hover,
-    .sidebar-nav a.active {
-      background: var(--accent-light);
-      color: var(--accent);
-    }
-
-    .sidebar-social {
-      display: flex;
-      gap: 1.2rem;
-      margin-top: 2rem;
-    }
-    .sidebar-social a {
-      color: var(--muted);
-      font-size: 1.3rem;
-      transition: 0.2s;
-    }
-    .sidebar-social a:hover { color: var(--accent); }
-
-    .sidebar-footer {
-      font-size: 0.75rem;
-      color: var(--muted);
-      border-top: 1px solid var(--border);
-      padding-top: 1.5rem;
-      margin-top: 1rem;
-    }
-
-    /* ─── MAIN ─── */
-    .main {
-      flex: 1;
-      padding: 3rem 3.5rem 3rem;
-      overflow-y: auto;
-    }
-
-    /* ─── HERO (inside main) ─── */
-    .hero-mini {
-      padding: 2rem 0 3.5rem;
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.1rem 3rem;
+      background: rgba(250,250,248,0.88);
+      backdrop-filter: blur(16px);
       border-bottom: 1px solid var(--border);
     }
 
-    .hero-mini .badge {
-      display: inline-block;
-      background: var(--accent-light);
-      color: var(--accent);
-      font-size: 0.7rem;
-      font-weight: 600;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      padding: 0.3rem 1rem;
-      border-radius: 30px;
-      margin-bottom: 1.2rem;
-    }
-
-    .hero-mini h1 {
-      font-size: clamp(2.8rem, 7vw, 4.8rem);
+    .nav-brand {
+      font-family: 'Bricolage Grotesque', sans-serif;
       font-weight: 700;
-      line-height: 1.05;
-      letter-spacing: -0.03em;
-    }
-    .hero-mini h1 .highlight { color: var(--accent); }
-
-    .hero-mini p {
       font-size: 1.1rem;
-      color: var(--muted);
-      max-width: 500px;
-      margin-top: 1rem;
-      line-height: 1.6;
-    }
-
-    .hero-mini .tag-group {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.6rem;
-      margin-top: 1.8rem;
-    }
-    .hero-mini .tag-group span {
-      background: var(--white);
-      border: 1px solid var(--border);
-      padding: 0.3rem 1rem;
-      border-radius: 30px;
-      font-size: 0.78rem;
-      font-weight: 500;
-      color: var(--muted);
-    }
-
-    /* ─── SECTION TITLES ─── */
-    .section-title {
-      font-size: 1.6rem;
-      font-weight: 600;
+      color: var(--text);
+      text-decoration: none;
       letter-spacing: -0.02em;
-      margin: 3.5rem 0 2rem;
+    }
+    .nav-brand span { color: var(--indigo); }
+
+    .nav-links {
+      display: flex; align-items: center; gap: 0.25rem; list-style: none;
+    }
+    .nav-links a {
+      font-size: 0.875rem;
+      color: var(--muted);
+      text-decoration: none;
+      padding: 0.4rem 0.9rem;
+      border-radius: 100px;
+      transition: all 0.18s;
+      font-weight: 500;
+    }
+    .nav-links a:hover { color: var(--text); background: var(--panel); }
+
+    .nav-hire {
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--white);
+      background: var(--indigo);
+      padding: 0.5rem 1.3rem;
+      border-radius: 100px;
+      text-decoration: none;
+      transition: opacity 0.18s, transform 0.18s;
+    }
+    .nav-hire:hover { opacity: 0.85; transform: translateY(-1px); }
+
+    /* ── HERO ── */
+    .hero {
+      padding: 9rem 3rem 5rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+      border-bottom: 1px solid var(--border);
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .hero-left {}
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--indigo-light);
+      color: var(--indigo);
+      font-size: 0.78rem;
+      font-weight: 600;
+      padding: 0.35rem 0.9rem;
+      border-radius: 100px;
+      letter-spacing: 0.02em;
+      margin-bottom: 1.8rem;
+    }
+    .hero-badge-dot {
+      width: 6px; height: 6px;
+      background: var(--indigo);
+      border-radius: 50%;
+    }
+
+    .hero-name {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      line-height: 1.0;
+      letter-spacing: -0.04em;
+    }
+    .hero-name .line1 {
+      font-size: clamp(3.6rem, 7vw, 6.5rem);
+      font-weight: 800;
+      display: block;
+      color: var(--text);
+    }
+    .hero-name .line2 {
+      font-size: clamp(3.6rem, 7vw, 6.5rem);
+      font-weight: 300;
+      display: block;
+      color: var(--muted);
+    }
+
+    .hero-tagline {
+      font-size: 1.05rem;
+      color: var(--muted);
+      line-height: 1.7;
+      margin-top: 1.8rem;
+      max-width: 400px;
+    }
+
+    .hero-actions {
+      display: flex; gap: 1rem; flex-wrap: wrap;
+      margin-top: 2.5rem;
+    }
+
+    .btn-primary {
+      background: var(--indigo);
+      color: white;
+      font-size: 0.9rem;
+      font-weight: 600;
+      padding: 0.7rem 1.8rem;
+      border-radius: 100px;
+      text-decoration: none;
+      transition: opacity 0.18s, transform 0.18s;
+    }
+    .btn-primary:hover { opacity: 0.87; transform: translateY(-2px); }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--text);
+      font-size: 0.9rem;
+      font-weight: 500;
+      padding: 0.7rem 1.8rem;
+      border-radius: 100px;
+      text-decoration: none;
+      border: 1.5px solid var(--border);
+      transition: border-color 0.18s, background 0.18s;
+    }
+    .btn-ghost:hover { border-color: var(--indigo); background: var(--indigo-light); color: var(--indigo); }
+
+    /* hero right: profile + stat cards */
+    .hero-right {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .profile-wrap {
+      position: relative;
+      display: inline-block;
+    }
+
+    .profile-img {
+      width: 220px; height: 220px;
+      border-radius: 32px;
+      object-fit: cover;
+      display: block;
+      box-shadow: 0 20px 60px rgba(59, 78, 255, 0.12);
+    }
+
+    .profile-badge {
+      position: absolute;
+      bottom: -12px; right: -16px;
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 0.6rem 1rem;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--text);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.07);
+      white-space: nowrap;
+    }
+    .profile-badge span { color: var(--indigo); }
+
+    .hero-stats {
+      display: flex; gap: 1rem; width: 100%;
+    }
+
+    .stat-card {
+      flex: 1;
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.1rem 1.2rem;
+      text-align: center;
+    }
+
+    .stat-card .stat-num {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-weight: 700;
+      font-size: 1.6rem;
+      color: var(--indigo);
+      letter-spacing: -0.02em;
+    }
+    .stat-card .stat-label {
+      font-size: 0.72rem;
+      color: var(--muted);
+      font-weight: 500;
+      margin-top: 0.2rem;
+    }
+
+    /* ── SHARED SECTION WRAPPER ── */
+    .section-wrap {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 5.5rem 3rem;
+    }
+    .section-panel {
+      background: var(--panel);
+    }
+
+    .section-header {
+      display: flex; align-items: baseline; gap: 1.2rem;
+      margin-bottom: 3.5rem;
+    }
+    .section-eyebrow {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-weight: 800;
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+      letter-spacing: -0.03em;
+      color: var(--text);
+    }
+    .section-rule {
+      flex: 1; height: 1.5px; background: var(--border); margin-bottom: 0.3rem;
+    }
+
+    /* ── ABOUT ── */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    .about-body {
+      font-size: 1.05rem;
+      color: #374151;
+      line-height: 1.8;
+    }
+    .about-body p + p { margin-top: 1rem; }
+
+    .about-body strong { color: var(--indigo); font-weight: 600; }
+
+    .skills-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+    }
+
+    .skill-row {
       display: flex;
       align-items: center;
-      gap: 0.8rem;
-    }
-    .section-title .num {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.8rem;
-      color: var(--accent);
-      background: var(--accent-light);
-      padding: 0.1rem 0.6rem;
-      border-radius: 30px;
+      gap: 1rem;
     }
 
-    /* ─── ABOUT CARD ─── */
-    .about-card {
-      background: var(--white);
-      padding: 2.5rem 2.8rem;
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      border: 1px solid var(--border);
+    .skill-name {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--text);
+      min-width: 130px;
     }
-    .about-card p {
-      font-size: 1rem;
-      line-height: 1.8;
+
+    .skill-track {
+      flex: 1;
+      height: 6px;
+      background: var(--border);
+      border-radius: 100px;
+      overflow: hidden;
+    }
+    .skill-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--indigo), #7B8FFF);
+      border-radius: 100px;
+    }
+
+    .skill-pct {
+      font-size: 0.78rem;
       color: var(--muted);
-      max-width: 700px;
-    }
-    .about-card .skill-list {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      margin-top: 1.5rem;
-    }
-    .about-card .skill-list span {
-      background: var(--bg);
-      padding: 0.4rem 1.2rem;
-      border-radius: 30px;
       font-weight: 500;
-      font-size: 0.85rem;
+      min-width: 36px;
+      text-align: right;
     }
 
-    /* ─── PROJECT GRID ─── */
-    .project-grid {
+    /* ── PROJECTS ── */
+    .projects-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 2rem;
-      margin-top: 1.5rem;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
     }
 
     .project-card {
-      background: var(--white);
-      border-radius: var(--radius);
-      padding: 2rem 1.8rem 2rem;
+      background: white;
       border: 1px solid var(--border);
-      box-shadow: var(--shadow);
-      transition: 0.25s;
+      border-radius: 24px;
+      padding: 2rem;
       text-decoration: none;
       color: inherit;
-      display: block;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      transition: all 0.22s;
+      position: relative;
+      overflow: hidden;
+    }
+    .project-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--indigo), var(--indigo-mid));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.25s;
     }
     .project-card:hover {
-      transform: translateY(-6px);
-      border-color: var(--accent);
-      box-shadow: 0 16px 40px rgba(227, 95, 58, 0.08);
+      transform: translateY(-5px);
+      box-shadow: 0 20px 50px rgba(59,78,255,0.10);
+      border-color: var(--indigo-mid);
     }
+    .project-card:hover::before { transform: scaleX(1); }
 
-    .project-card .emoji {
-      font-size: 2.2rem;
-      margin-bottom: 0.8rem;
-      display: block;
-    }
-    .project-card h3 {
+    .project-card-icon {
+      width: 48px; height: 48px;
+      background: var(--indigo-light);
+      border-radius: 14px;
+      display: flex; align-items: center; justify-content: center;
       font-size: 1.3rem;
-      font-weight: 600;
+      margin-bottom: 1.3rem;
+    }
+
+    .project-card-title {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-weight: 700;
+      font-size: 1.25rem;
       letter-spacing: -0.02em;
-    }
-    .project-card p {
-      color: var(--muted);
-      font-size: 0.9rem;
-      line-height: 1.6;
-      margin: 0.6rem 0 1.2rem;
-    }
-    .project-card .tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.4rem;
-    }
-    .project-card .tags span {
-      font-size: 0.65rem;
-      font-weight: 500;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      background: var(--bg);
-      padding: 0.2rem 0.8rem;
-      border-radius: 30px;
-      color: var(--muted);
+      color: var(--text);
+      margin-bottom: 0.6rem;
     }
 
-    .project-card .link-arrow {
-      display: inline-block;
-      margin-top: 1.2rem;
+    .project-card-desc {
+      font-size: 0.88rem;
+      color: var(--muted);
+      line-height: 1.65;
+      flex: 1;
+    }
+
+    .project-card-tags {
+      display: flex; gap: 0.5rem; flex-wrap: wrap;
+      margin-top: 1.4rem;
+    }
+
+    .chip {
+      font-size: 0.72rem;
       font-weight: 600;
-      color: var(--accent);
-      transition: 0.2s;
+      padding: 0.28rem 0.75rem;
+      border-radius: 100px;
+      background: var(--indigo-light);
+      color: var(--indigo);
+      letter-spacing: 0.01em;
     }
-    .project-card:hover .link-arrow { transform: translateX(4px); }
 
-    /* ─── CONTACT ─── */
-    .contact-grid {
+    .project-card-link {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      margin-top: 1.5rem;
+      font-size: 0.83rem;
+      font-weight: 600;
+      color: var(--indigo);
+      text-decoration: none;
+    }
+    .project-card-link .arrow { transition: transform 0.18s; }
+    .project-card:hover .project-card-link .arrow { transform: translate(3px,-3px); }
+
+    /* ── CONTACT ── */
+    .contact-inner {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 2rem;
-      margin-top: 1.5rem;
+      gap: 4rem;
+      align-items: start;
     }
 
-    .contact-item {
-      background: var(--white);
-      padding: 1.6rem 2rem;
-      border-radius: var(--radius);
-      border: 1px solid var(--border);
-      display: flex;
-      align-items: center;
-      gap: 1.2rem;
-      text-decoration: none;
+    .contact-intro {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: clamp(1.6rem, 3vw, 2.4rem);
+      font-weight: 700;
+      line-height: 1.25;
+      letter-spacing: -0.03em;
       color: var(--text);
-      transition: 0.2s;
-      box-shadow: var(--shadow);
     }
-    .contact-item:hover {
-      border-color: var(--accent);
-      transform: translateY(-3px);
+    .contact-intro em {
+      font-style: normal;
+      color: var(--indigo);
     }
-    .contact-item .icon {
-      font-size: 1.6rem;
-      color: var(--accent);
-      width: 2.4rem;
-      text-align: center;
+
+    .contact-blurb {
+      font-size: 0.95rem;
+      color: var(--muted);
+      line-height: 1.75;
+      margin-top: 1rem;
     }
-    .contact-item .info { display: flex; flex-direction: column; }
-    .contact-item .label {
-      font-size: 0.65rem;
+
+    .contact-cta-row {
+      display: flex; gap: 0.75rem; flex-wrap: wrap;
+      margin-top: 2rem;
+    }
+
+    .contact-cards {
+      display: flex; flex-direction: column; gap: 1rem;
+    }
+
+    .contact-card {
+      display: flex; align-items: center; gap: 1.2rem;
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.1rem 1.4rem;
+      text-decoration: none;
+      color: inherit;
+      transition: all 0.18s;
+    }
+    .contact-card:hover {
+      border-color: var(--indigo);
+      box-shadow: 0 4px 20px rgba(59,78,255,0.08);
+    }
+
+    .contact-card-icon {
+      width: 42px; height: 42px;
+      border-radius: 12px;
+      background: var(--indigo-light);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem;
+      color: var(--indigo);
+      flex-shrink: 0;
+    }
+    .contact-card-body { flex: 1; }
+    .contact-card-label {
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: var(--muted);
       text-transform: uppercase;
       letter-spacing: 0.08em;
+    }
+    .contact-card-value {
+      font-size: 0.93rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-top: 0.1rem;
+    }
+    .contact-card-arrow {
+      color: var(--muted);
+      font-size: 1rem;
+      transition: all 0.18s;
+    }
+    .contact-card:hover .contact-card-arrow { color: var(--indigo); transform: translate(2px,-2px); }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2rem 3rem;
+      display: flex; align-items: center; justify-content: space-between;
+      max-width: 1200px;
+      margin: 0 auto;
+      flex-wrap: wrap; gap: 1rem;
+    }
+
+    .footer-text {
+      font-size: 0.82rem;
       color: var(--muted);
     }
-    .contact-item .value {
-      font-weight: 500;
-      font-size: 0.95rem;
-    }
 
-    /* ─── RESPONSIVE ─── */
+    .footer-links {
+      display: flex; gap: 1.5rem;
+    }
+    .footer-links a {
+      font-size: 0.82rem;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.18s;
+    }
+    .footer-links a:hover { color: var(--indigo); }
+
+    /* ── RESPONSIVE ── */
     @media (max-width: 900px) {
-      body { flex-direction: column; }
-      .sidebar {
-        width: 100%;
-        min-height: auto;
-        height: auto;
-        position: relative;
-        border-right: none;
-        border-bottom: 1px solid var(--border);
-        padding: 1.5rem 2rem;
-        flex-direction: row;
-        flex-wrap: wrap;
-        align-items: center;
-        gap: 1rem;
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { display: none; }
+
+      .hero {
+        grid-template-columns: 1fr;
+        padding: 7.5rem 1.5rem 4rem;
+        gap: 3rem;
       }
-      .sidebar-brand { font-size: 1.2rem; }
-      .sidebar-bio { display: none; }
-      .sidebar-nav {
-        flex-direction: row;
-        flex-wrap: wrap;
-        gap: 0.3rem;
-      }
-      .sidebar-nav a { padding: 0.4rem 0.8rem; font-size: 0.85rem; }
-      .sidebar-social { margin-top: 0; }
-      .sidebar-footer { display: none; }
-      .main { padding: 1.5rem 1.5rem 2rem; }
-      .hero-mini { padding: 1rem 0 2rem; }
-      .about-card { padding: 1.8rem; }
-      .contact-grid { grid-template-columns: 1fr; }
+      .hero-right { align-items: flex-start; }
+      .hero-stats { max-width: 320px; }
+
+      .section-wrap { padding: 4rem 1.5rem; }
+
+      .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+
+      .projects-grid { grid-template-columns: 1fr; }
+
+      .contact-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+
+      footer { padding: 1.5rem; }
     }
 
-    @media (max-width: 550px) {
-      .project-grid { grid-template-columns: 1fr; }
-      .hero-mini h1 { font-size: 2.4rem; }
-      .sidebar { padding: 1rem 1.2rem; }
-      .sidebar-nav a { font-size: 0.75rem; padding: 0.3rem 0.6rem; }
+    @media (max-width: 640px) {
+      .hero-name .line1,
+      .hero-name .line2 { font-size: 3rem; }
+      .projects-grid { grid-template-columns: 1fr; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * { transition: none !important; }
     }
   </style>
 </head>
 <body>
 
-<!-- ===== SIDEBAR ===== -->
-<aside class="sidebar">
-  <div>
-    <div class="sidebar-brand">Zak<span>wan</span></div>
-    <p class="sidebar-bio">Full Stack Developer · Malaysia<br>Laravel · ASP.NET Core · PHP</p>
-    <nav class="sidebar-nav">
-      <a href="#about" class="active">About</a>
-      <a href="#projects">Projects</a>
-      <a href="#contact">Contact</a>
-    </nav>
+<!-- NAV -->
+<nav>
+  <a class="nav-brand" href="#">Zakwan<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a class="nav-hire" href="#contact">Let's work together</a>
+</nav>
+
+<!-- HERO -->
+<div style="border-bottom:1px solid var(--border);">
+<div class="hero">
+  <div class="hero-left">
+    <div class="hero-badge">
+      <div class="hero-badge-dot"></div>
+      Available for new projects
+    </div>
+    <h1 class="hero-name">
+      <span class="line1">Zakwan</span>
+      <span class="line2">Sanudin</span>
+    </h1>
+    <p class="hero-tagline">
+      Full Stack Developer specialising in Laravel and ASP.NET Core. I build applications that are fast, reliable, and genuinely pleasant to use.
+    </p>
+    <div class="hero-actions">
+      <a class="btn-primary" href="#projects">View my work</a>
+      <a class="btn-ghost" href="#contact">Get in touch</a>
+    </div>
   </div>
 
-  <div>
-    <div class="sidebar-social">
-      <a href="https://github.com/zakwansanudin" target="_blank" aria-label="GitHub">🐙</a>
-      <a href="https://www.linkedin.com/in/zakwan-sanudin" target="_blank" aria-label="LinkedIn">🔗</a>
-      <a href="mailto:zakwansanudin02@gmail.com" aria-label="Email">✉️</a>
+  <div class="hero-right">
+    <div class="profile-wrap">
+      <img
+        src="https://ui-avatars.com/api/?name=Zakwan+Sanudin&size=220&background=3B4EFF&color=fff&bold=true&font-size=0.45&rounded=false"
+        alt="Zakwan Sanudin"
+        class="profile-img"
+      />
+      <div class="profile-badge">📍 Selangor, <span>MY</span></div>
     </div>
-    <div class="sidebar-footer">© 2026 · ZS</div>
-  </div>
-</aside>
-
-<!-- ===== MAIN ===== -->
-<main class="main">
-
-  <!-- HERO -->
-  <section class="hero-mini">
-    <div class="badge">✦ available for freelance</div>
-    <h1>Hi, I'm <span class="highlight">Zakwan</span></h1>
-    <p>Full-stack developer crafting robust web apps with Laravel, ASP.NET Core, and a dash of creativity.</p>
-    <div class="tag-group">
-      <span>Laravel</span>
-      <span>ASP.NET Core</span>
-      <span>PHP</span>
-      <span>JavaScript</span>
-      <span>MySQL</span>
-    </div>
-  </section>
-
-  <!-- ABOUT -->
-  <section id="about">
-    <div class="section-title"><span class="num">01</span> About</div>
-    <div class="about-card">
-      <p>
-        I'm a passionate developer who loves turning complex problems into clean, maintainable code.
-        With a strong focus on Laravel and ASP.NET Core, I build backend systems that are both powerful and developer‑friendly.
-        On the frontend, I create interfaces that feel intuitive and human.
-      </p>
-      <p style="margin-top:1rem;">
-        Currently diving deeper into cloud-native architecture and microservices. I believe the best software is the one that quietly does its job — fast, reliable, and scalable.
-      </p>
-      <div class="skill-list">
-        <span>Laravel</span>
-        <span>PHP</span>
-        <span>ASP.NET Core</span>
-        <span>MySQL</span>
-        <span>React</span>
-        <span>Tailwind</span>
-        <span>Docker</span>
+    <div class="hero-stats">
+      <div class="stat-card">
+        <div class="stat-num">3+</div>
+        <div class="stat-label">Years experience</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">10+</div>
+        <div class="stat-label">Projects shipped</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">2</div>
+        <div class="stat-label">Core frameworks</div>
       </div>
     </div>
-  </section>
+  </div>
+</div>
+</div>
 
-  <!-- PROJECTS -->
-  <section id="projects">
-    <div class="section-title"><span class="num">02</span> Projects</div>
-
-    <div class="project-grid">
-
-      <a class="project-card" href="https://kampungonline.my" target="_blank" rel="noopener">
-        <span class="emoji">🏡</span>
-        <h3>Kampung Online</h3>
-        <p>Digital community platform with user management, announcements, and real‑time engagement for KampungOnline.</p>
-        <div class="tags">
-          <span>Laravel</span>
-          <span>Bootstrap</span>
-          <span>MySQL</span>
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-wrap">
+    <div class="section-header">
+      <h2 class="section-eyebrow">About me</h2>
+      <div class="section-rule"></div>
+    </div>
+    <div class="about-grid">
+      <div class="about-body">
+        <p>
+          I'm a full stack developer with a strong focus on <strong>Laravel</strong> and <strong>ASP.NET Core</strong>. My work sits at the intersection of clean backend architecture and practical, user-friendly interfaces — I care equally about what happens in the database and what the end user sees on screen.
+        </p>
+        <p>
+          I've built production systems for schools, community platforms, and learning applications used by real people every day. I take pride in writing code that's easy to maintain and scale, and in shipping products that just work.
+        </p>
+        <p>
+          Currently expanding into <strong>cloud-native development</strong> and microservices, and always looking for interesting problems to solve.
+        </p>
+      </div>
+      <div class="skills-list">
+        <div class="skill-row">
+          <span class="skill-name">Laravel</span>
+          <div class="skill-track"><div class="skill-fill" style="width:92%"></div></div>
+          <span class="skill-pct">92%</span>
         </div>
-        <span class="link-arrow">View project →</span>
-      </a>
-
-      <a class="project-card" href="https://epdk.eptrs.my/login" target="_blank" rel="noopener">
-        <span class="emoji">📚</span>
-        <h3>ePDK</h3>
-        <p>Student progress recording system for Program Didik Kasih, deployed in Selangor primary schools.</p>
-        <div class="tags">
-          <span>Laravel</span>
-          <span>Tailwind</span>
-          <span>MySQL</span>
+        <div class="skill-row">
+          <span class="skill-name">PHP</span>
+          <div class="skill-track"><div class="skill-fill" style="width:90%"></div></div>
+          <span class="skill-pct">90%</span>
         </div>
-        <span class="link-arrow">View project →</span>
-      </a>
-
-      <a class="project-card" href="#" target="_blank" rel="noopener">
-        <span class="emoji">🎓</span>
-        <h3>E‑Learning Platform</h3>
-        <p>Full LMS with video courses, quizzes, progress tracking — Laravel backend + React frontend.</p>
-        <div class="tags">
-          <span>Laravel</span>
-          <span>React</span>
-          <span>MySQL</span>
+        <div class="skill-row">
+          <span class="skill-name">MySQL</span>
+          <div class="skill-track"><div class="skill-fill" style="width:85%"></div></div>
+          <span class="skill-pct">85%</span>
         </div>
-        <span class="link-arrow">View project →</span>
-      </a>
+        <div class="skill-row">
+          <span class="skill-name">ASP.NET Core</span>
+          <div class="skill-track"><div class="skill-fill" style="width:80%"></div></div>
+          <span class="skill-pct">80%</span>
+        </div>
+        <div class="skill-row">
+          <span class="skill-name">JavaScript</span>
+          <div class="skill-track"><div class="skill-fill" style="width:74%"></div></div>
+          <span class="skill-pct">74%</span>
+        </div>
+        <div class="skill-row">
+          <span class="skill-name">React</span>
+          <div class="skill-track"><div class="skill-fill" style="width:68%"></div></div>
+          <span class="skill-pct">68%</span>
+        </div>
+        <div class="skill-row">
+          <span class="skill-name">TailwindCSS</span>
+          <div class="skill-track"><div class="skill-fill" style="width:82%"></div></div>
+          <span class="skill-pct">82%</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects" class="section-panel">
+  <div class="section-wrap">
+    <div class="section-header">
+      <h2 class="section-eyebrow">Selected projects</h2>
+      <div class="section-rule"></div>
+    </div>
+    <div class="projects-grid">
+
+      <div class="project-card">
+        <div class="project-card-icon">🏘️</div>
+        <div class="project-card-title">Kampung Online</div>
+        <p class="project-card-desc">
+          A digital community platform for the KampungOnline network — user management, announcement broadcasting, and real-time engagement tools for local communities.
+        </p>
+        <div class="project-card-tags">
+          <span class="chip">Laravel</span>
+          <span class="chip">Bootstrap</span>
+          <span class="chip">MySQL</span>
+        </div>
+        <a href="https://kampungonline.my" target="_blank" rel="noopener" class="project-card-link">
+          Visit site <span class="arrow">↗</span>
+        </a>
+      </div>
+
+      <div class="project-card">
+        <div class="project-card-icon">📊</div>
+        <div class="project-card-title">ePDK</div>
+        <p class="project-card-desc">
+          Student progress recording system for Program Didik Kasih, deployed across Selangor primary schools. Tracks academic development and generates progress reports.
+        </p>
+        <div class="project-card-tags">
+          <span class="chip">Laravel</span>
+          <span class="chip">TailwindCSS</span>
+          <span class="chip">MySQL</span>
+        </div>
+        <a href="https://epdk.eptrs.my/login" target="_blank" rel="noopener" class="project-card-link">
+          Visit site <span class="arrow">↗</span>
+        </a>
+      </div>
+
+      <div class="project-card">
+        <div class="project-card-icon">🎓</div>
+        <div class="project-card-title">E-Learning Platform</div>
+        <p class="project-card-desc">
+          A full-featured LMS with video courses, interactive quizzes, progress tracking, and instructor dashboards — Laravel backend with a React frontend.
+        </p>
+        <div class="project-card-tags">
+          <span class="chip">Laravel</span>
+          <span class="chip">React</span>
+          <span class="chip">MySQL</span>
+        </div>
+        <a href="#" class="project-card-link">
+          Coming soon <span class="arrow">→</span>
+        </a>
+      </div>
 
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- CONTACT -->
-  <section id="contact">
-    <div class="section-title"><span class="num">03</span> Contact</div>
-
-    <div class="contact-grid">
-      <a class="contact-item" href="mailto:zakwansanudin02@gmail.com">
-        <span class="icon">✉️</span>
-        <div class="info">
-          <span class="label">Email</span>
-          <span class="value">zakwansanudin02@gmail.com</span>
-        </div>
-      </a>
-
-      <a class="contact-item" href="tel:+601133035718">
-        <span class="icon">📞</span>
-        <div class="info">
-          <span class="label">Phone</span>
-          <span class="value">+60 11-3303 5718</span>
-        </div>
-      </a>
-
-      <a class="contact-item" href="https://github.com/zakwansanudin" target="_blank" rel="noopener">
-        <span class="icon">🐙</span>
-        <div class="info">
-          <span class="label">GitHub</span>
-          <span class="value">github.com/zakwansanudin</span>
-        </div>
-      </a>
-
-      <a class="contact-item" href="https://www.linkedin.com/in/zakwan-sanudin" target="_blank" rel="noopener">
-        <span class="icon">🔗</span>
-        <div class="info">
-          <span class="label">LinkedIn</span>
-          <span class="value">linkedin.com/in/zakwan-sanudin</span>
-        </div>
-      </a>
-
-      <a class="contact-item" href="#" style="grid-column: 1 / -1; justify-content: center; gap: 0.8rem;">
-        <span class="icon">📄</span>
-        <div class="info">
-          <span class="label">Resume</span>
-          <span class="value">Download CV (PDF) ↓</span>
-        </div>
-      </a>
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-wrap">
+    <div class="section-header">
+      <h2 class="section-eyebrow">Get in touch</h2>
+      <div class="section-rule"></div>
     </div>
-  </section>
+    <div class="contact-inner">
+      <div>
+        <h3 class="contact-intro">
+          Have a project in mind?<br>
+          <em>I'd love to hear about it.</em>
+        </h3>
+        <p class="contact-blurb">
+          Whether you need a Laravel backend, a full-stack web app, or just want to talk through an idea — drop me a message and I'll get back to you within a day.
+        </p>
+        <div class="contact-cta-row">
+          <a class="btn-primary" href="mailto:zakwansanudin02@gmail.com">Send an email</a>
+          <a class="btn-ghost" href="#">Download CV</a>
+        </div>
+      </div>
 
-</main>
+      <div class="contact-cards">
+        <a class="contact-card" href="mailto:zakwansanudin02@gmail.com">
+          <div class="contact-card-icon">✉️</div>
+          <div class="contact-card-body">
+            <div class="contact-card-label">Email</div>
+            <div class="contact-card-value">zakwansanudin02@gmail.com</div>
+          </div>
+          <span class="contact-card-arrow">↗</span>
+        </a>
+        <a class="contact-card" href="tel:+601133035718">
+          <div class="contact-card-icon">📱</div>
+          <div class="contact-card-body">
+            <div class="contact-card-label">Phone</div>
+            <div class="contact-card-value">+60 11-3303 5718</div>
+          </div>
+          <span class="contact-card-arrow">↗</span>
+        </a>
+        <a class="contact-card" href="https://github.com/zakwansanudin" target="_blank" rel="noopener">
+          <div class="contact-card-icon">⌨️</div>
+          <div class="contact-card-body">
+            <div class="contact-card-label">GitHub</div>
+            <div class="contact-card-value">github.com/zakwansanudin</div>
+          </div>
+          <span class="contact-card-arrow">↗</span>
+        </a>
+        <a class="contact-card" href="https://www.linkedin.com/in/zakwan-sanudin" target="_blank" rel="noopener">
+          <div class="contact-card-icon">💼</div>
+          <div class="contact-card-body">
+            <div class="contact-card-label">LinkedIn</div>
+            <div class="contact-card-value">linkedin.com/in/zakwan-sanudin</div>
+          </div>
+          <span class="contact-card-arrow">↗</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
 
+<!-- FOOTER -->
+<div style="border-top:1px solid var(--border);">
+<footer>
+  <span class="footer-text">© <span id="yr"></span> Zakwan Sanudin. Built with care.</span>
+  <div class="footer-links">
+    <a href="#about">About</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact">Contact</a>
+  </div>
+</footer>
+</div>
+
+<script>
+  document.getElementById('yr').textContent = new Date().getFullYear();
+</script>
 </body>
 </html>
