@@ -1,557 +1,588 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Zakwan · revamped</title>
-    <!-- Bootstrap 5 + Icons -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
-    <!-- Google Font (Inter) -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet" />
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Zakwan · dark modern</title>
+  <!-- Bootstrap 5 + Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+  <!-- Google Font: Inter & Space Grotesk -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,600;14..32,700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: #f8fafc;
-            color: #0b1a33;
-            scroll-behavior: smooth;
-        }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #0b0f1a;
+      color: #eef2fb;
+      scroll-behavior: smooth;
+    }
 
-        /* ---------- glass navbar ---------- */
-        .navbar-glass {
-            background: rgba(11, 26, 51, 0.8);
-            backdrop-filter: blur(14px) saturate(180%);
-            -webkit-backdrop-filter: blur(14px) saturate(180%);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
-            transition: background 0.2s;
-        }
+    /* ---------- glass navbar (dark) ---------- */
+    .navbar-glass-dark {
+      background: rgba(11, 15, 26, 0.75);
+      backdrop-filter: blur(16px) saturate(200%);
+      -webkit-backdrop-filter: blur(16px) saturate(200%);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6);
+    }
 
-        .navbar-glass .navbar-brand {
-            font-weight: 700;
-            letter-spacing: -0.3px;
-            color: white;
-            font-size: 1.5rem;
-        }
+    .navbar-glass-dark .navbar-brand {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      color: white;
+      font-size: 1.6rem;
+    }
 
-        .navbar-glass .navbar-brand i {
-            color: #7c8dff;
-            margin-right: 8px;
-        }
+    .navbar-glass-dark .navbar-brand i {
+      color: #a78bfa;
+      margin-right: 10px;
+    }
 
-        .navbar-glass .nav-link {
-            color: rgba(255, 255, 255, 0.75);
-            font-weight: 500;
-            padding: 0.5rem 1rem;
-            border-radius: 40px;
-            transition: 0.2s;
-        }
+    .navbar-glass-dark .nav-link {
+      color: rgba(255, 255, 255, 0.6);
+      font-weight: 500;
+      padding: 0.5rem 1.2rem;
+      border-radius: 100px;
+      transition: 0.2s;
+      font-size: 0.95rem;
+    }
 
-        .navbar-glass .nav-link:hover,
-        .navbar-glass .nav-link.active {
-            color: white;
-            background: rgba(255, 255, 255, 0.08);
-        }
+    .navbar-glass-dark .nav-link:hover,
+    .navbar-glass-dark .nav-link.active {
+      color: white;
+      background: rgba(167, 139, 250, 0.15);
+    }
 
-        /* ---------- hero ---------- */
-        .hero {
-            position: relative;
-            background: linear-gradient(145deg, #0b1a33 0%, #1a2f4f 50%, #2c3f66 100%);
-            color: white;
-            padding: 140px 0 110px;
-            overflow: hidden;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-        }
+    /* ---------- hero (dark + gradient) ---------- */
+    .hero-dark {
+      position: relative;
+      background: radial-gradient(circle at 30% 20%, #1a1f35, #080b14 85%);
+      color: white;
+      padding: 160px 0 130px;
+      overflow: hidden;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.02);
+    }
 
-        .hero::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: radial-gradient(circle at 70% 30%, rgba(120, 140, 255, 0.12), transparent 60%),
-                radial-gradient(circle at 30% 80%, rgba(0, 200, 255, 0.06), transparent 50%);
-            pointer-events: none;
-        }
+    .hero-dark::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 80% 60%, rgba(167, 139, 250, 0.08), transparent 50%),
+                  radial-gradient(circle at 20% 80%, rgba(96, 165, 250, 0.05), transparent 45%);
+      pointer-events: none;
+    }
 
-        .hero-content {
-            position: relative;
-            z-index: 2;
-        }
+    .hero-content {
+      position: relative;
+      z-index: 3;
+    }
 
-        .hero h1 {
-            font-weight: 800;
-            font-size: 4rem;
-            letter-spacing: -1px;
-            line-height: 1.1;
-        }
+    .hero-dark h1 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: 4.2rem;
+      letter-spacing: -1.5px;
+      line-height: 1.1;
+    }
 
-        .hero h1 span {
-            background: linear-gradient(135deg, #b6c8ff, #7c8dff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
+    .hero-dark h1 .highlight {
+      background: linear-gradient(135deg, #a78bfa, #7c8dff, #60a5fa);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
 
-        .hero .lead {
-            font-size: 1.4rem;
-            font-weight: 400;
-            color: rgba(255, 255, 255, 0.8);
-            max-width: 600px;
-            margin: 0 auto;
-        }
+    .hero-dark .lead {
+      font-size: 1.3rem;
+      font-weight: 400;
+      color: rgba(255, 255, 255, 0.7);
+      max-width: 600px;
+      margin: 0 auto;
+    }
 
-        .hero .badge-pill {
-            background: rgba(255, 255, 255, 0.08);
-            backdrop-filter: blur(4px);
-            border: 1px solid rgba(255, 255, 255, 0.06);
-        }
+    .hero-dark .badge-soft {
+      background: rgba(167, 139, 250, 0.12);
+      backdrop-filter: blur(4px);
+      border: 1px solid rgba(167, 139, 250, 0.15);
+      color: #d4c9ff;
+      padding: 0.5rem 1.8rem;
+      border-radius: 60px;
+      font-weight: 500;
+      letter-spacing: 0.3px;
+    }
 
-        .hero .btn-hero {
-            background: white;
-            color: #0b1a33;
-            font-weight: 600;
-            padding: 0.8rem 2.6rem;
-            border-radius: 60px;
-            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
-            transition: 0.25s;
-            border: none;
-        }
+    .btn-glow {
+      background: linear-gradient(135deg, #a78bfa, #7c8dff);
+      color: white;
+      font-weight: 600;
+      padding: 0.8rem 2.8rem;
+      border-radius: 60px;
+      border: none;
+      box-shadow: 0 8px 28px rgba(167, 139, 250, 0.25);
+      transition: 0.25s;
+    }
 
-        .hero .btn-hero:hover {
-            transform: translateY(-3px);
-            background: #f0f4ff;
-            box-shadow: 0 20px 40px rgba(0, 20, 80, 0.4);
-            color: #0b1a33;
-        }
+    .btn-glow:hover {
+      transform: translateY(-4px) scale(1.02);
+      box-shadow: 0 18px 40px rgba(167, 139, 250, 0.4);
+      background: linear-gradient(135deg, #b79cff, #8a9aff);
+      color: white;
+    }
 
-        /* ---------- section titles ---------- */
-        .section-title {
-            font-weight: 700;
-            font-size: 2.4rem;
-            letter-spacing: -0.5px;
-            position: relative;
-            display: inline-block;
-        }
+    .btn-outline-light-custom {
+      border: 1.5px solid rgba(255, 255, 255, 0.15);
+      color: rgba(255, 255, 255, 0.8);
+      border-radius: 60px;
+      padding: 0.7rem 2rem;
+      font-weight: 500;
+      transition: 0.2s;
+      background: transparent;
+    }
 
-        .section-title::after {
-            content: '';
-            position: absolute;
-            left: 50%;
-            bottom: -12px;
-            transform: translateX(-50%);
-            width: 64px;
-            height: 4px;
-            background: linear-gradient(90deg, #7c8dff, #b6c8ff);
-            border-radius: 4px;
-        }
+    .btn-outline-light-custom:hover {
+      background: rgba(255, 255, 255, 0.04);
+      border-color: rgba(255, 255, 255, 0.3);
+      color: white;
+    }
 
-        .section-sub {
-            color: #4a5a7a;
-            font-weight: 400;
-        }
+    /* ---------- section titles (dark) ---------- */
+    .section-title-dark {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: 2.6rem;
+      letter-spacing: -0.5px;
+      color: white;
+      position: relative;
+      display: inline-block;
+    }
 
-        /* ---------- profile image (round) ---------- */
-        .profile-img {
-            width: 160px;
-            height: 160px;
-            object-fit: cover;
-            border-radius: 50%;
-            border: 4px solid white;
-            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
-            transition: 0.3s;
-        }
+    .section-title-dark::after {
+      content: '';
+      position: absolute;
+      left: 50%;
+      bottom: -12px;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 4px;
+      background: linear-gradient(90deg, #a78bfa, #60a5fa);
+      border-radius: 4px;
+    }
 
-        .profile-img:hover {
-            transform: scale(1.02);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-        }
+    .section-sub-dark {
+      color: #9aa4c2;
+      font-weight: 400;
+      font-size: 1.1rem;
+    }
 
-        .profile-img-lg {
-            width: 200px;
-            height: 200px;
-        }
+    /* ---------- cards (dark glass) ---------- */
+    .card-dark-glass {
+      background: rgba(255, 255, 255, 0.02);
+      backdrop-filter: blur(4px);
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      border-radius: 32px;
+      padding: 2rem 1.8rem 2.2rem;
+      height: 100%;
+      transition: all 0.3s ease;
+      box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+    }
 
-        /* ---------- cards ---------- */
-        .card-modern {
-            background: white;
-            border: none;
-            border-radius: 28px;
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.04);
-            transition: all 0.25s ease;
-            padding: 1.8rem 1.8rem 2.2rem;
-            height: 100%;
-            border: 1px solid rgba(0, 0, 0, 0.02);
-        }
+    .card-dark-glass:hover {
+      transform: translateY(-10px);
+      border-color: rgba(167, 139, 250, 0.2);
+      background: rgba(255, 255, 255, 0.04);
+      box-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.7);
+    }
 
-        .card-modern:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 50px rgba(20, 40, 100, 0.10);
-            border-color: rgba(124, 141, 255, 0.20);
-        }
+    .card-dark-glass .card-icon {
+      font-size: 2.8rem;
+      color: #a78bfa;
+      margin-bottom: 1.2rem;
+      display: inline-block;
+    }
 
-        .card-modern .card-icon {
-            font-size: 2.6rem;
-            color: #2c3f66;
-            margin-bottom: 1rem;
-            display: inline-block;
-        }
+    .card-dark-glass h5 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 600;
+      font-size: 1.4rem;
+      color: white;
+      letter-spacing: -0.3px;
+    }
 
-        .card-modern h5 {
-            font-weight: 700;
-            font-size: 1.3rem;
-            letter-spacing: -0.3px;
-        }
+    .card-dark-glass p {
+      color: #b9c2dd;
+      font-size: 0.95rem;
+      line-height: 1.7;
+    }
 
-        .card-modern p {
-            color: #3d4e6b;
-            font-size: 0.95rem;
-            line-height: 1.6;
-        }
+    .badge-soft-tech {
+      background: rgba(167, 139, 250, 0.08);
+      color: #cdc4f0;
+      border: 1px solid rgba(167, 139, 250, 0.08);
+      border-radius: 60px;
+      padding: 0.4rem 1.2rem;
+      font-weight: 500;
+      font-size: 0.75rem;
+      letter-spacing: 0.3px;
+    }
 
-        .btn-outline-primary-custom {
-            border: 1.5px solid #7c8dff;
-            color: #2c3f66;
-            border-radius: 60px;
-            padding: 0.4rem 1.6rem;
-            font-weight: 600;
-            transition: 0.2s;
-            background: transparent;
-        }
+    .btn-outline-purple {
+      border: 1.5px solid rgba(167, 139, 250, 0.3);
+      color: #d4c9ff;
+      border-radius: 60px;
+      padding: 0.3rem 1.8rem;
+      font-weight: 600;
+      transition: 0.2s;
+      background: transparent;
+    }
 
-        .btn-outline-primary-custom:hover {
-            background: #7c8dff;
-            color: white;
-            border-color: #7c8dff;
-        }
+    .btn-outline-purple:hover {
+      background: #a78bfa;
+      border-color: #a78bfa;
+      color: #0b0f1a;
+    }
 
-        /* ---------- skill pills ---------- */
-        .skill-pill {
-            background: white;
-            border-radius: 60px;
-            padding: 0.6rem 1.8rem;
-            font-weight: 600;
-            color: #0b1a33;
-            border: 1px solid rgba(0, 0, 0, 0.04);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
-            transition: 0.2s;
-            display: inline-block;
-        }
+    /* ---------- about card (dark) ---------- */
+    .about-card-dark {
+      background: rgba(255, 255, 255, 0.02);
+      border-radius: 48px;
+      padding: 2.8rem 2.5rem;
+      border: 1px solid rgba(255, 255, 255, 0.03);
+      backdrop-filter: blur(4px);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+    }
 
-        .skill-pill:hover {
-            border-color: #7c8dff;
-            background: #f5f8ff;
-            transform: scale(1.02);
-        }
+    .about-card-dark p {
+      color: #c8d0e8;
+      font-size: 1.1rem;
+      line-height: 1.8;
+    }
 
-        .skill-pill i {
-            color: #7c8dff;
-            margin-right: 8px;
-        }
+    /* profile img dark border */
+    .profile-img-dark {
+      width: 180px;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 3px solid rgba(167, 139, 250, 0.3);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+      transition: 0.3s;
+    }
 
-        /* ---------- about with image ---------- */
-        .about-card {
-            background: white;
-            border-radius: 40px;
-            padding: 2.8rem 2.5rem;
-            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.02);
-            border: 1px solid rgba(0, 0, 0, 0.02);
-        }
+    .profile-img-dark:hover {
+      transform: scale(1.02);
+      border-color: #a78bfa;
+    }
 
-        /* ---------- contact ---------- */
-        .contact-box {
-            background: white;
-            border-radius: 48px;
-            padding: 3.2rem 2.5rem;
-            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.02);
-            border: 1px solid rgba(0, 0, 0, 0.02);
-        }
+    /* skill pills (dark) */
+    .skill-pill-dark {
+      background: rgba(255, 255, 255, 0.03);
+      border-radius: 60px;
+      padding: 0.5rem 1.6rem;
+      font-weight: 600;
+      color: #e0e6ff;
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      transition: 0.2s;
+      display: inline-block;
+      backdrop-filter: blur(2px);
+    }
 
-        .contact-box .contact-item {
-            font-size: 1.1rem;
-            padding: 0.5rem 0;
-            color: #1a2f4f;
-        }
+    .skill-pill-dark:hover {
+      border-color: #a78bfa;
+      background: rgba(167, 139, 250, 0.06);
+      transform: scale(1.02);
+    }
 
-        .contact-box .contact-item i {
-            color: #7c8dff;
-            width: 2rem;
-        }
+    .skill-pill-dark i {
+      color: #a78bfa;
+      margin-right: 8px;
+    }
 
-        .btn-dark-custom {
-            background: #0b1a33;
-            border-radius: 60px;
-            padding: 0.7rem 2.8rem;
-            font-weight: 600;
-            color: white;
-            border: none;
-            transition: 0.2s;
-        }
+    /* ---------- contact (dark) ---------- */
+    .contact-box-dark {
+      background: rgba(255, 255, 255, 0.02);
+      border-radius: 48px;
+      padding: 3.2rem 2.5rem;
+      border: 1px solid rgba(255, 255, 255, 0.03);
+      backdrop-filter: blur(4px);
+    }
 
-        .btn-dark-custom:hover {
-            background: #1f3452;
-            transform: translateY(-2px);
-            box-shadow: 0 12px 28px rgba(11, 26, 51, 0.2);
-            color: white;
-        }
+    .contact-box-dark .contact-item {
+      font-size: 1.1rem;
+      color: #d4dbf5;
+      padding: 0.4rem 0;
+    }
 
-        /* ---------- footer ---------- */
-        .footer-dark {
-            background: #0a1428;
-            color: rgba(255, 255, 255, 0.6);
-            border-top: 1px solid rgba(255, 255, 255, 0.03);
-        }
+    .contact-box-dark .contact-item i {
+      color: #a78bfa;
+      width: 2.2rem;
+    }
 
-        .footer-dark a {
-            color: rgba(255, 255, 255, 0.5);
-            transition: 0.2s;
-        }
+    .btn-dark-glow {
+      background: rgba(167, 139, 250, 0.08);
+      border: 1px solid rgba(167, 139, 250, 0.15);
+      border-radius: 60px;
+      padding: 0.7rem 2.6rem;
+      font-weight: 600;
+      color: white;
+      transition: 0.2s;
+    }
 
-        .footer-dark a:hover {
-            color: white;
-        }
+    .btn-dark-glow:hover {
+      background: #a78bfa;
+      color: #0b0f1a;
+      border-color: #a78bfa;
+      transform: translateY(-2px);
+      box-shadow: 0 12px 30px rgba(167, 139, 250, 0.2);
+    }
 
-        /* ---------- responsive ---------- */
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.8rem;
-            }
+    .btn-outline-secondary-dark {
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      color: #b9c2dd;
+      border-radius: 60px;
+      padding: 0.6rem 1.8rem;
+      transition: 0.2s;
+      background: transparent;
+    }
 
-            .hero {
-                padding: 100px 0 70px;
-            }
+    .btn-outline-secondary-dark:hover {
+      background: rgba(255, 255, 255, 0.03);
+      color: white;
+      border-color: rgba(255, 255, 255, 0.15);
+    }
 
-            .profile-img-lg {
-                width: 140px;
-                height: 140px;
-            }
+    /* ---------- footer dark ---------- */
+    .footer-dark-deep {
+      background: #060910;
+      color: rgba(255, 255, 255, 0.3);
+      border-top: 1px solid rgba(255, 255, 255, 0.02);
+    }
 
-            .about-card {
-                padding: 1.8rem 1.2rem;
-            }
+    .footer-dark-deep a {
+      color: rgba(255, 255, 255, 0.25);
+      transition: 0.2s;
+      text-decoration: none;
+    }
 
-            .contact-box {
-                padding: 2rem 1.2rem;
-            }
-        }
-    </style>
+    .footer-dark-deep a:hover {
+      color: #a78bfa;
+    }
+
+    /* ---------- responsive ---------- */
+    @media (max-width: 768px) {
+      .hero-dark h1 { font-size: 2.8rem; }
+      .hero-dark { padding: 120px 0 70px; }
+      .profile-img-dark { width: 140px; height: 140px; }
+      .about-card-dark { padding: 1.8rem 1.2rem; }
+      .contact-box-dark { padding: 2rem 1.2rem; }
+    }
+  </style>
 </head>
-
 <body>
 
-    <!-- ====== NAVBAR ====== -->
-    <nav class="navbar navbar-expand-lg navbar-glass fixed-top">
-        <div class="container">
-            <a class="navbar-brand" href="#">
-                <i class="bi bi-code-square"></i> Zakwan
-            </a>
-            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto gap-1">
-                    <li class="nav-item"><a class="nav-link active" href="#about">About</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+<!-- ====== NAVBAR ====== -->
+<nav class="navbar navbar-expand-lg navbar-glass-dark fixed-top">
+  <div class="container">
+    <a class="navbar-brand" href="#">
+      <i class="bi bi-code-square"></i> Zakwan
+    </a>
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon" style="filter: invert(1);"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto gap-1">
+        <li class="nav-item"><a class="nav-link active" href="#about">About</a></li>
+        <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
+        <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
 
-    <!-- ====== HERO ====== -->
-    <section class="hero" id="home">
-        <div class="container hero-content text-center">
-            <div class="mb-4">
-                <span class="badge badge-pill text-white px-4 py-2 rounded-pill fw-normal">
-                    <i class="bi bi-stars me-1"></i> full-stack · laravel · asp.net
+<!-- ====== HERO (dark) ====== -->
+<section class="hero-dark" id="home">
+  <div class="container hero-content text-center">
+    <div class="mb-4">
+      <span class="badge-soft">
+        <i class="bi bi-stars me-1"></i> full‑stack · laravel · asp.net
+      </span>
+    </div>
+    <h1 class="mb-3">Hi, I'm <span class="highlight">Zakwan</span></h1>
+    <p class="lead mx-auto">
+      Full Stack Developer · Laravel · ASP.NET Core · PHP · JavaScript
+    </p>
+    <div class="mt-5 d-flex flex-wrap justify-content-center gap-3">
+      <a href="#projects" class="btn btn-glow">
+        <i class="bi bi-grid-3x3-gap-fill me-2"></i> Explore projects
+      </a>
+      <a href="#contact" class="btn btn-outline-light-custom">
+        <i class="bi bi-envelope me-2"></i> Let's talk
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ====== ABOUT (dark) ====== -->
+<section id="about" class="py-5" style="background: #0b0f1a;">
+  <div class="container py-4">
+    <div class="text-center mb-5">
+      <h2 class="section-title-dark">About Me</h2>
+      <p class="section-sub-dark mt-4" style="max-width: 620px; margin: 0 auto;">
+        Crafting robust, human-centered applications with clean code and modern architecture.
+      </p>
+    </div>
+
+    <div class="row justify-content-center">
+      <div class="col-lg-10">
+        <div class="about-card-dark">
+          <div class="row align-items-center g-4">
+            <div class="col-md-4 text-center">
+              <img src="https://ui-avatars.com/api/?name=Zakwan+Sanudin&size=200&background=7c8dff&color=fff&bold=true&font-size=0.5" 
+                   alt="Zakwan" class="profile-img-dark" />
+              <div class="mt-3">
+                <span class="badge bg-light text-dark px-3 py-2 rounded-pill" style="background: rgba(167,139,250,0.1) !important; border: 1px solid rgba(167,139,250,0.1); color: #d4c9ff;">
+                  <i class="bi bi-camera me-1"></i> #buildwithpassion
                 </span>
+              </div>
             </div>
-            <h1 class="mb-4">Hi, I'm <span>Zakwan</span></h1>
-            <p class="lead mx-auto">
-                Full Stack Developer · Laravel · ASP.NET Core · PHP · JavaScript
-            </p>
-            <div class="mt-5 d-flex flex-wrap justify-content-center gap-3">
-                <a href="#projects" class="btn btn-hero">
-                    <i class="bi bi-grid-3x3-gap-fill me-2"></i> Explore projects
-                </a>
-                <a href="#contact" class="btn btn-outline-light rounded-pill px-4 py-2 border-2" style="border-color: rgba(255,255,255,0.3);">
-                    <i class="bi bi-envelope me-2"></i> Let's talk
-                </a>
+            <div class="col-md-8">
+              <p>
+                I'm a passionate developer with a focus on <strong style="color: #c4b5fd;">Laravel</strong>, <strong style="color: #c4b5fd;">PHP</strong>, and
+                <strong style="color: #c4b5fd;">ASP.NET Core</strong>. I love turning complex problems into elegant,
+                scalable solutions. Currently exploring cloud-native development and
+                microservices.
+              </p>
+              <div class="d-flex flex-wrap gap-2 mt-3">
+                <span class="skill-pill-dark"><i class="bi bi-laptop"></i> Laravel</span>
+                <span class="skill-pill-dark"><i class="bi bi-code-slash"></i> PHP</span>
+                <span class="skill-pill-dark"><i class="bi bi-database"></i> MySQL</span>
+                <span class="skill-pill-dark"><i class="bi bi-braces"></i> JavaScript</span>
+                <span class="skill-pill-dark"><i class="bi bi-window"></i> ASP.NET</span>
+              </div>
             </div>
+          </div>
         </div>
-    </section>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <!-- ====== ABOUT with PROFILE IMAGE ====== -->
-    <section id="about" class="py-5">
-        <div class="container py-4">
-            <div class="text-center mb-5">
-                <h2 class="section-title">About Me</h2>
-                <p class="text-muted mt-4 section-sub" style="max-width: 620px; margin: 0 auto;">
-                    Crafting robust, human-centered applications with clean code and modern architecture.
-                </p>
-            </div>
+<!-- ====== SKILLS MINI (dark) ====== -->
+<section style="background: #0f1422; border-top: 1px solid rgba(255,255,255,0.02); border-bottom: 1px solid rgba(255,255,255,0.02);">
+  <div class="container py-4">
+    <div class="row text-center align-items-center g-3">
+      <div class="col-md-3 col-6"><span class="skill-pill-dark w-100"><i class="bi bi-layers"></i> Laravel</span></div>
+      <div class="col-md-3 col-6"><span class="skill-pill-dark w-100"><i class="bi bi-filetype-php"></i> PHP</span></div>
+      <div class="col-md-3 col-6"><span class="skill-pill-dark w-100"><i class="bi bi-database-fill"></i> MySQL</span></div>
+      <div class="col-md-3 col-6"><span class="skill-pill-dark w-100"><i class="bi bi-bootstrap-fill"></i> Bootstrap</span></div>
+    </div>
+  </div>
+</section>
 
-            <div class="row justify-content-center">
-                <div class="col-lg-10">
-                    <div class="about-card">
-                        <div class="row align-items-center g-4">
-                            <!-- profile image column -->
-                            <div class="col-md-4 text-center">
-                                <img src="https://ui-avatars.com/api/?name=Zakwan+Sanudin&size=200&background=7c8dff&color=fff&bold=true&font-size=0.5" alt="Zakwan profile" class="profile-img profile-img-lg" />
-                                <div class="mt-3">
-                                    <span class="badge bg-light text-dark px-3 py-2 rounded-pill">
-                                        <i class="bi bi-camera me-1"></i> #buildwithpassion
-                                    </span>
-                                </div>
-                            </div>
-                            <!-- text column -->
-                            <div class="col-md-8">
-                                <p style="font-size: 1.1rem; line-height: 1.7; color: #1f3452;">
-                                    I'm a passionate developer with a focus on <strong>Laravel</strong>, <strong>PHP</strong>, and
-                                    <strong>ASP.NET Core</strong>. I love turning complex problems into elegant,
-                                    scalable solutions. Currently exploring cloud-native development and
-                                    microservices.
-                                </p>
-                                <div class="d-flex flex-wrap gap-2 mt-3">
-                                    <span class="skill-pill"><i class="bi bi-laptop"></i> Laravel</span>
-                                    <span class="skill-pill"><i class="bi bi-code-slash"></i> PHP</span>
-                                    <span class="skill-pill"><i class="bi bi-database"></i> MySQL</span>
-                                    <span class="skill-pill"><i class="bi bi-braces"></i> JavaScript</span>
-                                    <span class="skill-pill"><i class="bi bi-window"></i> ASP.NET</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+<!-- ====== PROJECTS (dark) ====== -->
+<section id="projects" class="py-5" style="background: #0b0f1a;">
+  <div class="container py-3">
+    <div class="text-center mb-5">
+      <h2 class="section-title-dark">Projects</h2>
+      <p class="section-sub-dark mt-3">Real‑world solutions · built with passion</p>
+    </div>
+
+    <div class="row g-4">
+      <div class="col-md-4">
+        <div class="card-dark-glass">
+          <div class="card-icon"><i class="bi bi-people-fill"></i></div>
+          <h5>Kampung Online</h5>
+          <p>A digital community platform with user management, updates, and real‑time engagement.</p>
+          <div class="d-flex gap-2 flex-wrap mt-3">
+            <span class="badge-soft-tech">Laravel</span>
+            <span class="badge-soft-tech">Bootstrap</span>
+            <span class="badge-soft-tech">MySQL</span>
+          </div>
+          <div class="mt-4">
+            <a href="https://kampungonline.my" class="btn-outline-purple btn">View <i class="bi bi-arrow-right ms-1"></i></a>
+          </div>
         </div>
-    </section>
+      </div>
 
-    <!-- ====== SKILLS MINI (optional) ====== -->
-    <section class="py-4" style="background: #f1f5fc;">
-        <div class="container">
-            <div class="row text-center align-items-center g-3">
-                <div class="col-md-3 col-6"><span class="skill-pill w-100"><i class="bi bi-layers"></i> Laravel</span></div>
-                <div class="col-md-3 col-6"><span class="skill-pill w-100"><i class="bi bi-filetype-php"></i> PHP</span></div>
-                <div class="col-md-3 col-6"><span class="skill-pill w-100"><i class="bi bi-database-fill"></i> MySQL</span></div>
-                <div class="col-md-3 col-6"><span class="skill-pill w-100"><i class="bi bi-bootstrap-fill"></i> Bootstrap</span></div>
-            </div>
+      <div class="col-md-4">
+        <div class="card-dark-glass">
+          <div class="card-icon"><i class="bi bi-box-seam-fill"></i></div>
+          <h5>ePDK</h5>
+          <p>Student progress recording for Program Didik Kasih (EPDK), used in Selangor primary schools.</p>
+          <div class="d-flex gap-2 flex-wrap mt-3">
+            <span class="badge-soft-tech">Laravel</span>
+            <span class="badge-soft-tech">Tailwind</span>
+            <span class="badge-soft-tech">MySQL</span>
+          </div>
+          <div class="mt-4">
+            <a href="https://epdk.eptrs.my/login" class="btn-outline-purple btn">View <i class="bi bi-arrow-right ms-1"></i></a>
+          </div>
         </div>
-    </section>
+      </div>
 
-    <!-- ====== PROJECTS ====== -->
-    <section id="projects" class="py-5">
-        <div class="container py-3">
-            <div class="text-center mb-5">
-                <h2 class="section-title">Projects</h2>
-                <p class="text-muted mt-3 section-sub">Real-world solutions · built with passion</p>
-            </div>
-
-            <div class="row g-4">
-
-                <div class="col-md-4">
-                    <div class="card-modern">
-                        <div class="card-icon"><i class="bi bi-people-fill"></i></div>
-                        <h5>Kampung Online</h5>
-                        <p class="card-text">A digital community platform for KampungOnline with user management, updates, and real-time engagement features.</p>
-                        <div class="d-flex gap-2 flex-wrap mt-3">
-                            <span class="badge bg-light text-dark rounded-pill px-3 py-2 fw-normal">Laravel</span>
-                            <span class="badge bg-light text-dark rounded-pill px-3 py-2 fw-normal">Bootstrap</span>
-                            <span class="badge bg-light text-dark rounded-pill px-3 py-2 fw-normal">MySQL</span>
-                        </div>
-                        <div class="mt-4">
-                            <a href="https://kampungonline.my" class="btn-outline-primary-custom btn">View <i class="bi bi-arrow-right ms-1"></i></a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-4">
-                    <div class="card-modern">
-                        <div class="card-icon"><i class="bi bi-box-seam-fill"></i></div>
-                        <h5>ePDK</h5>
-                        <p class="card-text">A student progress recording system for Program Didik Kasih (EPDK), used in Selangor primary schools to monitor academic development and performance tracking.</p>
-                        <div class="d-flex gap-2 flex-wrap mt-3">
-                            <span class="badge bg-light text-dark rounded-pill px-3 py-2 fw-normal">Laravel</span>
-                            <span class="badge bg-light text-dark rounded-pill px-3 py-2 fw-normal">TailwindCSS</span>
-                            <span class="badge bg-light text-dark rounded-pill px-3 py-2 fw-normal">MySQL</span>
-                        </div>
-                        <div class="mt-4">
-                            <a href="https://epdk.eptrs.my/login" class="btn-outline-primary-custom btn">View <i class="bi bi-arrow-right ms-1"></i></a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-4">
-                    <div class="card-modern">
-                        <div class="card-icon"><i class="bi bi-play-circle-fill"></i></div>
-                        <h5>E‑Learning Platform</h5>
-                        <p class="card-text">Video courses, quizzes, progress tracking — built with Laravel & React.js.</p>
-                        <div class="d-flex gap-2 flex-wrap mt-3">
-                            <span class="badge bg-light text-dark rounded-pill px-3 py-2 fw-normal">Laravel</span>
-                            <span class="badge bg-light text-dark rounded-pill px-3 py-2 fw-normal">React</span>
-                        </div>
-                        <div class="mt-4">
-                            <a href="#" class="btn-outline-primary-custom btn">View <i class="bi bi-arrow-right ms-1"></i></a>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
+      <div class="col-md-4">
+        <div class="card-dark-glass">
+          <div class="card-icon"><i class="bi bi-play-circle-fill"></i></div>
+          <h5>E‑Learning Platform</h5>
+          <p>Video courses, quizzes, progress tracking — built with Laravel & React.js.</p>
+          <div class="d-flex gap-2 flex-wrap mt-3">
+            <span class="badge-soft-tech">Laravel</span>
+            <span class="badge-soft-tech">React</span>
+          </div>
+          <div class="mt-4">
+            <a href="#" class="btn-outline-purple btn">View <i class="bi bi-arrow-right ms-1"></i></a>
+          </div>
         </div>
-    </section>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <!-- ====== CONTACT ====== -->
-    <section id="contact" class="py-5" style="background: #f1f5fc;">
-        <div class="container py-3">
-            <div class="text-center mb-5">
-                <h2 class="section-title">Contact</h2>
-                <p class="text-muted mt-3 section-sub">Let's build something great together</p>
-            </div>
-            <div class="row justify-content-center">
-                <div class="col-lg-8">
-                    <div class="contact-box text-center">
-                        <div class="d-flex flex-column flex-md-row justify-content-center align-items-center gap-4">
-                            <div class="contact-item"><i class="bi bi-envelope-fill"></i> zakwansanudin02@gmail.com</div>
-                            <div class="contact-item"><i class="bi bi-telephone-fill"></i> +60 11-3303 5718</div>
-                        </div>
-                        <div class="mt-4 d-flex flex-wrap justify-content-center gap-3">
-                            <a href="#" class="btn btn-dark-custom"><i class="bi bi-download me-2"></i>Download Resume</a>
-                            <a href="https://github.com/zakwansanudin" class="btn btn-outline-secondary rounded-pill px-4" style="border-color: #cdd9ed;"><i class="bi bi-github"></i> GitHub</a>
-                            <a href="https://www.linkedin.com/in/zakwan-sanudin" class="btn btn-outline-secondary rounded-pill px-4" style="border-color: #cdd9ed;"><i class="bi bi-linkedin"></i> LinkedIn</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+<!-- ====== CONTACT (dark) ====== -->
+<section id="contact" class="py-5" style="background: #0f1422;">
+  <div class="container py-3">
+    <div class="text-center mb-5">
+      <h2 class="section-title-dark">Contact</h2>
+      <p class="section-sub-dark mt-3">Let's build something great together</p>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        <div class="contact-box-dark text-center">
+          <div class="d-flex flex-column flex-md-row justify-content-center align-items-center gap-4">
+            <div class="contact-item"><i class="bi bi-envelope-fill"></i> zakwansanudin02@gmail.com</div>
+            <div class="contact-item"><i class="bi bi-telephone-fill"></i> +60 11-3303 5718</div>
+          </div>
+          <div class="mt-4 d-flex flex-wrap justify-content-center gap-3">
+            <a href="#" class="btn btn-dark-glow"><i class="bi bi-download me-2"></i>Download Resume</a>
+            <a href="https://github.com/zakwansanudin" class="btn btn-outline-secondary-dark"><i class="bi bi-github"></i> GitHub</a>
+            <a href="https://www.linkedin.com/in/zakwan-sanudin" class="btn btn-outline-secondary-dark"><i class="bi bi-linkedin"></i> LinkedIn</a>
+          </div>
         </div>
-    </section>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <!-- ====== FOOTER ====== -->
-    <footer class="footer-dark py-4">
-        <div class="container text-center">
-            <p class="mb-0 small">
-                <i class="bi bi-c-circle me-1"></i> <span id="year"></span> Zakwan · crafted with <i class="bi bi-heart-fill text-danger" style="font-size: 0.8rem;"></i>
-            </p>
-            <div class="mt-2 d-flex justify-content-center gap-3 small">
-                <a href="#home" class="text-decoration-none">Home</a>
-                <a href="#projects" class="text-decoration-none">Projects</a>
-                <a href="#contact" class="text-decoration-none">Contact</a>
-            </div>
-        </div>
-    </footer>
+<!-- ====== FOOTER ====== -->
+<footer class="footer-dark-deep py-4">
+  <div class="container text-center">
+    <p class="mb-0 small">
+      <i class="bi bi-c-circle me-1"></i> <span id="year"></span> Zakwan · crafted with <i class="bi bi-heart-fill text-danger" style="font-size: 0.8rem;"></i>
+    </p>
+    <div class="mt-2 d-flex justify-content-center gap-3 small">
+      <a href="#home">Home</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</footer>
 
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
-    </script>
-    <script>
-        document.getElementById('year').textContent = new Date().getFullYear();
-    </script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script> document.getElementById('year').textContent = new Date().getFullYear(); </script>
 </body>
-
 </html>
