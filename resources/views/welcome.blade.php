@@ -452,12 +452,12 @@
           <div class="contact-box text-center">
             <div class="d-flex flex-column flex-md-row justify-content-center align-items-center gap-4">
               <div class="contact-item"><i class="bi bi-envelope-fill"></i> zakwan@example.com</div>
-              <div class="contact-item"><i class="bi bi-telephone-fill"></i> +60 12-345 6789</div>
+              <div class="contact-item"><i class="bi bi-telephone-fill"></i> +60 11-3303 5718</div>
             </div>
             <div class="mt-4 d-flex flex-wrap justify-content-center gap-3">
               <a href="#" class="btn btn-dark-custom"><i class="bi bi-download me-2"></i>Download Resume</a>
-              <a href="#" class="btn btn-outline-secondary rounded-pill px-4" style="border-color: #cdd9ed;"><i class="bi bi-github"></i> GitHub</a>
-              <a href="#" class="btn btn-outline-secondary rounded-pill px-4" style="border-color: #cdd9ed;"><i class="bi bi-linkedin"></i> LinkedIn</a>
+              <a href="https://github.com/zakwansanudin" class="btn btn-outline-secondary rounded-pill px-4" style="border-color: #cdd9ed;"><i class="bi bi-github"></i> GitHub</a>
+              <a href="www.linkedin.com/in/zakwan-sanudin" class="btn btn-outline-secondary rounded-pill px-4" style="border-color: #cdd9ed;"><i class="bi bi-linkedin"></i> LinkedIn</a>
             </div>
           </div>
         </div>
