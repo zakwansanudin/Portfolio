@@ -457,7 +457,7 @@
             <div class="mt-4 d-flex flex-wrap justify-content-center gap-3">
               <a href="#" class="btn btn-dark-custom"><i class="bi bi-download me-2"></i>Download Resume</a>
               <a href="https://github.com/zakwansanudin" class="btn btn-outline-secondary rounded-pill px-4" style="border-color: #cdd9ed;"><i class="bi bi-github"></i> GitHub</a>
-              <a href="www.linkedin.com/in/zakwan-sanudin" class="btn btn-outline-secondary rounded-pill px-4" style="border-color: #cdd9ed;"><i class="bi bi-linkedin"></i> LinkedIn</a>
+              <a href="https://www.linkedin.com/in/zakwan-sanudin" class="btn btn-outline-secondary rounded-pill px-4" style="border-color: #cdd9ed;"><i class="bi bi-linkedin"></i> LinkedIn</a>
             </div>
           </div>
         </div>
