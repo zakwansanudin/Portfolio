@@ -232,7 +232,6 @@
             object-fit: cover;
             display: block;
             box-shadow: 0 20px 60px rgba(59, 78, 255, 0.12);
-
             image-rendering: -webkit-optimize-contrast;
         }
 
@@ -341,45 +340,45 @@
             font-weight: 600;
         }
 
+        /* ── SKILLS (list style, no progress bar) ── */
         .skills-list {
             display: flex;
             flex-direction: column;
-            gap: 0.85rem;
-        }
-
-        .skill-row {
-            display: flex;
-            align-items: center;
             gap: 1rem;
         }
 
+        .skill-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.6rem 1rem 0.6rem 1.2rem;
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 60px;
+            transition: all 0.15s;
+        }
+
+        .skill-item:hover {
+            border-color: var(--indigo-mid);
+            box-shadow: 0 4px 12px rgba(59, 78, 255, 0.06);
+            transform: translateX(4px);
+        }
+
         .skill-name {
-            font-size: 0.9rem;
+            font-size: 0.92rem;
             font-weight: 600;
             color: var(--text);
-            min-width: 130px;
+            letter-spacing: -0.01em;
         }
 
-        .skill-track {
-            flex: 1;
-            height: 6px;
-            background: var(--border);
-            border-radius: 100px;
-            overflow: hidden;
-        }
-
-        .skill-fill {
-            height: 100%;
-            background: linear-gradient(90deg, var(--indigo), #7B8FFF);
-            border-radius: 100px;
-        }
-
-        .skill-pct {
-            font-size: 0.78rem;
-            color: var(--muted);
+        .skill-level {
+            font-size: 0.82rem;
             font-weight: 500;
-            min-width: 36px;
-            text-align: right;
+            color: var(--indigo);
+            background: var(--indigo-light);
+            padding: 0.2rem 1rem;
+            border-radius: 40px;
+            line-height: 1.4;
         }
 
         /* ── PROJECTS ── */
@@ -676,7 +675,6 @@
         }
 
         @media (max-width: 640px) {
-
             .hero-name .line1,
             .hero-name .line2 {
                 font-size: 3rem;
@@ -731,10 +729,7 @@
 
             <div class="hero-right">
                 <div class="profile-wrap">
-                    <img
-                        src="{{ asset('img/profile.png') }}"
-                        alt="Zakwan Sanudin"
-                        class="profile-img" />
+                    <img src="{{ asset('img/profile.png') }}" alt="Zakwan Sanudin" class="profile-img" />
                     <div class="profile-badge">📍 Selangor, <span>MY</span></div>
                 </div>
                 <div class="hero-stats">
@@ -774,51 +769,35 @@
                         Currently expanding into <strong>cloud-native development</strong> and microservices, and always looking for interesting problems to solve.
                     </p>
                 </div>
+                <!-- SKILLS – list style, no progress bars -->
                 <div class="skills-list">
-                    <div class="skill-row">
-                        <span class="chip">Laravel</span>
+                    <div class="skill-item">
+                        <span class="skill-name">Laravel</span>
+                        <span class="skill-level">Expert</span>
                     </div>
-                    <div class="skill-row">
+                    <div class="skill-item">
                         <span class="skill-name">PHP</span>
-                        <div class="skill-track">
-                            <div class="skill-fill" style="width:90%"></div>
-                        </div>
-                        <span class="skill-pct">90%</span>
+                        <span class="skill-level">Advanced</span>
                     </div>
-                    <div class="skill-row">
+                    <div class="skill-item">
                         <span class="skill-name">MySQL</span>
-                        <div class="skill-track">
-                            <div class="skill-fill" style="width:85%"></div>
-                        </div>
-                        <span class="skill-pct">85%</span>
+                        <span class="skill-level">Advanced</span>
                     </div>
-                    <div class="skill-row">
+                    <div class="skill-item">
                         <span class="skill-name">ASP.NET Core</span>
-                        <div class="skill-track">
-                            <div class="skill-fill" style="width:80%"></div>
-                        </div>
-                        <span class="skill-pct">80%</span>
+                        <span class="skill-level">Proficient</span>
                     </div>
-                    <div class="skill-row">
+                    <div class="skill-item">
                         <span class="skill-name">JavaScript</span>
-                        <div class="skill-track">
-                            <div class="skill-fill" style="width:74%"></div>
-                        </div>
-                        <span class="skill-pct">74%</span>
+                        <span class="skill-level">Proficient</span>
                     </div>
-                    <div class="skill-row">
+                    <div class="skill-item">
                         <span class="skill-name">React</span>
-                        <div class="skill-track">
-                            <div class="skill-fill" style="width:68%"></div>
-                        </div>
-                        <span class="skill-pct">68%</span>
+                        <span class="skill-level">Intermediate</span>
                     </div>
-                    <div class="skill-row">
+                    <div class="skill-item">
                         <span class="skill-name">TailwindCSS</span>
-                        <div class="skill-track">
-                            <div class="skill-fill" style="width:82%"></div>
-                        </div>
-                        <span class="skill-pct">82%</span>
+                        <span class="skill-level">Advanced</span>
                     </div>
                 </div>
             </div>
