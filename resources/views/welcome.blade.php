@@ -776,11 +776,7 @@
                 </div>
                 <div class="skills-list">
                     <div class="skill-row">
-                        <span class="skill-name">Laravel</span>
-                        <div class="skill-track">
-                            <div class="skill-fill" style="width:92%"></div>
-                        </div>
-                        <span class="skill-pct">92%</span>
+                        <span class="chip">Laravel</span>
                     </div>
                     <div class="skill-row">
                         <span class="skill-name">PHP</span>
