@@ -187,6 +187,9 @@
             border-radius: 100px;
             text-decoration: none;
             transition: opacity 0.18s, transform 0.18s;
+            display: inline-block;
+            border: none;
+            cursor: pointer;
         }
 
         .btn-primary:hover {
@@ -204,6 +207,8 @@
             text-decoration: none;
             border: 1.5px solid var(--border);
             transition: border-color 0.18s, background 0.18s;
+            display: inline-block;
+            cursor: pointer;
         }
 
         .btn-ghost:hover {
@@ -388,6 +393,12 @@
             gap: 1.5rem;
         }
 
+        .projects-grid.all-projects {
+            margin-top: 2.5rem;
+            padding-top: 2.5rem;
+            border-top: 1px solid var(--border);
+        }
+
         .project-card {
             background: white;
             border: 1px solid var(--border);
@@ -488,6 +499,19 @@
 
         .project-card:hover .project-card-link .arrow {
             transform: translate(3px, -3px);
+        }
+
+        .show-all-btn-wrap {
+            text-align: center;
+            margin-top: 2.5rem;
+        }
+
+        .all-projects-container {
+            display: none;
+        }
+
+        .all-projects-container.visible {
+            display: block;
         }
 
         /* ── CONTACT ── */
@@ -730,7 +754,7 @@
 
             <div class="hero-right">
                 <div class="profile-wrap">
-                    <img src="{{ asset('img/profile.png') }}" alt="Zakwan Sanudin" class="profile-img" />
+                    <img src="https://ui-avatars.com/api/?name=Zakwan+Sanudin&size=220&background=3B4EFF&color=fff&bold=true&font-size=0.5" alt="Zakwan Sanudin" class="profile-img" />
                     <div class="profile-badge">📍 Selangor, <span>MY</span></div>
                 </div>
                 <div class="hero-stats">
@@ -812,8 +836,9 @@
                 <h2 class="section-eyebrow">Selected projects</h2>
                 <div class="section-rule"></div>
             </div>
-            <div class="projects-grid">
 
+            <!-- Featured projects (always visible) -->
+            <div class="projects-grid" id="featuredProjects">
                 <div class="project-card">
                     <div class="project-card-icon">🏘️</div>
                     <div class="project-card-title">Kampung Online</div>
@@ -861,7 +886,122 @@
                         Visit site <span class="arrow">↗</span>
                     </a>
                 </div>
+            </div>
 
+            <!-- Show all button -->
+            <div class="show-all-btn-wrap">
+                <button class="btn-primary" id="toggleAllProjects" style="font-size:0.95rem; padding:0.8rem 2.5rem;">
+                    Show all projects
+                </button>
+            </div>
+
+            <!-- All projects (hidden by default) -->
+            <div class="all-projects-container" id="allProjectsContainer">
+                <div class="projects-grid all-projects">
+
+                    <!-- Project 4 -->
+                    <div class="project-card">
+                        <div class="project-card-icon">🛒</div>
+                        <div class="project-card-title">E-Commerce API</div>
+                        <p class="project-card-desc">
+                            RESTful API for an e-commerce platform with authentication, product management, order processing, and payment integration using Laravel.
+                        </p>
+                        <div class="project-card-tags">
+                            <span class="chip">Laravel</span>
+                            <span class="chip">REST API</span>
+                            <span class="chip">JWT</span>
+                        </div>
+                        <a href="#" class="project-card-link">
+                            View details <span class="arrow">→</span>
+                        </a>
+                    </div>
+
+                    <!-- Project 5 -->
+                    <div class="project-card">
+                        <div class="project-card-icon">📋</div>
+                        <div class="project-card-title">Task Management System</div>
+                        <p class="project-card-desc">
+                            A full-featured task management tool with team collaboration, project boards, task assignment, and real-time notifications built with ASP.NET Core.
+                        </p>
+                        <div class="project-card-tags">
+                            <span class="chip">ASP.NET Core</span>
+                            <span class="chip">SignalR</span>
+                            <span class="chip">SQL Server</span>
+                        </div>
+                        <a href="#" class="project-card-link">
+                            View details <span class="arrow">→</span>
+                        </a>
+                    </div>
+
+                    <!-- Project 6 -->
+                    <div class="project-card">
+                        <div class="project-card-icon">🏥</div>
+                        <div class="project-card-title">Clinic Management System</div>
+                        <p class="project-card-desc">
+                            A comprehensive clinic management system with patient records, appointment scheduling, prescription management, and billing features.
+                        </p>
+                        <div class="project-card-tags">
+                            <span class="chip">Laravel</span>
+                            <span class="chip">Livewire</span>
+                            <span class="chip">MySQL</span>
+                        </div>
+                        <a href="#" class="project-card-link">
+                            View details <span class="arrow">→</span>
+                        </a>
+                    </div>
+
+                    <!-- Project 7 -->
+                    <div class="project-card">
+                        <div class="project-card-icon">📱</div>
+                        <div class="project-card-title">Mobile App Backend</div>
+                        <p class="project-card-desc">
+                            Scalable backend for a mobile application with push notifications, user authentication, data synchronization, and analytics endpoints.
+                        </p>
+                        <div class="project-card-tags">
+                            <span class="chip">ASP.NET Core</span>
+                            <span class="chip">Firebase</span>
+                            <span class="chip">MongoDB</span>
+                        </div>
+                        <a href="#" class="project-card-link">
+                            View details <span class="arrow">→</span>
+                        </a>
+                    </div>
+
+                    <!-- Project 8 -->
+                    <div class="project-card">
+                        <div class="project-card-icon">📰</div>
+                        <div class="project-card-title">Content Management System</div>
+                        <p class="project-card-desc">
+                            A flexible CMS for news and blog websites with multi-user roles, SEO optimization, media management, and version control.
+                        </p>
+                        <div class="project-card-tags">
+                            <span class="chip">Laravel</span>
+                            <span class="chip">Vue.js</span>
+                            <span class="chip">MySQL</span>
+                        </div>
+                        <a href="#" class="project-card-link">
+                            View details <span class="arrow">→</span>
+                        </a>
+                    </div>
+
+                    <!-- Project 9 -->
+                    <div class="project-card">
+                        <div class="project-card-icon">📈</div>
+                        <div class="project-card-title">Analytics Dashboard</div>
+                        <p class="project-card-desc">
+                            Interactive dashboard for business analytics with real-time data visualization, custom reports, and KPI tracking using React and Chart.js.
+                        </p>
+                        <div class="project-card-tags">
+                            <span class="chip">React</span>
+                            <span class="chip">Chart.js</span>
+                            <span class="chip">ASP.NET Core</span>
+                        </div>
+                        <a href="#" class="project-card-link">
+                            View details <span class="arrow">→</span>
+                        </a>
+                    </div>
+
+                </div>
             </div>
         </div>
     </section>
@@ -940,6 +1080,24 @@
 
     <script>
         document.getElementById('yr').textContent = new Date().getFullYear();
+
+        // Toggle all projects
+        const toggleBtn = document.getElementById('toggleAllProjects');
+        const allProjectsContainer = document.getElementById('allProjectsContainer');
+        let allVisible = false;
+
+        toggleBtn.addEventListener('click', function() {
+            allVisible = !allVisible;
+            if (allVisible) {
+                allProjectsContainer.classList.add('visible');
+                this.textContent = 'Show fewer projects';
+            } else {
+                allProjectsContainer.classList.remove('visible');
+                this.textContent = 'Show all projects';
+                // Scroll back to the button
+                this.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+        });
     </script>
 </body>
 
