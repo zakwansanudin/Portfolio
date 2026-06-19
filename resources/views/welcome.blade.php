@@ -754,7 +754,7 @@
 
             <div class="hero-right">
                 <div class="profile-wrap">
-                    <img src="https://ui-avatars.com/api/?name=Zakwan+Sanudin&size=220&background=3B4EFF&color=fff&bold=true&font-size=0.5" alt="Zakwan Sanudin" class="profile-img" />
+                    <img src="{{ asset('img/profile.png') }}" alt="Zakwan Sanudin" class="profile-img" />
                     <div class="profile-badge">📍 Selangor, <span>MY</span></div>
                 </div>
                 <div class="hero-stats">
