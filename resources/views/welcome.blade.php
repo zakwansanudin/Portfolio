@@ -901,18 +901,18 @@
 
                     <!-- Project 4 -->
                     <div class="project-card">
-                        <div class="project-card-icon">🛒</div>
-                        <div class="project-card-title">E-Commerce API</div>
+                        <div class="project-card-icon">🏫</div>
+                        <div class="project-card-title">HomeTutor CSR Program</div>
                         <p class="project-card-desc">
-                            RESTful API for an e-commerce platform with authentication, product management, order processing, and payment integration using Laravel.
+                            Developed a responsive landing page for the HomeTutor CSR Program, promoting educational initiatives for schools and providing information on program benefits, activities, and registration opportunities.
                         </p>
                         <div class="project-card-tags">
-                            <span class="chip">Laravel</span>
-                            <span class="chip">REST API</span>
-                            <span class="chip">JWT</span>
+                            <span class="chip">HTML</span>
+                            <span class="chip">CSS</span>
+                            <span class="chip">JavaScript</span>
                         </div>
-                        <a href="#" class="project-card-link">
-                            View details <span class="arrow">→</span>
+                        <a href="https://new.hometutor.com.my/csr/smkjugra" class="project-card-link">
+                            Visit site <span class="arrow">↗</span>
                         </a>
                     </div>
 
@@ -1095,7 +1095,10 @@
                 allProjectsContainer.classList.remove('visible');
                 this.textContent = 'Show all projects';
                 // Scroll back to the button
-                this.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                this.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'center'
+                });
             }
         });
     </script>
