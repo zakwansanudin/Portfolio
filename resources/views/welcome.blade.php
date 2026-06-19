@@ -675,6 +675,7 @@
         }
 
         @media (max-width: 640px) {
+
             .hero-name .line1,
             .hero-name .line2 {
                 font-size: 3rem;
@@ -849,18 +850,17 @@
                     <div class="project-card-icon">🎓</div>
                     <div class="project-card-title">E-Learning Platform</div>
                     <p class="project-card-desc">
-                        A full-featured LMS with video courses, interactive quizzes, progress tracking, and instructor dashboards — Laravel backend with a React frontend.
+                        An interactive learning platform featuring Quiz Arena for engaging assessments and a student dashboard with class timetables, learning resources, and academic management tools.
                     </p>
                     <div class="project-card-tags">
                         <span class="chip">Laravel</span>
                         <span class="chip">React</span>
                         <span class="chip">MySQL</span>
                     </div>
-                    <a href="#" class="project-card-link">
-                        Coming soon <span class="arrow">→</span>
+                    <a href="https://ppas-t3wq.onrender.com/" target="_blank" rel="noopener" class="project-card-link">
+                        Visit site <span class="arrow">↗</span>
                     </a>
                 </div>
-
             </div>
         </div>
     </section>
