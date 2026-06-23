@@ -919,22 +919,21 @@
                     <!-- Project 5 -->
                     <div class="project-card">
                         <div class="project-card-icon">📋</div>
-                        <div class="project-card-title">Task Management System</div>
+                        <div class="project-card-title">Employee Management System</div>
                         <p class="project-card-desc">
-                            A full-featured task management tool with team collaboration, project boards, task assignment, and real-time notifications built with ASP.NET Core.
+                            A comprehensive employee management platform designed to streamline workforce administration, including employee records, attendance tracking, department management, payroll processing, and performance monitoring, built with ASP.NET Core MVC and SQL Server.
                         </p>
                         <div class="project-card-tags">
                             <span class="chip">ASP.NET Core</span>
-                            <span class="chip">SignalR</span>
-                            <span class="chip">SQL Server</span>
+                            <span class="chip">MSSQL</span>
                         </div>
                         <a href="#" class="project-card-link">
-                            View details <span class="arrow">→</span>
+                            Comming Soon <span class="arrow">→</span>
                         </a>
                     </div>
 
                     <!-- Project 6 -->
-                    <div class="project-card">
+                    <!-- <div class="project-card">
                         <div class="project-card-icon">🏥</div>
                         <div class="project-card-title">Clinic Management System</div>
                         <p class="project-card-desc">
@@ -948,10 +947,10 @@
                         <a href="#" class="project-card-link">
                             View details <span class="arrow">→</span>
                         </a>
-                    </div>
+                    </div> -->
 
                     <!-- Project 7 -->
-                    <div class="project-card">
+                    <!-- <div class="project-card">
                         <div class="project-card-icon">📱</div>
                         <div class="project-card-title">Mobile App Backend</div>
                         <p class="project-card-desc">
@@ -965,10 +964,10 @@
                         <a href="#" class="project-card-link">
                             View details <span class="arrow">→</span>
                         </a>
-                    </div>
+                    </div> -->
 
                     <!-- Project 8 -->
-                    <div class="project-card">
+                    <!-- <div class="project-card">
                         <div class="project-card-icon">📰</div>
                         <div class="project-card-title">Content Management System</div>
                         <p class="project-card-desc">
@@ -982,10 +981,10 @@
                         <a href="#" class="project-card-link">
                             View details <span class="arrow">→</span>
                         </a>
-                    </div>
+                    </div> -->
 
                     <!-- Project 9 -->
-                    <div class="project-card">
+                    <!-- <div class="project-card">
                         <div class="project-card-icon">📈</div>
                         <div class="project-card-title">Analytics Dashboard</div>
                         <p class="project-card-desc">
@@ -999,7 +998,7 @@
                         <a href="#" class="project-card-link">
                             View details <span class="arrow">→</span>
                         </a>
-                    </div>
+                    </div> -->
 
                 </div>
             </div>
