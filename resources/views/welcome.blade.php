@@ -7,7 +7,7 @@
     <title>Zakwan Sanudin · Full Stack Developer</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,200..800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
 
     <style>
         *,
@@ -19,15 +19,18 @@
         }
 
         :root {
-            --page: #FAFAF8;
-            --panel: #F2F1ED;
-            --text: #111827;
-            --muted: #6B7280;
-            --border: #E4E2DC;
-            --indigo: #3B4EFF;
-            --indigo-light: #EEF0FF;
-            --indigo-mid: #C7CDFF;
-            --white: #FFFFFF;
+            --bg: #F5F6F8;
+            --surface: #FFFFFF;
+            --surface-2: #ECEFF3;
+            --ink: #12151C;
+            --muted: #67707E;
+            --border: #DFE3E9;
+            --blue: #2F5EFF;
+            --blue-tint: #EAEFFF;
+            --green: #0E9F5C;
+            --green-tint: #E4F7ED;
+            --amber: #B5720C;
+            --amber-tint: #FBF0DC;
         }
 
         html {
@@ -36,9 +39,86 @@
 
         body {
             font-family: 'Inter', sans-serif;
-            background: var(--page);
-            color: var(--text);
+            background: var(--bg);
+            color: var(--ink);
             -webkit-font-smoothing: antialiased;
+            background-image:
+                linear-gradient(var(--border) 1px, transparent 1px),
+                linear-gradient(90deg, var(--border) 1px, transparent 1px);
+            background-size: 64px 64px;
+            background-position: -1px -1px;
+            background-attachment: fixed;
+        }
+
+        a {
+            color: inherit;
+        }
+
+        :focus-visible {
+            outline: 2px solid var(--blue);
+            outline-offset: 3px;
+            border-radius: 4px;
+        }
+
+        .mono {
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        /* method + status chips, reused everywhere */
+        .method {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.72rem;
+            font-weight: 600;
+            padding: 0.18rem 0.55rem;
+            border-radius: 5px;
+            letter-spacing: 0.02em;
+        }
+
+        .method.get {
+            color: var(--blue);
+            background: var(--blue-tint);
+        }
+
+        .method.post {
+            color: var(--green);
+            background: var(--green-tint);
+        }
+
+        .status-chip {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.72rem;
+            font-weight: 600;
+            padding: 0.18rem 0.6rem;
+            border-radius: 100px;
+            letter-spacing: 0.02em;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+        }
+
+        .status-chip::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: currentColor;
+        }
+
+        .status-chip.ok {
+            color: var(--green);
+            background: var(--green-tint);
+        }
+
+        .status-chip.build {
+            color: var(--amber);
+            background: var(--amber-tint);
+        }
+
+        .route {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--ink);
         }
 
         /* ── NAV ── */
@@ -51,115 +131,101 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 1.1rem 3rem;
-            background: rgba(250, 250, 248, 0.88);
-            backdrop-filter: blur(16px);
+            padding: 0.9rem 3rem;
+            background: rgba(245, 246, 248, 0.86);
+            backdrop-filter: blur(14px);
             border-bottom: 1px solid var(--border);
         }
 
         .nav-brand {
-            font-family: 'Bricolage Grotesque', sans-serif;
+            font-family: 'Space Grotesk', sans-serif;
             font-weight: 700;
-            font-size: 1.1rem;
-            color: var(--text);
+            font-size: 1.05rem;
             text-decoration: none;
-            letter-spacing: -0.02em;
+            letter-spacing: -0.01em;
         }
 
         .nav-brand span {
-            color: var(--indigo);
+            color: var(--blue);
         }
 
-        .nav-links {
+        .nav-routes {
             display: flex;
             align-items: center;
-            gap: 0.25rem;
+            gap: 0.4rem;
             list-style: none;
         }
 
-        .nav-links a {
-            font-size: 0.875rem;
+        .nav-routes a {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
             color: var(--muted);
             text-decoration: none;
-            padding: 0.4rem 0.9rem;
-            border-radius: 100px;
-            transition: all 0.18s;
-            font-weight: 500;
+            padding: 0.4rem 0.8rem;
+            border-radius: 8px;
+            transition: all 0.16s;
         }
 
-        .nav-links a:hover {
-            color: var(--text);
-            background: var(--panel);
+        .nav-routes a:hover {
+            color: var(--ink);
+            background: var(--surface);
         }
 
-        .nav-hire {
-            font-size: 0.875rem;
+        .nav-cta {
+            font-size: 0.85rem;
             font-weight: 600;
-            color: var(--white);
-            background: var(--indigo);
-            padding: 0.5rem 1.3rem;
-            border-radius: 100px;
+            color: var(--surface);
+            background: var(--ink);
+            padding: 0.5rem 1.2rem;
+            border-radius: 8px;
             text-decoration: none;
-            transition: opacity 0.18s, transform 0.18s;
+            transition: opacity 0.16s, transform 0.16s;
         }
 
-        .nav-hire:hover {
+        .nav-cta:hover {
             opacity: 0.85;
             transform: translateY(-1px);
         }
 
         /* ── HERO ── */
         .hero {
-            padding: 9rem 3rem 5rem;
+            padding: 8.5rem 3rem 5rem;
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 4rem;
             align-items: center;
-            border-bottom: 1px solid var(--border);
             max-width: 1200px;
             margin: 0 auto;
         }
 
-        .hero-left {}
-
-        .hero-badge {
+        .req-line {
             display: inline-flex;
             align-items: center;
-            gap: 0.5rem;
-            background: var(--indigo-light);
-            color: var(--indigo);
-            font-size: 0.78rem;
-            font-weight: 600;
-            padding: 0.35rem 0.9rem;
-            border-radius: 100px;
-            letter-spacing: 0.02em;
+            gap: 0.7rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.82rem;
+            color: var(--muted);
+            background: var(--surface);
+            border: 1px solid var(--border);
+            padding: 0.4rem 0.8rem;
+            border-radius: 8px;
             margin-bottom: 1.8rem;
         }
 
-        .hero-badge-dot {
-            width: 6px;
-            height: 6px;
-            background: var(--indigo);
-            border-radius: 50%;
-        }
-
         .hero-name {
-            font-family: 'Bricolage Grotesque', sans-serif;
+            font-family: 'Space Grotesk', sans-serif;
             line-height: 1.0;
-            letter-spacing: -0.04em;
+            letter-spacing: -0.03em;
+            font-size: clamp(3rem, 6vw, 5rem);
+            font-weight: 700;
         }
 
-        .hero-name .line1 {
-            font-size: clamp(3.6rem, 7vw, 6.5rem);
-            font-weight: 800;
+        .hero-name span {
             display: block;
-            color: var(--text);
-        }
-
-        .hero-name .line2 {
-            font-size: clamp(3.6rem, 7vw, 6.5rem);
-            font-weight: 300;
-            display: block;
+            font-weight: 500;
             color: var(--muted);
         }
 
@@ -167,172 +233,175 @@
             font-size: 1.05rem;
             color: var(--muted);
             line-height: 1.7;
-            margin-top: 1.8rem;
-            max-width: 400px;
+            margin-top: 1.6rem;
+            max-width: 420px;
         }
 
         .hero-actions {
             display: flex;
-            gap: 1rem;
+            gap: 0.9rem;
             flex-wrap: wrap;
-            margin-top: 2.5rem;
+            margin-top: 2.3rem;
         }
 
         .btn-primary {
-            background: var(--indigo);
+            background: var(--blue);
             color: white;
             font-size: 0.9rem;
             font-weight: 600;
-            padding: 0.7rem 1.8rem;
-            border-radius: 100px;
+            padding: 0.75rem 1.7rem;
+            border-radius: 8px;
             text-decoration: none;
-            transition: opacity 0.18s, transform 0.18s;
+            transition: opacity 0.16s, transform 0.16s;
             display: inline-block;
             border: none;
             cursor: pointer;
         }
 
         .btn-primary:hover {
-            opacity: 0.87;
+            opacity: 0.88;
             transform: translateY(-2px);
         }
 
         .btn-ghost {
-            background: transparent;
-            color: var(--text);
+            background: var(--surface);
+            color: var(--ink);
             font-size: 0.9rem;
-            font-weight: 500;
-            padding: 0.7rem 1.8rem;
-            border-radius: 100px;
+            font-weight: 600;
+            padding: 0.75rem 1.7rem;
+            border-radius: 8px;
             text-decoration: none;
-            border: 1.5px solid var(--border);
-            transition: border-color 0.18s, background 0.18s;
+            border: 1px solid var(--border);
+            transition: border-color 0.16s, transform 0.16s;
             display: inline-block;
             cursor: pointer;
         }
 
         .btn-ghost:hover {
-            border-color: var(--indigo);
-            background: var(--indigo-light);
-            color: var(--indigo);
+            border-color: var(--blue);
+            transform: translateY(-2px);
         }
 
-        /* hero right: profile + stat cards */
-        .hero-right {
+        /* response card — the signature element */
+        .response-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 24px 60px rgba(18, 21, 28, 0.07);
+        }
+
+        .response-card-head {
             display: flex;
-            flex-direction: column;
             align-items: center;
-            gap: 1.5rem;
+            gap: 0.9rem;
+            padding: 0.85rem 1.2rem;
+            border-bottom: 1px solid var(--border);
+            background: var(--surface-2);
         }
 
-        .profile-wrap {
-            position: relative;
-            display: inline-block;
+        .rc-dot {
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+        }
+
+        .rc-dot.r {
+            background: #E5594F;
+        }
+
+        .rc-dot.y {
+            background: #E5AA3B;
+        }
+
+        .rc-dot.g {
+            background: #3BAE5D;
+        }
+
+        .response-card-title {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.78rem;
+            color: var(--muted);
+            margin-left: 0.3rem;
+        }
+
+        .response-card-body {
+            display: flex;
+            gap: 1.4rem;
+            padding: 1.5rem;
         }
 
         .profile-img {
-            width: 220px;
-            height: 220px;
-            border-radius: 32px;
+            width: 108px;
+            height: 108px;
+            border-radius: 12px;
             object-fit: cover;
-            display: block;
-            box-shadow: 0 20px 60px rgba(59, 78, 255, 0.12);
-            image-rendering: -webkit-optimize-contrast;
-        }
-
-        .profile-badge {
-            position: absolute;
-            bottom: -12px;
-            right: -16px;
-            background: white;
+            flex-shrink: 0;
             border: 1px solid var(--border);
-            border-radius: 14px;
-            padding: 0.6rem 1rem;
-            font-size: 0.78rem;
-            font-weight: 600;
-            color: var(--text);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.07);
-            white-space: nowrap;
         }
 
-        .profile-badge span {
-            color: var(--indigo);
-        }
-
-        .hero-stats {
-            display: flex;
-            gap: 1rem;
-            width: 100%;
-        }
-
-        .stat-card {
+        .kv-list {
+            list-style: none;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.82rem;
+            line-height: 1.95;
             flex: 1;
-            background: white;
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            padding: 1.1rem 1.2rem;
-            text-align: center;
+            min-width: 0;
         }
 
-        .stat-card .stat-num {
-            font-family: 'Bricolage Grotesque', sans-serif;
-            font-weight: 700;
-            font-size: 1.6rem;
-            color: var(--indigo);
-            letter-spacing: -0.02em;
+        .kv-list .k {
+            color: var(--blue);
         }
 
-        .stat-card .stat-label {
-            font-size: 0.72rem;
-            color: var(--muted);
+        .kv-list .v {
+            color: var(--ink);
             font-weight: 500;
-            margin-top: 0.2rem;
+        }
+
+        .kv-list .v.accent {
+            color: var(--green);
         }
 
         /* ── SHARED SECTION WRAPPER ── */
         .section-wrap {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 5.5rem 3rem;
+            padding: 5rem 3rem;
         }
 
         .section-panel {
-            background: var(--panel);
+            background: var(--surface);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
         }
 
-        .section-header {
+        .endpoint-header {
             display: flex;
-            align-items: baseline;
-            gap: 1.2rem;
-            margin-bottom: 3.5rem;
+            align-items: center;
+            gap: 0.9rem;
+            margin-bottom: 1.4rem;
         }
 
-        .section-eyebrow {
-            font-family: 'Bricolage Grotesque', sans-serif;
-            font-weight: 800;
-            font-size: clamp(1.8rem, 3.5vw, 2.8rem);
-            letter-spacing: -0.03em;
-            color: var(--text);
-        }
-
-        .section-rule {
-            flex: 1;
-            height: 1.5px;
-            background: var(--border);
-            margin-bottom: 0.3rem;
+        .section-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: clamp(1.6rem, 3vw, 2.2rem);
+            letter-spacing: -0.02em;
+            margin-top: 0.9rem;
+            margin-bottom: 3rem;
         }
 
         /* ── ABOUT ── */
         .about-grid {
             display: grid;
-            grid-template-columns: 1.2fr 1fr;
-            gap: 4rem;
+            grid-template-columns: 1.3fr 1fr;
+            gap: 3.5rem;
             align-items: start;
         }
 
         .about-body {
-            font-size: 1.05rem;
-            color: #374151;
+            font-size: 1.03rem;
+            color: #333A45;
             line-height: 1.8;
         }
 
@@ -341,169 +410,171 @@
         }
 
         .about-body strong {
-            color: var(--indigo);
+            color: var(--blue);
             font-weight: 600;
         }
 
-        /* ── SKILLS (list style, no progress bar) ── */
-        .skills-list {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
+        .fields-card {
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 1.3rem;
         }
 
-        .skill-item {
+        .fields-title {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.78rem;
+            color: var(--muted);
+            margin-bottom: 0.9rem;
+            padding-left: 0.2rem;
+        }
+
+        .field-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+        }
+
+        .field-list li {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 0.6rem 1rem 0.6rem 1.2rem;
-            background: white;
+            background: var(--surface);
             border: 1px solid var(--border);
-            border-radius: 60px;
-            transition: all 0.15s;
+            border-radius: 8px;
+            padding: 0.55rem 0.9rem;
+            transition: border-color 0.15s, transform 0.15s;
         }
 
-        .skill-item:hover {
-            border-color: var(--indigo-mid);
-            box-shadow: 0 4px 12px rgba(59, 78, 255, 0.06);
-            transform: translateX(4px);
+        .field-list li:hover {
+            border-color: var(--blue);
+            transform: translateX(3px);
         }
 
-        .skill-name {
-            font-size: 0.92rem;
+        .field-name {
+            font-size: 0.88rem;
             font-weight: 600;
-            color: var(--text);
-            letter-spacing: -0.01em;
         }
 
-        .skill-level {
-            font-size: 0.82rem;
-            font-weight: 500;
-            color: var(--indigo);
-            background: var(--indigo-light);
-            padding: 0.2rem 1rem;
-            border-radius: 40px;
-            line-height: 1.4;
+        .field-type {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.72rem;
+            color: var(--muted);
         }
 
         /* ── PROJECTS ── */
         .projects-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 1.5rem;
+            gap: 1.4rem;
         }
 
         .projects-grid.all-projects {
-            margin-top: 2.5rem;
-            padding-top: 2.5rem;
+            margin-top: 1.4rem;
+            padding-top: 1.9rem;
             border-top: 1px solid var(--border);
         }
 
-        .project-card {
-            background: white;
+        .endpoint-card {
+            background: var(--surface);
             border: 1px solid var(--border);
-            border-radius: 24px;
-            padding: 2rem;
+            border-radius: 14px;
+            padding: 1.5rem;
             text-decoration: none;
             color: inherit;
             display: flex;
             flex-direction: column;
-            gap: 0;
-            transition: all 0.22s;
-            position: relative;
-            overflow: hidden;
+            transition: all 0.2s;
         }
 
-        .project-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, var(--indigo), var(--indigo-mid));
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: transform 0.25s;
+        .endpoint-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 18px 40px rgba(18, 21, 28, 0.08);
+            border-color: var(--blue);
         }
 
-        .project-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 50px rgba(59, 78, 255, 0.10);
-            border-color: var(--indigo-mid);
-        }
-
-        .project-card:hover::before {
-            transform: scaleX(1);
-        }
-
-        .project-card-icon {
-            width: 48px;
-            height: 48px;
-            background: var(--indigo-light);
-            border-radius: 14px;
+        .endpoint-card-top {
             display: flex;
             align-items: center;
-            justify-content: center;
-            font-size: 1.3rem;
-            margin-bottom: 1.3rem;
+            gap: 0.5rem;
+            margin-bottom: 1.1rem;
+            flex-wrap: wrap;
         }
 
-        .project-card-title {
-            font-family: 'Bricolage Grotesque', sans-serif;
+        .endpoint-card-top .route {
+            font-size: 0.78rem;
+            color: var(--muted);
+        }
+
+        .endpoint-title {
+            font-family: 'Space Grotesk', sans-serif;
             font-weight: 700;
-            font-size: 1.25rem;
-            letter-spacing: -0.02em;
-            color: var(--text);
-            margin-bottom: 0.6rem;
+            font-size: 1.15rem;
+            letter-spacing: -0.01em;
+            margin-bottom: 0.55rem;
         }
 
-        .project-card-desc {
-            font-size: 0.88rem;
+        .endpoint-desc {
+            font-size: 0.87rem;
             color: var(--muted);
             line-height: 1.65;
             flex: 1;
         }
 
-        .project-card-tags {
+        .tag-row {
             display: flex;
-            gap: 0.5rem;
+            gap: 0.4rem;
             flex-wrap: wrap;
-            margin-top: 1.4rem;
+            margin-top: 1.2rem;
         }
 
-        .chip {
-            font-size: 0.72rem;
-            font-weight: 600;
-            padding: 0.28rem 0.75rem;
-            border-radius: 100px;
-            background: var(--indigo-light);
-            color: var(--indigo);
-            letter-spacing: 0.01em;
+        .tag {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.68rem;
+            font-weight: 500;
+            padding: 0.25rem 0.6rem;
+            border-radius: 6px;
+            background: var(--surface-2);
+            color: var(--ink);
         }
 
-        .project-card-link {
+        .endpoint-link {
             display: inline-flex;
             align-items: center;
-            gap: 0.4rem;
-            margin-top: 1.5rem;
+            gap: 0.35rem;
+            margin-top: 1.3rem;
             font-size: 0.83rem;
             font-weight: 600;
-            color: var(--indigo);
+            color: var(--blue);
             text-decoration: none;
         }
 
-        .project-card-link .arrow {
-            transition: transform 0.18s;
+        .endpoint-link.disabled {
+            color: var(--muted);
         }
 
-        .project-card:hover .project-card-link .arrow {
-            transform: translate(3px, -3px);
-        }
-
-        .show-all-btn-wrap {
+        .toggle-wrap {
             text-align: center;
-            margin-top: 2.5rem;
+            margin-top: 2.2rem;
+        }
+
+        .btn-toggle {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--ink);
+            background: var(--surface);
+            border: 1px solid var(--border);
+            padding: 0.7rem 1.6rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: border-color 0.16s, transform 0.16s;
+        }
+
+        .btn-toggle:hover {
+            border-color: var(--blue);
+            transform: translateY(-2px);
         }
 
         .all-projects-container {
@@ -518,22 +589,21 @@
         .contact-inner {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 4rem;
+            gap: 3.5rem;
             align-items: start;
         }
 
         .contact-intro {
-            font-family: 'Bricolage Grotesque', sans-serif;
-            font-size: clamp(1.6rem, 3vw, 2.4rem);
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(1.5rem, 2.6vw, 2.1rem);
             font-weight: 700;
-            line-height: 1.25;
-            letter-spacing: -0.03em;
-            color: var(--text);
+            line-height: 1.3;
+            letter-spacing: -0.02em;
         }
 
         .contact-intro em {
             font-style: normal;
-            color: var(--indigo);
+            color: var(--blue);
         }
 
         .contact-blurb {
@@ -550,77 +620,57 @@
             margin-top: 2rem;
         }
 
-        .contact-cards {
+        .headers-block {
+            background: var(--ink);
+            border-radius: 14px;
+            padding: 1.4rem;
+        }
+
+        .headers-title {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            color: #8892A0;
+            margin-bottom: 1rem;
+            padding-left: 0.2rem;
+        }
+
+        .header-row {
             display: flex;
-            flex-direction: column;
+            align-items: center;
             gap: 1rem;
-        }
-
-        .contact-card {
-            display: flex;
-            align-items: center;
-            gap: 1.2rem;
-            background: white;
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            padding: 1.1rem 1.4rem;
             text-decoration: none;
-            color: inherit;
-            transition: all 0.18s;
+            padding: 0.75rem 0.9rem;
+            border-radius: 8px;
+            transition: background 0.15s;
         }
 
-        .contact-card:hover {
-            border-color: var(--indigo);
-            box-shadow: 0 4px 20px rgba(59, 78, 255, 0.08);
+        .header-row:hover {
+            background: rgba(255, 255, 255, 0.06);
         }
 
-        .contact-card-icon {
-            width: 42px;
-            height: 42px;
-            border-radius: 12px;
-            background: var(--indigo-light);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.1rem;
-            color: var(--indigo);
-            flex-shrink: 0;
+        .header-key {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            color: #6C7686;
+            min-width: 92px;
         }
 
-        .contact-card-body {
-            flex: 1;
+        .header-val {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            color: #F2F3F5;
+            font-weight: 500;
         }
 
-        .contact-card-label {
-            font-size: 0.7rem;
-            font-weight: 600;
-            color: var(--muted);
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-        }
-
-        .contact-card-value {
-            font-size: 0.93rem;
-            font-weight: 600;
-            color: var(--text);
-            margin-top: 0.1rem;
-        }
-
-        .contact-card-arrow {
-            color: var(--muted);
-            font-size: 1rem;
-            transition: all 0.18s;
-        }
-
-        .contact-card:hover .contact-card-arrow {
-            color: var(--indigo);
-            transform: translate(2px, -2px);
+        .header-arrow {
+            margin-left: auto;
+            color: #6C7686;
+            font-size: 0.9rem;
         }
 
         /* ── FOOTER ── */
         footer {
-            border-top: 1px solid var(--border);
-            padding: 2rem 3rem;
+            padding: 1.8rem 3rem;
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -631,82 +681,72 @@
         }
 
         .footer-text {
-            font-size: 0.82rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
             color: var(--muted);
         }
 
         .footer-links {
             display: flex;
-            gap: 1.5rem;
+            gap: 0.4rem;
         }
 
         .footer-links a {
-            font-size: 0.82rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
             color: var(--muted);
             text-decoration: none;
-            transition: color 0.18s;
+            padding: 0.3rem 0.7rem;
+            border-radius: 6px;
+            transition: all 0.15s;
         }
 
         .footer-links a:hover {
-            color: var(--indigo);
+            color: var(--ink);
+            background: var(--surface-2);
         }
 
         /* ── RESPONSIVE ── */
         @media (max-width: 900px) {
             nav {
-                padding: 1rem 1.5rem;
+                padding: 0.9rem 1.5rem;
             }
 
-            .nav-links {
+            .nav-routes {
                 display: none;
             }
 
             .hero {
                 grid-template-columns: 1fr;
-                padding: 7.5rem 1.5rem 4rem;
-                gap: 3rem;
+                padding: 7rem 1.5rem 3.5rem;
+                gap: 2.5rem;
             }
 
-            .hero-right {
-                align-items: flex-start;
-            }
-
-            .hero-stats {
-                max-width: 320px;
+            .response-card-body {
+                flex-direction: column;
             }
 
             .section-wrap {
-                padding: 4rem 1.5rem;
+                padding: 3.5rem 1.5rem;
             }
 
             .about-grid {
                 grid-template-columns: 1fr;
-                gap: 2.5rem;
+                gap: 2.2rem;
             }
 
-            .projects-grid {
+            .projects-grid,
+            .projects-grid.all-projects {
                 grid-template-columns: 1fr;
             }
 
             .contact-inner {
                 grid-template-columns: 1fr;
-                gap: 2.5rem;
+                gap: 2.2rem;
             }
 
             footer {
                 padding: 1.5rem;
-            }
-        }
-
-        @media (max-width: 640px) {
-
-            .hero-name .line1,
-            .hero-name .line2 {
-                font-size: 3rem;
-            }
-
-            .projects-grid {
-                grid-template-columns: 1fr;
             }
         }
 
@@ -722,54 +762,53 @@
 
     <!-- NAV -->
     <nav>
-        <a class="nav-brand" href="#">Zakwan<span>.</span></a>
-        <ul class="nav-links">
-            <li><a href="#about">About</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#contact">Contact</a></li>
+        <a class="nav-brand" href="#">zakwan<span>.</span>dev</a>
+        <ul class="nav-routes">
+            <li><a href="#about"><span class="method get">GET</span>/about</a></li>
+            <li><a href="#projects"><span class="method get">GET</span>/projects</a></li>
+            <li><a href="#contact"><span class="method post">POST</span>/contact</a></li>
         </ul>
-        <a class="nav-hire" href="#contact">Let's work together</a>
+        <a class="nav-cta" href="#contact">Let's work together</a>
     </nav>
 
     <!-- HERO -->
-    <div style="border-bottom:1px solid var(--border);">
-        <div class="hero">
-            <div class="hero-left">
-                <div class="hero-badge">
-                    <div class="hero-badge-dot"></div>
-                    Available for new projects
-                </div>
-                <h1 class="hero-name">
-                    <span class="line1">Zakwan</span>
-                    <span class="line2">Sanudin</span>
-                </h1>
-                <p class="hero-tagline">
-                    Full Stack Developer specialising in Laravel and ASP.NET Core. I build applications that are fast, reliable, and genuinely pleasant to use.
-                </p>
-                <div class="hero-actions">
-                    <a class="btn-primary" href="#projects">View my work</a>
-                    <a class="btn-ghost" href="#contact">Get in touch</a>
-                </div>
+    <div class="hero">
+        <div class="hero-left">
+            <div class="req-line">
+                <span class="method get">GET</span> /zakwan HTTP/1.1
+                <span class="status-chip ok">200 OK</span>
             </div>
+            <h1 class="hero-name">
+                Zakwan
+                <span>Sanudin</span>
+            </h1>
+            <p class="hero-tagline">
+                Full stack developer specialising in Laravel and ASP.NET Core. I build applications that are fast, reliable, and genuinely pleasant to use.
+            </p>
+            <div class="hero-actions">
+                <a class="btn-primary" href="#projects">View my work</a>
+                <a class="btn-ghost" href="#contact">Get in touch</a>
+            </div>
+        </div>
 
-            <div class="hero-right">
-                <div class="profile-wrap">
-                    <img src="{{ asset('img/profile.png') }}" alt="Zakwan Sanudin" class="profile-img" />
-                    <div class="profile-badge">📍 Selangor, <span>MY</span></div>
+        <div class="hero-right">
+            <div class="response-card">
+                <div class="response-card-head">
+                    <span class="rc-dot r"></span>
+                    <span class="rc-dot y"></span>
+                    <span class="rc-dot g"></span>
+                    <span class="response-card-title">response · 200 OK</span>
                 </div>
-                <div class="hero-stats">
-                    <div class="stat-card">
-                        <div class="stat-num">3+</div>
-                        <div class="stat-label">Years experience</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-num">10+</div>
-                        <div class="stat-label">Projects shipped</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-num">2</div>
-                        <div class="stat-label">Core frameworks</div>
-                    </div>
+                <div class="response-card-body">
+                    <img src="{{ asset('img/profile.png') }}" alt="Zakwan Sanudin" class="profile-img" />
+                    <ul class="kv-list">
+                        <li><span class="k">"role"</span>: <span class="v">"Full Stack Developer"</span></li>
+                        <li><span class="k">"location"</span>: <span class="v">"Selangor, MY"</span></li>
+                        <li><span class="k">"status"</span>: <span class="v accent">"available"</span></li>
+                        <li><span class="k">"experience"</span>: <span class="v">"3+ years"</span></li>
+                        <li><span class="k">"shipped"</span>: <span class="v">"10+ projects"</span></li>
+                        <li><span class="k">"frameworks"</span>: <span class="v">2</span></li>
+                    </ul>
                 </div>
             </div>
         </div>
@@ -778,10 +817,12 @@
     <!-- ABOUT -->
     <section id="about">
         <div class="section-wrap">
-            <div class="section-header">
-                <h2 class="section-eyebrow">About me</h2>
-                <div class="section-rule"></div>
+            <div class="endpoint-header">
+                <span class="method get">GET</span>
+                <span class="route">/about</span>
+                <span class="status-chip ok">200 OK</span>
             </div>
+            <h2 class="section-title">About me</h2>
             <div class="about-grid">
                 <div class="about-body">
                     <p>
@@ -794,35 +835,19 @@
                         Currently expanding into <strong>cloud-native development</strong> and microservices, and always looking for interesting problems to solve.
                     </p>
                 </div>
-                <!-- SKILLS – list style, no progress bars -->
-                <div class="skills-list">
-                    <div class="skill-item">
-                        <span class="skill-name">Laravel</span>
-                    </div>
-                    <div class="skill-item">
-                        <span class="skill-name">PHP</span>
-                    </div>
-                    <div class="skill-item">
-                        <span class="skill-name">MySQL</span>
-                    </div>
-                    <div class="skill-item">
-                        <span class="skill-name">ASP.NET Core</span>
-                    </div>
-                    <div class="skill-item">
-                        <span class="skill-name">JavaScript</span>
-                    </div>
-                    <div class="skill-item">
-                        <span class="skill-name">React</span>
-                    </div>
-                    <div class="skill-item">
-                        <span class="skill-name">TailwindCSS</span>
-                    </div>
-                    <div class="skill-item">
-                        <span class="skill-name">React Native</span>
-                    </div>
-                    <div class="skill-item">
-                        <span class="skill-name">Flutter</span>
-                    </div>
+                <div class="fields-card">
+                    <div class="fields-title">// stack</div>
+                    <ul class="field-list">
+                        <li><span class="field-name">Laravel</span><span class="field-type">framework</span></li>
+                        <li><span class="field-name">PHP</span><span class="field-type">language</span></li>
+                        <li><span class="field-name">MySQL</span><span class="field-type">database</span></li>
+                        <li><span class="field-name">ASP.NET Core</span><span class="field-type">framework</span></li>
+                        <li><span class="field-name">JavaScript</span><span class="field-type">language</span></li>
+                        <li><span class="field-name">React</span><span class="field-type">library</span></li>
+                        <li><span class="field-name">TailwindCSS</span><span class="field-type">styling</span></li>
+                        <li><span class="field-name">React Native</span><span class="field-type">mobile</span></li>
+                        <li><span class="field-name">Flutter</span><span class="field-type">mobile</span></li>
+                    </ul>
                 </div>
             </div>
         </div>
@@ -831,173 +856,110 @@
     <!-- PROJECTS -->
     <section id="projects" class="section-panel">
         <div class="section-wrap">
-            <div class="section-header">
-                <h2 class="section-eyebrow">Selected projects</h2>
-                <div class="section-rule"></div>
+            <div class="endpoint-header">
+                <span class="method get">GET</span>
+                <span class="route">/projects</span>
+                <span class="status-chip ok">200 OK</span>
             </div>
+            <h2 class="section-title">Selected projects</h2>
 
-            <!-- Featured projects (always visible) -->
             <div class="projects-grid" id="featuredProjects">
-                <div class="project-card">
-                    <div class="project-card-icon">🏘️</div>
-                    <div class="project-card-title">Kampung Online</div>
-                    <p class="project-card-desc">
+                <a class="endpoint-card" href="https://kampungonline.my" target="_blank" rel="noopener">
+                    <div class="endpoint-card-top">
+                        <span class="method get">GET</span>
+                        <span class="route">/projects/kampung-online</span>
+                        <span class="status-chip ok">200</span>
+                    </div>
+                    <h3 class="endpoint-title">Kampung Online</h3>
+                    <p class="endpoint-desc">
                         A digital community platform for the KampungOnline network — user management, announcement broadcasting, and real-time engagement tools for local communities.
                     </p>
-                    <div class="project-card-tags">
-                        <span class="chip">Laravel</span>
-                        <span class="chip">Bootstrap</span>
-                        <span class="chip">MySQL</span>
+                    <div class="tag-row">
+                        <span class="tag">Laravel</span>
+                        <span class="tag">Bootstrap</span>
+                        <span class="tag">MySQL</span>
                     </div>
-                    <a href="https://kampungonline.my" target="_blank" rel="noopener" class="project-card-link">
-                        Visit site <span class="arrow">↗</span>
-                    </a>
-                </div>
+                    <span class="endpoint-link">Visit site ↗</span>
+                </a>
 
-                <div class="project-card">
-                    <div class="project-card-icon">📊</div>
-                    <div class="project-card-title">ePDK</div>
-                    <p class="project-card-desc">
+                <a class="endpoint-card" href="https://epdk.eptrs.my/login" target="_blank" rel="noopener">
+                    <div class="endpoint-card-top">
+                        <span class="method get">GET</span>
+                        <span class="route">/projects/epdk</span>
+                        <span class="status-chip ok">200</span>
+                    </div>
+                    <h3 class="endpoint-title">ePDK</h3>
+                    <p class="endpoint-desc">
                         Student progress recording system for Program Didik Kasih, deployed across Selangor primary schools. Tracks academic development and generates progress reports.
                     </p>
-                    <div class="project-card-tags">
-                        <span class="chip">Laravel</span>
-                        <span class="chip">TailwindCSS</span>
-                        <span class="chip">MySQL</span>
+                    <div class="tag-row">
+                        <span class="tag">Laravel</span>
+                        <span class="tag">TailwindCSS</span>
+                        <span class="tag">MySQL</span>
                     </div>
-                    <a href="https://epdk.eptrs.my/login" target="_blank" rel="noopener" class="project-card-link">
-                        Visit site <span class="arrow">↗</span>
-                    </a>
-                </div>
+                    <span class="endpoint-link">Visit site ↗</span>
+                </a>
 
-                <div class="project-card">
-                    <div class="project-card-icon">🎓</div>
-                    <div class="project-card-title">E-Learning Platform</div>
-                    <p class="project-card-desc">
+                <a class="endpoint-card" href="https://ppas-t3wq.onrender.com/" target="_blank" rel="noopener">
+                    <div class="endpoint-card-top">
+                        <span class="method get">GET</span>
+                        <span class="route">/projects/e-learning</span>
+                        <span class="status-chip ok">200</span>
+                    </div>
+                    <h3 class="endpoint-title">E-Learning Platform</h3>
+                    <p class="endpoint-desc">
                         An interactive learning platform featuring Quiz Arena for engaging assessments and a student dashboard with class timetables, learning resources, and academic management tools.
                     </p>
-                    <div class="project-card-tags">
-                        <span class="chip">Laravel</span>
-                        <span class="chip">React</span>
-                        <span class="chip">MySQL</span>
+                    <div class="tag-row">
+                        <span class="tag">Laravel</span>
+                        <span class="tag">React</span>
+                        <span class="tag">MySQL</span>
                     </div>
-                    <a href="https://ppas-t3wq.onrender.com/" target="_blank" rel="noopener" class="project-card-link">
-                        Visit site <span class="arrow">↗</span>
-                    </a>
-                </div>
+                    <span class="endpoint-link">Visit site ↗</span>
+                </a>
             </div>
 
-            <!-- Show all button -->
-            <div class="show-all-btn-wrap">
-                <button class="btn-primary" id="toggleAllProjects" style="font-size:0.95rem; padding:0.8rem 2.5rem;">
-                    Show all projects
-                </button>
+            <div class="toggle-wrap">
+                <button class="btn-toggle" id="toggleAllProjects">GET /projects?all=true</button>
             </div>
 
-            <!-- All projects (hidden by default) -->
             <div class="all-projects-container" id="allProjectsContainer">
                 <div class="projects-grid all-projects">
 
-                    <!-- Project 4 -->
-                    <div class="project-card">
-                        <div class="project-card-icon">🏫</div>
-                        <div class="project-card-title">HomeTutor CSR Program</div>
-                        <p class="project-card-desc">
+                    <a class="endpoint-card" href="https://new.hometutor.com.my/csr/smkjugra">
+                        <div class="endpoint-card-top">
+                            <span class="method get">GET</span>
+                            <span class="route">/projects/hometutor-csr</span>
+                            <span class="status-chip ok">200</span>
+                        </div>
+                        <h3 class="endpoint-title">HomeTutor CSR Program</h3>
+                        <p class="endpoint-desc">
                             Developed a responsive landing page for the HomeTutor CSR Program, promoting educational initiatives for schools and providing information on program benefits, activities, and registration opportunities.
                         </p>
-                        <div class="project-card-tags">
-                            <span class="chip">HTML</span>
-                            <span class="chip">CSS</span>
-                            <span class="chip">JavaScript</span>
+                        <div class="tag-row">
+                            <span class="tag">HTML</span>
+                            <span class="tag">CSS</span>
+                            <span class="tag">JavaScript</span>
                         </div>
-                        <a href="https://new.hometutor.com.my/csr/smkjugra" class="project-card-link">
-                            Visit site <span class="arrow">↗</span>
-                        </a>
+                        <span class="endpoint-link">Visit site ↗</span>
+                    </a>
+
+                    <div class="endpoint-card">
+                        <div class="endpoint-card-top">
+                            <span class="method get">GET</span>
+                            <span class="route">/projects/ems</span>
+                            <span class="status-chip build">building</span>
+                        </div>
+                        <h3 class="endpoint-title">Employee Management System</h3>
+                        <p class="endpoint-desc">
+                            A comprehensive employee management platform for workforce administration, including employee records, attendance tracking, department management, payroll processing, and performance monitoring, built with ASP.NET Core MVC and SQL Server.
+                        </p>
+                        <div class="tag-row">
+                            <span class="tag">ASP.NET Core</span>
+                            <span class="tag">MSSQL</span>
+                        </div>
+                        <span class="endpoint-link disabled">Coming soon</span>
                     </div>
-
-                    <!-- Project 5 -->
-                    <div class="project-card">
-                        <div class="project-card-icon">📋</div>
-                        <div class="project-card-title">Employee Management System</div>
-                        <p class="project-card-desc">
-                            A comprehensive employee management platform designed to streamline workforce administration, including employee records, attendance tracking, department management, payroll processing, and performance monitoring, built with ASP.NET Core MVC and SQL Server.
-                        </p>
-                        <div class="project-card-tags">
-                            <span class="chip">ASP.NET Core</span>
-                            <span class="chip">MSSQL</span>
-                        </div>
-                        <a href="#" class="project-card-link">
-                            Comming Soon <span class="arrow">→</span>
-                        </a>
-                    </div>
-
-                    <!-- Project 6 -->
-                    <!-- <div class="project-card">
-                        <div class="project-card-icon">🏥</div>
-                        <div class="project-card-title">Clinic Management System</div>
-                        <p class="project-card-desc">
-                            A comprehensive clinic management system with patient records, appointment scheduling, prescription management, and billing features.
-                        </p>
-                        <div class="project-card-tags">
-                            <span class="chip">Laravel</span>
-                            <span class="chip">Livewire</span>
-                            <span class="chip">MySQL</span>
-                        </div>
-                        <a href="#" class="project-card-link">
-                            View details <span class="arrow">→</span>
-                        </a>
-                    </div> -->
-
-                    <!-- Project 7 -->
-                    <!-- <div class="project-card">
-                        <div class="project-card-icon">📱</div>
-                        <div class="project-card-title">Mobile App Backend</div>
-                        <p class="project-card-desc">
-                            Scalable backend for a mobile application with push notifications, user authentication, data synchronization, and analytics endpoints.
-                        </p>
-                        <div class="project-card-tags">
-                            <span class="chip">ASP.NET Core</span>
-                            <span class="chip">Firebase</span>
-                            <span class="chip">MongoDB</span>
-                        </div>
-                        <a href="#" class="project-card-link">
-                            View details <span class="arrow">→</span>
-                        </a>
-                    </div> -->
-
-                    <!-- Project 8 -->
-                    <!-- <div class="project-card">
-                        <div class="project-card-icon">📰</div>
-                        <div class="project-card-title">Content Management System</div>
-                        <p class="project-card-desc">
-                            A flexible CMS for news and blog websites with multi-user roles, SEO optimization, media management, and version control.
-                        </p>
-                        <div class="project-card-tags">
-                            <span class="chip">Laravel</span>
-                            <span class="chip">Vue.js</span>
-                            <span class="chip">MySQL</span>
-                        </div>
-                        <a href="#" class="project-card-link">
-                            View details <span class="arrow">→</span>
-                        </a>
-                    </div> -->
-
-                    <!-- Project 9 -->
-                    <!-- <div class="project-card">
-                        <div class="project-card-icon">📈</div>
-                        <div class="project-card-title">Analytics Dashboard</div>
-                        <p class="project-card-desc">
-                            Interactive dashboard for business analytics with real-time data visualization, custom reports, and KPI tracking using React and Chart.js.
-                        </p>
-                        <div class="project-card-tags">
-                            <span class="chip">React</span>
-                            <span class="chip">Chart.js</span>
-                            <span class="chip">ASP.NET Core</span>
-                        </div>
-                        <a href="#" class="project-card-link">
-                            View details <span class="arrow">→</span>
-                        </a>
-                    </div> -->
 
                 </div>
             </div>
@@ -1007,9 +969,10 @@
     <!-- CONTACT -->
     <section id="contact">
         <div class="section-wrap">
-            <div class="section-header">
-                <h2 class="section-eyebrow">Get in touch</h2>
-                <div class="section-rule"></div>
+            <div class="endpoint-header">
+                <span class="method post">POST</span>
+                <span class="route">/contact</span>
+                <span class="status-chip ok">202 Accepted</span>
             </div>
             <div class="contact-inner">
                 <div>
@@ -1026,38 +989,27 @@
                     </div>
                 </div>
 
-                <div class="contact-cards">
-                    <a class="contact-card" href="mailto:zakwansanudin02@gmail.com">
-                        <div class="contact-card-icon">✉️</div>
-                        <div class="contact-card-body">
-                            <div class="contact-card-label">Email</div>
-                            <div class="contact-card-value">zakwansanudin02@gmail.com</div>
-                        </div>
-                        <span class="contact-card-arrow">↗</span>
+                <div class="headers-block">
+                    <div class="headers-title">// request headers</div>
+                    <a class="header-row" href="mailto:zakwansanudin02@gmail.com">
+                        <span class="header-key">Email</span>
+                        <span class="header-val">zakwansanudin02@gmail.com</span>
+                        <span class="header-arrow">↗</span>
                     </a>
-                    <a class="contact-card" href="tel:+601133035718">
-                        <div class="contact-card-icon">📱</div>
-                        <div class="contact-card-body">
-                            <div class="contact-card-label">Phone</div>
-                            <div class="contact-card-value">+60 11-3303 5718</div>
-                        </div>
-                        <span class="contact-card-arrow">↗</span>
+                    <a class="header-row" href="tel:+601133035718">
+                        <span class="header-key">Phone</span>
+                        <span class="header-val">+60 11-3303 5718</span>
+                        <span class="header-arrow">↗</span>
                     </a>
-                    <a class="contact-card" href="https://github.com/zakwansanudin" target="_blank" rel="noopener">
-                        <div class="contact-card-icon">⌨️</div>
-                        <div class="contact-card-body">
-                            <div class="contact-card-label">GitHub</div>
-                            <div class="contact-card-value">github.com/zakwansanudin</div>
-                        </div>
-                        <span class="contact-card-arrow">↗</span>
+                    <a class="header-row" href="https://github.com/zakwansanudin" target="_blank" rel="noopener">
+                        <span class="header-key">GitHub</span>
+                        <span class="header-val">github.com/zakwansanudin</span>
+                        <span class="header-arrow">↗</span>
                     </a>
-                    <a class="contact-card" href="https://www.linkedin.com/in/zakwan-sanudin" target="_blank" rel="noopener">
-                        <div class="contact-card-icon">💼</div>
-                        <div class="contact-card-body">
-                            <div class="contact-card-label">LinkedIn</div>
-                            <div class="contact-card-value">linkedin.com/in/zakwan-sanudin</div>
-                        </div>
-                        <span class="contact-card-arrow">↗</span>
+                    <a class="header-row" href="https://www.linkedin.com/in/zakwan-sanudin" target="_blank" rel="noopener">
+                        <span class="header-key">LinkedIn</span>
+                        <span class="header-val">linkedin.com/in/zakwan-sanudin</span>
+                        <span class="header-arrow">↗</span>
                     </a>
                 </div>
             </div>
@@ -1067,11 +1019,11 @@
     <!-- FOOTER -->
     <div style="border-top:1px solid var(--border);">
         <footer>
-            <span class="footer-text">© <span id="yr"></span> Zakwan Sanudin. Built with care.</span>
+            <span class="footer-text">// © <span id="yr"></span> Zakwan Sanudin — built with care</span>
             <div class="footer-links">
-                <a href="#about">About</a>
-                <a href="#projects">Projects</a>
-                <a href="#contact">Contact</a>
+                <a href="#about">/about</a>
+                <a href="#projects">/projects</a>
+                <a href="#contact">/contact</a>
             </div>
         </footer>
     </div>
@@ -1079,24 +1031,19 @@
     <script>
         document.getElementById('yr').textContent = new Date().getFullYear();
 
-        // Toggle all projects
         const toggleBtn = document.getElementById('toggleAllProjects');
         const allProjectsContainer = document.getElementById('allProjectsContainer');
         let allVisible = false;
 
-        toggleBtn.addEventListener('click', function() {
+        toggleBtn.addEventListener('click', function () {
             allVisible = !allVisible;
             if (allVisible) {
                 allProjectsContainer.classList.add('visible');
-                this.textContent = 'Show fewer projects';
+                this.textContent = 'GET /projects?all=false';
             } else {
                 allProjectsContainer.classList.remove('visible');
-                this.textContent = 'Show all projects';
-                // Scroll back to the button
-                this.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'center'
-                });
+                this.textContent = 'GET /projects?all=true';
+                this.scrollIntoView({ behavior: 'smooth', block: 'center' });
             }
         });
     </script>
