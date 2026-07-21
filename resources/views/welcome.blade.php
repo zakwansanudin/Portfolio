@@ -1023,7 +1023,7 @@
                     </p>
                     <div class="contact-cta-row">
                         <a class="btn-primary" href="mailto:zakwansanudin02@gmail.com">Send an email</a>
-                        <a class="btn-ghost" href="docs/CV_Zakwan.pdf" download>Download CV</a>
+                        <a class="btn-ghost" href="docs/CV_ZAKWANSANUDIN.pdf" download>Download CV</a>
                     </div>
                 </div>
 
