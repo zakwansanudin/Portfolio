@@ -783,7 +783,7 @@
                 <span>Sanudin</span>
             </h1>
             <p class="hero-tagline">
-                Full stack developer specialising in Laravel and ASP.NET Core. I build applications that are fast, reliable, and genuinely pleasant to use.
+                Full stack developer specialising in Laravel. I build applications that are fast, reliable, and genuinely pleasant to use.
             </p>
             <div class="hero-actions">
                 <a class="btn-primary" href="#projects">View my work</a>
@@ -805,8 +805,7 @@
                         <li><span class="k">"role"</span>: <span class="v">"Full Stack Developer"</span></li>
                         <li><span class="k">"location"</span>: <span class="v">"Selangor, MY"</span></li>
                         <li><span class="k">"status"</span>: <span class="v accent">"available"</span></li>
-                        <li><span class="k">"experience"</span>: <span class="v">"3+ years"</span></li>
-                        <li><span class="k">"shipped"</span>: <span class="v">"10+ projects"</span></li>
+                        <li><span class="k">"experience"</span>: <span class="v">"2 years"</span></li>
                         <li><span class="k">"frameworks"</span>: <span class="v">2</span></li>
                     </ul>
                 </div>
@@ -826,7 +825,7 @@
             <div class="about-grid">
                 <div class="about-body">
                     <p>
-                        I'm a full stack developer with a strong focus on <strong>Laravel</strong> and <strong>ASP.NET Core</strong>. My work sits at the intersection of clean backend architecture and practical, user-friendly interfaces — I care equally about what happens in the database and what the end user sees on screen.
+                        I'm a full stack developer with a strong focus on <strong>Laravel</strong>. My work sits at the intersection of clean backend architecture and practical, user-friendly interfaces — I care equally about what happens in the database and what the end user sees on screen.
                     </p>
                     <p>
                         I've built production systems for schools, community platforms, and learning applications used by real people every day. I take pride in writing code that's easy to maintain and scale, and in shipping products that just work.
