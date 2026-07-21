@@ -798,31 +798,30 @@
                 <div class="skills-list">
                     <div class="skill-item">
                         <span class="skill-name">Laravel</span>
-                        <span class="skill-level">Expert</span>
                     </div>
                     <div class="skill-item">
                         <span class="skill-name">PHP</span>
-                        <span class="skill-level">Advanced</span>
                     </div>
                     <div class="skill-item">
                         <span class="skill-name">MySQL</span>
-                        <span class="skill-level">Advanced</span>
                     </div>
                     <div class="skill-item">
                         <span class="skill-name">ASP.NET Core</span>
-                        <span class="skill-level">Proficient</span>
                     </div>
                     <div class="skill-item">
                         <span class="skill-name">JavaScript</span>
-                        <span class="skill-level">Proficient</span>
                     </div>
                     <div class="skill-item">
                         <span class="skill-name">React</span>
-                        <span class="skill-level">Intermediate</span>
                     </div>
                     <div class="skill-item">
                         <span class="skill-name">TailwindCSS</span>
-                        <span class="skill-level">Advanced</span>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-name">React Native</span>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-name">Flutter</span>
                     </div>
                 </div>
             </div>
