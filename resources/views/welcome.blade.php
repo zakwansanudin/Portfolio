@@ -54,10 +54,6 @@
             color: inherit;
         }
 
-        button {
-            font-family: inherit;
-        }
-
         :focus-visible {
             outline: 2px solid var(--blue);
             outline-offset: 3px;
@@ -489,10 +485,6 @@
             color: inherit;
             display: flex;
             flex-direction: column;
-            text-align: left;
-            width: 100%;
-            font: inherit;
-            cursor: pointer;
             transition: all 0.2s;
         }
 
@@ -502,50 +494,11 @@
             border-color: var(--blue);
         }
 
-        .endpoint-card:disabled,
-        .endpoint-card.is-building {
-            cursor: pointer;
-        }
-
-        .endpoint-thumb {
-            position: relative;
-            width: 100%;
-            aspect-ratio: 16 / 10;
-            border-radius: 10px;
-            overflow: hidden;
-            margin-bottom: 1.1rem;
-            background: var(--surface-2);
-            border: 1px solid var(--border);
-        }
-
-        .endpoint-thumb img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-        }
-
-        .endpoint-thumb .thumb-count {
-            position: absolute;
-            bottom: 0.55rem;
-            right: 0.55rem;
-            background: rgba(18, 21, 28, 0.72);
-            color: #fff;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.68rem;
-            font-weight: 600;
-            padding: 0.2rem 0.5rem;
-            border-radius: 100px;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.3rem;
-        }
-
         .endpoint-card-top {
             display: flex;
             align-items: center;
             gap: 0.5rem;
-            margin-bottom: 0.9rem;
+            margin-bottom: 1.1rem;
             flex-wrap: wrap;
         }
 
@@ -594,6 +547,7 @@
             font-size: 0.83rem;
             font-weight: 600;
             color: var(--blue);
+            text-decoration: none;
         }
 
         .endpoint-link.disabled {
@@ -752,212 +706,6 @@
             background: var(--surface-2);
         }
 
-        /* ── MODAL ── */
-        .modal-overlay {
-            position: fixed;
-            inset: 0;
-            z-index: 200;
-            background: rgba(12, 14, 20, 0.6);
-            backdrop-filter: blur(4px);
-            display: none;
-            align-items: center;
-            justify-content: center;
-            padding: 2rem;
-        }
-
-        .modal-overlay.open {
-            display: flex;
-        }
-
-        .modal-card {
-            background: var(--surface);
-            border-radius: 18px;
-            border: 1px solid var(--border);
-            width: 100%;
-            max-width: 760px;
-            max-height: 90vh;
-            overflow-y: auto;
-            box-shadow: 0 40px 100px rgba(12, 14, 20, 0.35);
-            animation: modal-in 0.22s ease;
-        }
-
-        @keyframes modal-in {
-            from {
-                opacity: 0;
-                transform: translateY(10px) scale(0.98);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-            }
-        }
-
-        .modal-head {
-            display: flex;
-            align-items: center;
-            gap: 0.7rem;
-            padding: 0.85rem 1.2rem;
-            border-bottom: 1px solid var(--border);
-            background: var(--surface-2);
-            position: sticky;
-            top: 0;
-            z-index: 2;
-        }
-
-        .modal-head .route {
-            font-size: 0.78rem;
-            color: var(--muted);
-            flex: 1;
-        }
-
-        .modal-close {
-            background: var(--surface);
-            border: 1px solid var(--border);
-            width: 28px;
-            height: 28px;
-            border-radius: 7px;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            color: var(--muted);
-            font-size: 0.9rem;
-            line-height: 1;
-            transition: all 0.15s;
-        }
-
-        .modal-close:hover {
-            color: var(--ink);
-            border-color: var(--blue);
-        }
-
-        .carousel {
-            position: relative;
-            background: var(--surface-2);
-            aspect-ratio: 16 / 10;
-        }
-
-        .carousel-track {
-            display: flex;
-            width: 100%;
-            height: 100%;
-            transition: transform 0.32s cubic-bezier(.4, 0, .2, 1);
-        }
-
-        .carousel-track img {
-            width: 100%;
-            height: 100%;
-            flex-shrink: 0;
-            object-fit: cover;
-            display: block;
-        }
-
-        .carousel-nav {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            border: 1px solid var(--border);
-            background: rgba(255, 255, 255, 0.92);
-            color: var(--ink);
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            font-size: 1rem;
-            transition: transform 0.15s, background 0.15s;
-        }
-
-        .carousel-nav:hover {
-            background: #fff;
-            transform: translateY(-50%) scale(1.06);
-        }
-
-        .carousel-nav.prev {
-            left: 0.8rem;
-        }
-
-        .carousel-nav.next {
-            right: 0.8rem;
-        }
-
-        .carousel-dots {
-            position: absolute;
-            bottom: 0.75rem;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            gap: 0.4rem;
-        }
-
-        .carousel-dots button {
-            width: 6px;
-            height: 6px;
-            border-radius: 50%;
-            border: none;
-            background: rgba(18, 21, 28, 0.28);
-            cursor: pointer;
-            padding: 0;
-            transition: background 0.15s, transform 0.15s;
-        }
-
-        .carousel-dots button.active {
-            background: var(--ink);
-            transform: scale(1.3);
-        }
-
-        .carousel-count {
-            position: absolute;
-            top: 0.75rem;
-            right: 0.75rem;
-            background: rgba(18, 21, 28, 0.72);
-            color: #fff;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.7rem;
-            padding: 0.2rem 0.55rem;
-            border-radius: 100px;
-        }
-
-        .modal-body {
-            padding: 1.6rem;
-        }
-
-        .modal-title {
-            font-family: 'Space Grotesk', sans-serif;
-            font-weight: 700;
-            font-size: 1.4rem;
-            letter-spacing: -0.01em;
-            margin-bottom: 0.7rem;
-        }
-
-        .modal-desc {
-            font-size: 0.92rem;
-            color: var(--muted);
-            line-height: 1.7;
-        }
-
-        .modal-foot {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 1rem;
-            margin-top: 1.5rem;
-            padding-top: 1.3rem;
-            border-top: 1px solid var(--border);
-        }
-
-        .modal-foot .tag-row {
-            margin-top: 0;
-        }
-
-        body.modal-locked {
-            overflow: hidden;
-        }
-
         /* ── RESPONSIVE ── */
         @media (max-width: 900px) {
             nav {
@@ -1000,28 +748,11 @@
             footer {
                 padding: 1.5rem;
             }
-
-            .modal-overlay {
-                padding: 0;
-                align-items: flex-end;
-            }
-
-            .modal-card {
-                max-width: 100%;
-                max-height: 92vh;
-                border-radius: 18px 18px 0 0;
-            }
-
-            .modal-foot {
-                flex-direction: column;
-                align-items: stretch;
-            }
         }
 
         @media (prefers-reduced-motion: reduce) {
             * {
                 transition: none !important;
-                animation: none !important;
             }
         }
     </style>
@@ -1131,14 +862,105 @@
             </div>
             <h2 class="section-title">Selected projects</h2>
 
-            <div class="projects-grid" id="featuredProjects"></div>
+            <div class="projects-grid" id="featuredProjects">
+                <a class="endpoint-card" href="https://kampungonline.my" target="_blank" rel="noopener">
+                    <div class="endpoint-card-top">
+                        <span class="method get">GET</span>
+                        <span class="route">/projects/kampung-online</span>
+                        <span class="status-chip ok">200</span>
+                    </div>
+                    <h3 class="endpoint-title">Kampung Online</h3>
+                    <p class="endpoint-desc">
+                        A digital community platform for the KampungOnline network — user management, announcement broadcasting, and real-time engagement tools for local communities.
+                    </p>
+                    <div class="tag-row">
+                        <span class="tag">Laravel</span>
+                        <span class="tag">Bootstrap</span>
+                        <span class="tag">MySQL</span>
+                    </div>
+                    <span class="endpoint-link">Visit site ↗</span>
+                </a>
+
+                <a class="endpoint-card" href="https://epdk.eptrs.my/login" target="_blank" rel="noopener">
+                    <div class="endpoint-card-top">
+                        <span class="method get">GET</span>
+                        <span class="route">/projects/epdk</span>
+                        <span class="status-chip ok">200</span>
+                    </div>
+                    <h3 class="endpoint-title">ePDK</h3>
+                    <p class="endpoint-desc">
+                        Student progress recording system for Program Didik Kasih, deployed across Selangor primary schools. Tracks academic development and generates progress reports.
+                    </p>
+                    <div class="tag-row">
+                        <span class="tag">Laravel</span>
+                        <span class="tag">TailwindCSS</span>
+                        <span class="tag">MySQL</span>
+                    </div>
+                    <span class="endpoint-link">Visit site ↗</span>
+                </a>
+
+                <a class="endpoint-card" href="https://ppas-t3wq.onrender.com/" target="_blank" rel="noopener">
+                    <div class="endpoint-card-top">
+                        <span class="method get">GET</span>
+                        <span class="route">/projects/e-learning</span>
+                        <span class="status-chip ok">200</span>
+                    </div>
+                    <h3 class="endpoint-title">E-Learning Platform</h3>
+                    <p class="endpoint-desc">
+                        An interactive learning platform featuring Quiz Arena for engaging assessments and a student dashboard with class timetables, learning resources, and academic management tools.
+                    </p>
+                    <div class="tag-row">
+                        <span class="tag">Laravel</span>
+                        <span class="tag">React</span>
+                        <span class="tag">MySQL</span>
+                    </div>
+                    <span class="endpoint-link">Visit site ↗</span>
+                </a>
+            </div>
 
             <div class="toggle-wrap">
                 <button class="btn-toggle" id="toggleAllProjects">GET /projects?all=true</button>
             </div>
 
             <div class="all-projects-container" id="allProjectsContainer">
-                <div class="projects-grid all-projects" id="moreProjects"></div>
+                <div class="projects-grid all-projects">
+
+                    <a class="endpoint-card" href="https://new.hometutor.com.my/csr/smkjugra">
+                        <div class="endpoint-card-top">
+                            <span class="method get">GET</span>
+                            <span class="route">/projects/hometutor-csr</span>
+                            <span class="status-chip ok">200</span>
+                        </div>
+                        <h3 class="endpoint-title">HomeTutor CSR Program</h3>
+                        <p class="endpoint-desc">
+                            Developed a responsive landing page for the HomeTutor CSR Program, promoting educational initiatives for schools and providing information on program benefits, activities, and registration opportunities.
+                        </p>
+                        <div class="tag-row">
+                            <span class="tag">HTML</span>
+                            <span class="tag">CSS</span>
+                            <span class="tag">JavaScript</span>
+                        </div>
+                        <span class="endpoint-link">Visit site ↗</span>
+                    </a>
+
+                    <div class="endpoint-card">
+                        <div class="endpoint-card-top">
+                            <span class="method get">GET</span>
+                            <span class="route">/projects/ems</span>
+                            <span class="status-chip build">building</span>
+                        </div>
+                        <h3 class="endpoint-title">Employee Management System</h3>
+                        <p class="endpoint-desc">
+                            A comprehensive employee management platform for workforce administration, including employee records, attendance tracking, department management, payroll processing, and performance monitoring, built with ASP.NET Core MVC and SQL Server.
+                        </p>
+                        <div class="tag-row">
+                            <span class="tag">ASP.NET Core</span>
+                            <span class="tag">MSSQL</span>
+                        </div>
+                        <span class="endpoint-link disabled">Coming soon</span>
+                    </div>
+
+                </div>
             </div>
         </div>
     </section>
@@ -1205,150 +1027,9 @@
         </footer>
     </div>
 
-    <!-- MODAL -->
-    <div class="modal-overlay" id="modalOverlay">
-        <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-            <div class="modal-head">
-                <span class="method get">GET</span>
-                <span class="route" id="modalRoute">/projects/…</span>
-                <span class="status-chip ok" id="modalStatus">200</span>
-                <button class="modal-close" id="modalClose" aria-label="Close">✕</button>
-            </div>
-
-            <div class="carousel" id="carousel">
-                <div class="carousel-track" id="carouselTrack"></div>
-                <span class="carousel-count" id="carouselCount">1 / 1</span>
-                <button class="carousel-nav prev" id="carouselPrev" aria-label="Previous image">‹</button>
-                <button class="carousel-nav next" id="carouselNext" aria-label="Next image">›</button>
-                <div class="carousel-dots" id="carouselDots"></div>
-            </div>
-
-            <div class="modal-body">
-                <h3 class="modal-title" id="modalTitle">Project title</h3>
-                <p class="modal-desc" id="modalDesc">Project description.</p>
-                <div class="modal-foot">
-                    <div class="tag-row" id="modalTags"></div>
-                    <a class="btn-primary" id="modalVisit" href="#" target="_blank" rel="noopener">Visit site ↗</a>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <script>
         document.getElementById('yr').textContent = new Date().getFullYear();
 
-        // ── PROJECT DATA ──
-        // Put screenshots in /img/projects/ using the file names below (or edit the
-        // paths to match your own files). Each project can have as many images as you like.
-        const projects = [
-            {
-                id: 'kampung-online',
-                title: 'Kampung Online',
-                desc: 'A digital community platform for the KampungOnline network — user management, announcement broadcasting, and real-time engagement tools for local communities.',
-                tags: ['Laravel', 'Bootstrap', 'MySQL'],
-                url: 'https://kampungonline.my',
-                status: 'ok',
-                images: [
-                    'img/kampung-online-1.png',
-                    'img/kampung-online-2.png',
-                    'img/kampung-online-3.png'
-                ],
-                featured: true
-            },
-            {
-                id: 'epdk',
-                title: 'ePDK',
-                desc: 'Student progress recording system for Program Didik Kasih, deployed across Selangor primary schools. Tracks academic development and generates progress reports.',
-                tags: ['Laravel', 'TailwindCSS', 'MySQL'],
-                url: 'https://epdk.eptrs.my/login',
-                status: 'ok',
-                images: [
-                    'img/projects/epdk-1.png',
-                    'img/projects/epdk-2.png',
-                    'img/projects/epdk-3.png'
-                ],
-                featured: true
-            },
-            {
-                id: 'e-learning',
-                title: 'E-Learning Platform',
-                desc: 'An interactive learning platform featuring Quiz Arena for engaging assessments and a student dashboard with class timetables, learning resources, and academic management tools.',
-                tags: ['Laravel', 'React', 'MySQL'],
-                url: 'https://ppas-t3wq.onrender.com/',
-                status: 'ok',
-                images: [
-                    'img/projects/e-learning-1.png',
-                    'img/projects/e-learning-2.png',
-                    'img/projects/e-learning-3.png'
-                ],
-                featured: true
-            },
-            {
-                id: 'hometutor-csr',
-                title: 'HomeTutor CSR Program',
-                desc: 'Developed a responsive landing page for the HomeTutor CSR Program, promoting educational initiatives for schools and providing information on program benefits, activities, and registration opportunities.',
-                tags: ['HTML', 'CSS', 'JavaScript'],
-                url: 'https://new.hometutor.com.my/csr/smkjugra',
-                status: 'ok',
-                images: [
-                    'img/projects/hometutor-csr-1.png',
-                    'img/projects/hometutor-csr-2.png'
-                ],
-                featured: false
-            },
-            {
-                id: 'ems',
-                title: 'Employee Management System',
-                desc: 'A comprehensive employee management platform for workforce administration, including employee records, attendance tracking, department management, payroll processing, and performance monitoring, built with ASP.NET Core MVC and SQL Server.',
-                tags: ['ASP.NET Core', 'MSSQL'],
-                url: null,
-                status: 'build',
-                images: [
-                    'img/projects/ems-1.png'
-                ],
-                featured: false
-            }
-        ];
-
-        // ── RENDER CARDS ──
-        function cardMarkup(p) {
-            const statusLabel = p.status === 'build' ? 'building' : '200';
-            const linkLabel = p.status === 'build'
-                ? '<span class="endpoint-link disabled">Coming soon</span>'
-                : '<span class="endpoint-link">Preview ↗</span>';
-            const count = p.images.length;
-            const countBadge = count > 1
-                ? `<span class="thumb-count">▣ ${count}</span>`
-                : '';
-
-            return `
-                <button class="endpoint-card" type="button" data-project="${p.id}">
-                    <div class="endpoint-thumb">
-                        <img src="${p.images[0]}" alt="${p.title} screenshot" loading="lazy"
-                             onerror="this.closest('.endpoint-thumb').style.display='none'">
-                        ${countBadge}
-                    </div>
-                    <div class="endpoint-card-top">
-                        <span class="method get">GET</span>
-                        <span class="route">/projects/${p.id}</span>
-                        <span class="status-chip ${p.status}">${statusLabel}</span>
-                    </div>
-                    <h3 class="endpoint-title">${p.title}</h3>
-                    <p class="endpoint-desc">${p.desc}</p>
-                    <div class="tag-row">
-                        ${p.tags.map(t => `<span class="tag">${t}</span>`).join('')}
-                    </div>
-                    ${linkLabel}
-                </button>
-            `;
-        }
-
-        const featuredEl = document.getElementById('featuredProjects');
-        const moreEl = document.getElementById('moreProjects');
-        projects.filter(p => p.featured).forEach(p => featuredEl.insertAdjacentHTML('beforeend', cardMarkup(p)));
-        projects.filter(p => !p.featured).forEach(p => moreEl.insertAdjacentHTML('beforeend', cardMarkup(p)));
-
-        // ── TOGGLE "SHOW ALL" ──
         const toggleBtn = document.getElementById('toggleAllProjects');
         const allProjectsContainer = document.getElementById('allProjectsContainer');
         let allVisible = false;
@@ -1364,109 +1045,8 @@
                 this.scrollIntoView({ behavior: 'smooth', block: 'center' });
             }
         });
-
-        // ── MODAL + CAROUSEL ──
-        const overlay = document.getElementById('modalOverlay');
-        const track = document.getElementById('carouselTrack');
-        const dotsWrap = document.getElementById('carouselDots');
-        const countLabel = document.getElementById('carouselCount');
-        const prevBtn = document.getElementById('carouselPrev');
-        const nextBtn = document.getElementById('carouselNext');
-        const modalRoute = document.getElementById('modalRoute');
-        const modalStatus = document.getElementById('modalStatus');
-        const modalTitle = document.getElementById('modalTitle');
-        const modalDesc = document.getElementById('modalDesc');
-        const modalTags = document.getElementById('modalTags');
-        const modalVisit = document.getElementById('modalVisit');
-        const modalClose = document.getElementById('modalClose');
-
-        let currentIndex = 0;
-        let currentImages = [];
-        let lastFocused = null;
-
-        function openModal(project) {
-            lastFocused = document.activeElement;
-            currentImages = project.images;
-            currentIndex = 0;
-
-            modalRoute.textContent = `/projects/${project.id}`;
-            modalStatus.textContent = project.status === 'build' ? 'building' : '200 OK';
-            modalStatus.className = `status-chip ${project.status}`;
-            modalTitle.textContent = project.title;
-            modalDesc.textContent = project.desc;
-            modalTags.innerHTML = project.tags.map(t => `<span class="tag">${t}</span>`).join('');
-
-            if (project.url) {
-                modalVisit.href = project.url;
-                modalVisit.style.display = 'inline-block';
-                modalVisit.textContent = 'Visit site ↗';
-            } else {
-                modalVisit.style.display = 'none';
-            }
-
-            track.innerHTML = currentImages
-                .map(src => `<img src="${src}" alt="${project.title} screenshot" onerror="this.style.background='var(--surface-2)'">`)
-                .join('');
-
-            dotsWrap.innerHTML = currentImages
-                .map((_, i) => `<button type="button" data-i="${i}" aria-label="Go to image ${i + 1}"></button>`)
-                .join('');
-
-            const multi = currentImages.length > 1;
-            prevBtn.style.display = multi ? 'inline-flex' : 'none';
-            nextBtn.style.display = multi ? 'inline-flex' : 'none';
-            dotsWrap.style.display = multi ? 'flex' : 'none';
-
-            updateCarousel();
-
-            overlay.classList.add('open');
-            document.body.classList.add('modal-locked');
-            modalClose.focus();
-        }
-
-        function closeModal() {
-            overlay.classList.remove('open');
-            document.body.classList.remove('modal-locked');
-            if (lastFocused) lastFocused.focus();
-        }
-
-        function updateCarousel() {
-            track.style.transform = `translateX(-${currentIndex * 100}%)`;
-            countLabel.textContent = `${currentIndex + 1} / ${currentImages.length}`;
-            [...dotsWrap.children].forEach((dot, i) => dot.classList.toggle('active', i === currentIndex));
-        }
-
-        function goTo(i) {
-            currentIndex = (i + currentImages.length) % currentImages.length;
-            updateCarousel();
-        }
-
-        document.querySelectorAll('.endpoint-card').forEach(card => {
-            card.addEventListener('click', () => {
-                const project = projects.find(p => p.id === card.dataset.project);
-                if (project) openModal(project);
-            });
-        });
-
-        prevBtn.addEventListener('click', () => goTo(currentIndex - 1));
-        nextBtn.addEventListener('click', () => goTo(currentIndex + 1));
-        dotsWrap.addEventListener('click', (e) => {
-            const btn = e.target.closest('button[data-i]');
-            if (btn) goTo(Number(btn.dataset.i));
-        });
-
-        modalClose.addEventListener('click', closeModal);
-        overlay.addEventListener('click', (e) => {
-            if (e.target === overlay) closeModal();
-        });
-
-        document.addEventListener('keydown', (e) => {
-            if (!overlay.classList.contains('open')) return;
-            if (e.key === 'Escape') closeModal();
-            if (e.key === 'ArrowLeft') goTo(currentIndex - 1);
-            if (e.key === 'ArrowRight') goTo(currentIndex + 1);
-        });
     </script>
 </body>
 
 </html>
+
