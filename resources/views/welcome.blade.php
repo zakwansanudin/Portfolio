@@ -794,7 +794,7 @@
         <span class="response-card-title">response · 200 OK</span>
       </div>
       <div class="response-card-body">
-        <div class="profile-img" style="background:#d0d5dd; display:flex; align-items:center; justify-content:center; color:#67707e; font-size:0.8rem;">📸</div>
+        <img src="img/profile.png" alt="Zakwan Sanudin" class="profile-img" />
         <ul class="kv-list">
           <li><span class="k">"role"</span>: <span class="v">"Full Stack Developer"</span></li>
           <li><span class="k">"location"</span>: <span class="v">"Selangor, MY"</span></li>
