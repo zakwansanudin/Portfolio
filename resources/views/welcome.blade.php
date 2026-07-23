@@ -916,7 +916,7 @@
         desc: 'A digital community platform for the KampungOnline network — user management, announcement broadcasting, and real-time engagement tools for local communities.',
         tags: ['Laravel','Bootstrap','MySQL'],
         url: 'https://kampungonline.my',
-        images: ['img/kampung1.jpg','img/kampung2.jpg','img/kampung3.jpg'] // fallback if missing
+        images: ['img/kampung-online-1.png','img/kampung-online-2.png','img/kampung-online-3.png']
       },
       {
         id: 'epdk',
@@ -955,7 +955,6 @@
 
     // featured: first 3
     const featured = projects.slice(0,3);
-    // all: remaining + featured (but we'll render all in all grid)
     const allProjects = projects;
 
     function renderProjectCard(p, index) {
@@ -1107,11 +1106,9 @@
       allContainerWrap.classList.toggle('visible', allVisible);
       this.textContent = allVisible ? 'GET /projects?all=false' : 'GET /projects?all=true';
       if (!allVisible) this.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      // reattach listeners for newly visible cards
       setTimeout(attachCardListeners, 50);
     });
 
-    // re-attach after any DOM changes (toggle)
     const observer = new MutationObserver(() => attachCardListeners());
     observer.observe(document.getElementById('projects'), { childList: true, subtree: true });
   })();
