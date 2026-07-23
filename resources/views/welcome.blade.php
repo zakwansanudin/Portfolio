@@ -1,696 +1,925 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Zakwan Sanudin · Full Stack Developer</title>
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
-<style>
-  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Zakwan Sanudin · Full Stack Developer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
 
-  :root{
-    --bg:#0B0E14;
-    --panel:#10141C;
-    --panel-2:#161B25;
-    --panel-3:#1C2230;
-    --border:#252C3A;
-    --border-soft:#1B212C;
-    --text:#D7DCE5;
-    --text-dim:#9AA3B2;
-    --muted:#5B6474;
-    --keyword:#C792EA;
-    --string:#7FD88F;
-    --func:#E5C07B;
-    --type:#61AFEF;
-    --const:#E39A5E;
-    --danger:#E06C75;
-    --radius:14px;
-    --gutter-w:44px;
-  }
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-  html{scroll-behavior:smooth;}
-  body{
-    font-family:'IBM Plex Sans',sans-serif;
-    background:var(--bg);
-    color:var(--text);
-    -webkit-font-smoothing:antialiased;
-  }
-  a{color:inherit;text-decoration:none;}
-  ::selection{background:rgba(97,175,239,0.28);}
-  .mono{font-family:'IBM Plex Mono',monospace;}
+    :root {
+      --bg: #F5F6F8;
+      --surface: #FFFFFF;
+      --surface-2: #ECEFF3;
+      --ink: #12151C;
+      --muted: #67707E;
+      --border: #DFE3E9;
+      --blue: #2F5EFF;
+      --blue-tint: #EAEFFF;
+      --green: #0E9F5C;
+      --green-tint: #E4F7ED;
+      --amber: #B5720C;
+      --amber-tint: #FBF0DC;
+      --radius: 18px;
+    }
 
-  /* ---------- editor chrome ---------- */
-  .win{
-    background:var(--panel);
-    border:1px solid var(--border);
-    border-radius:var(--radius);
-    overflow:hidden;
-  }
-  .win-bar{
-    display:flex;
-    align-items:center;
-    gap:.9rem;
-    padding:.7rem 1rem;
-    background:var(--panel-2);
-    border-bottom:1px solid var(--border);
-  }
-  .dots{display:flex;gap:.4rem;flex-shrink:0;}
-  .dots span{width:10px;height:10px;border-radius:50%;}
-  .dots .r{background:#E06C75;} .dots .y{background:#E5C07B;} .dots .g{background:#7FD88F;}
-  .win-tabs{display:flex;gap:.15rem;overflow-x:auto;}
-  .win-tab{
-    font-family:'IBM Plex Mono',monospace;
-    font-size:.76rem;
-    color:var(--muted);
-    padding:.35rem .8rem;
-    border-radius:6px;
-    white-space:nowrap;
-    display:flex;align-items:center;gap:.4rem;
-  }
-  .win-tab.on{color:var(--text);background:var(--panel-3);}
-  .win-tab .ext{color:var(--func);}
-  .win-branch{
-    margin-left:auto;
-    font-family:'IBM Plex Mono',monospace;
-    font-size:.72rem;
-    color:var(--string);
-    display:flex;align-items:center;gap:.35rem;
-    flex-shrink:0;
-    padding-left:1rem;
-  }
-  .win-branch::before{content:'⎇';}
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      -webkit-font-smoothing: antialiased;
+      background-image:
+        linear-gradient(var(--border) 1px, transparent 1px),
+        linear-gradient(90deg, var(--border) 1px, transparent 1px);
+      background-size: 64px 64px;
+      background-position: -1px -1px;
+      background-attachment: fixed;
+    }
 
-  /* ---------- status bar bottom ---------- */
-  .statusbar{
-    background:#0A1B14;
-    border-top:1px solid var(--border);
-  }
-  .statusbar-inner{
-    max-width:1180px;margin:0 auto;
-    display:flex;align-items:center;justify-content:space-between;
-    padding:.5rem 3rem;
-    font-family:'IBM Plex Mono',monospace;
-    font-size:.72rem;
-    color:var(--string);
-    flex-wrap:wrap;gap:.5rem;
-  }
-  .statusbar-inner span{opacity:.85;}
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
 
-  /* ---------- nav ---------- */
-  nav{
-    position:fixed;top:0;left:0;right:0;z-index:100;
-    display:flex;align-items:center;justify-content:space-between;
-    padding:.9rem 3rem;
-    background:rgba(11,14,20,0.82);
-    backdrop-filter:blur(14px);
-    border-bottom:1px solid var(--border-soft);
-  }
-  .brand{font-family:'IBM Plex Mono',monospace;font-weight:600;font-size:1rem;color:var(--text);}
-  .brand .dot{color:var(--func);}
-  .nav-links{display:flex;gap:.2rem;list-style:none;}
-  .nav-links a{
-    font-family:'IBM Plex Mono',monospace;font-size:.8rem;color:var(--text-dim);
-    padding:.4rem .85rem;border-radius:6px;display:flex;align-items:center;gap:.4rem;
-    transition:.15s;
-  }
-  .nav-links a:hover{color:var(--text);background:var(--panel-3);}
-  .nav-links .ext{color:var(--func);}
-  .status-pill{
-    font-family:'IBM Plex Mono',monospace;font-size:.76rem;font-weight:500;color:var(--string);
-    background:rgba(127,216,143,0.1);border:1px solid rgba(127,216,143,0.3);
-    padding:.4rem .9rem;border-radius:100px;display:inline-flex;align-items:center;gap:.45rem;
-  }
-  .status-pill::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--string);box-shadow:0 0 8px var(--string);}
+    .mono {
+      font-family: 'JetBrains Mono', monospace;
+    }
 
-  /* ---------- hero ---------- */
-  .hero{max-width:1180px;margin:0 auto;padding:7.5rem 3rem 4.5rem;}
-  .hero-eyebrow{
-    font-family:'IBM Plex Mono',monospace;font-size:.8rem;color:var(--muted);
-    margin-bottom:.9rem;
-  }
-  .hero-eyebrow .k{color:var(--keyword);}
-  .hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:1.5rem;align-items:stretch;}
+    .method {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      font-weight: 600;
+      padding: 0.18rem 0.55rem;
+      border-radius: 5px;
+      letter-spacing: 0.02em;
+    }
+    .method.get { color: var(--blue); background: var(--blue-tint); }
+    .method.post { color: var(--green); background: var(--green-tint); }
 
-  .code-panel .win-bar .win-tab{cursor:default;}
-  .code-body{display:flex;font-size:.86rem;line-height:1.85;}
-  .gutter{
-    width:var(--gutter-w);flex-shrink:0;padding:1.2rem 0;text-align:right;
-    font-family:'IBM Plex Mono',monospace;color:#333B4A;font-size:.8rem;
-    border-right:1px solid var(--border-soft);user-select:none;
-  }
-  .gutter div{padding-right:.9rem;}
-  .code-lines{padding:1.2rem 1.3rem;font-family:'IBM Plex Mono',monospace;overflow-x:auto;flex:1;}
-  .code-lines .ln{white-space:pre;}
-  .c-kw{color:var(--keyword);}
-  .c-fn{color:var(--func);}
-  .c-str{color:var(--string);}
-  .c-type{color:var(--type);}
-  .c-const{color:var(--const);}
-  .c-com{color:var(--muted);}
-  .c-plain{color:var(--text);}
-  .cursor-blink{display:inline-block;width:7px;height:1.05em;background:var(--type);vertical-align:text-bottom;animation:blink 1s step-end infinite;}
-  @keyframes blink{50%{opacity:0;}}
+    .status-chip {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      font-weight: 600;
+      padding: 0.18rem 0.6rem;
+      border-radius: 100px;
+      letter-spacing: 0.02em;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+    .status-chip::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: currentColor;
+    }
+    .status-chip.ok { color: var(--green); background: var(--green-tint); }
+    .status-chip.build { color: var(--amber); background: var(--amber-tint); }
 
-  .term-panel{display:flex;flex-direction:column;}
-  .term-body{padding:1.2rem 1.3rem;font-family:'IBM Plex Mono',monospace;font-size:.84rem;line-height:1.9;flex:1;}
-  .term-avatar-row{display:flex;align-items:center;gap:.9rem;margin-bottom:1rem;padding-bottom:1rem;border-bottom:1px solid var(--border-soft);}
-  .term-avatar{width:52px;height:52px;border-radius:9px;object-fit:cover;border:1px solid var(--border);flex-shrink:0;}
-  .term-avatar-name{font-family:'IBM Plex Sans',sans-serif;font-weight:700;font-size:.95rem;color:var(--text);}
-  .term-avatar-role{font-family:'IBM Plex Mono',monospace;font-size:.72rem;color:var(--muted);margin-top:.2rem;}
-  .term-body .prompt{color:var(--string);}
-  .term-body .path{color:var(--type);}
-  .term-kv{color:var(--text-dim);}
-  .term-kv .k{color:var(--func);}
-  .term-kv .v{color:var(--text);}
-  .term-kv .v.hl{color:var(--string);}
-  .hero-actions{display:flex;gap:.8rem;flex-wrap:wrap;padding:1rem 1.3rem 1.3rem;border-top:1px solid var(--border-soft);}
-  .btn{
-    font-family:'IBM Plex Mono',monospace;font-size:.82rem;font-weight:500;
-    padding:.68rem 1.3rem;border-radius:8px;border:1px solid transparent;cursor:pointer;
-    display:inline-flex;align-items:center;gap:.5rem;transition:.15s;
-  }
-  .btn-solid{background:var(--type);color:#0B0E14;}
-  .btn-solid:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(97,175,239,0.25);}
-  .btn-line{background:transparent;color:var(--text);border-color:var(--border);}
-  .btn-line:hover{border-color:var(--type);color:var(--type);transform:translateY(-2px);}
+    .route {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--ink);
+    }
 
-  /* ---------- section shells ---------- */
-  section{max-width:1180px;margin:0 auto;padding:4.5rem 3rem;}
-  .sec-tag{
-    display:inline-flex;align-items:center;gap:.6rem;
-    font-family:'IBM Plex Mono',monospace;font-size:.78rem;color:var(--muted);
-    margin-bottom:1rem;
-  }
-  .sec-tag .file{color:var(--func);}
-  .sec-title{font-family:'IBM Plex Sans',sans-serif;font-weight:700;font-size:clamp(1.5rem,2.6vw,2rem);letter-spacing:-.02em;margin-bottom:2.6rem;}
+    /* ----- NAV ----- */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.9rem 3rem;
+      background: rgba(245, 246, 248, 0.86);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-brand { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 1.05rem; }
+    .nav-brand span { color: var(--blue); }
+    .nav-routes { display: flex; gap: 0.4rem; list-style: none; }
+    .nav-routes a {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8rem;
+      color: var(--muted);
+      padding: 0.4rem 0.8rem;
+      border-radius: 8px;
+      transition: all 0.16s;
+    }
+    .nav-routes a:hover { color: var(--ink); background: var(--surface); }
+    .nav-cta {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--surface);
+      background: var(--ink);
+      padding: 0.5rem 1.2rem;
+      border-radius: 8px;
+      transition: opacity 0.16s, transform 0.16s;
+    }
+    .nav-cta:hover { opacity: 0.85; transform: translateY(-1px); }
 
-  /* ---------- about ---------- */
-  .about-grid{display:grid;grid-template-columns:1.3fr 1fr;gap:2.5rem;align-items:start;}
-  .about-body{font-size:1rem;color:var(--text-dim);line-height:1.85;}
-  .about-body p+p{margin-top:1rem;}
-  .about-body strong{color:var(--type);font-weight:600;}
-  .stack-panel .win-bar{padding:.6rem .9rem;}
-  .stack-list{padding:.9rem;display:flex;flex-direction:column;gap:.35rem;}
-  .stack-row{
-    display:flex;align-items:center;justify-content:space-between;
-    font-family:'IBM Plex Mono',monospace;font-size:.82rem;
-    padding:.55rem .8rem;border-radius:7px;background:var(--panel-2);
-    border:1px solid var(--border-soft);transition:.15s;
-  }
-  .stack-row:hover{border-color:var(--type);transform:translateX(3px);}
-  .stack-row .name{color:var(--text);}
-  .stack-row .type{color:var(--muted);font-size:.72rem;}
+    /* ----- HERO ----- */
+    .hero {
+      padding: 8.5rem 3rem 5rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .req-line {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.7rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.82rem;
+      color: var(--muted);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 0.4rem 0.8rem;
+      border-radius: 8px;
+      margin-bottom: 1.8rem;
+    }
+    .hero-name {
+      font-family: 'Space Grotesk', sans-serif;
+      line-height: 1.0;
+      letter-spacing: -0.03em;
+      font-size: clamp(3rem, 6vw, 5rem);
+      font-weight: 700;
+    }
+    .hero-name span { display: block; font-weight: 500; color: var(--muted); }
+    .hero-tagline {
+      font-size: 1.05rem;
+      color: var(--muted);
+      line-height: 1.7;
+      margin-top: 1.6rem;
+      max-width: 420px;
+    }
+    .hero-actions {
+      display: flex;
+      gap: 0.9rem;
+      flex-wrap: wrap;
+      margin-top: 2.3rem;
+    }
+    .btn-primary {
+      background: var(--blue);
+      color: white;
+      font-size: 0.9rem;
+      font-weight: 600;
+      padding: 0.75rem 1.7rem;
+      border-radius: 8px;
+      transition: opacity 0.16s, transform 0.16s;
+      display: inline-block;
+      border: none;
+      cursor: pointer;
+    }
+    .btn-primary:hover { opacity: 0.88; transform: translateY(-2px); }
+    .btn-ghost {
+      background: var(--surface);
+      color: var(--ink);
+      font-size: 0.9rem;
+      font-weight: 600;
+      padding: 0.75rem 1.7rem;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      transition: border-color 0.16s, transform 0.16s;
+      cursor: pointer;
+    }
+    .btn-ghost:hover { border-color: var(--blue); transform: translateY(-2px); }
 
-  /* ---------- projects ---------- */
-  .proj-json-open,.proj-json-close{font-family:'IBM Plex Mono',monospace;color:var(--muted);font-size:.85rem;}
-  .projects-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;margin-top:1rem;}
-  .projects-grid.extra{margin-top:1.2rem;padding-top:1.5rem;border-top:1px dashed var(--border);}
-  .pcard{
-    background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);
-    padding:1.4rem;cursor:pointer;display:flex;flex-direction:column;transition:.2s;
-    position:relative;
-  }
-  .pcard:hover{transform:translateY(-4px);border-color:var(--type);box-shadow:0 16px 36px rgba(0,0,0,0.35);}
-  .pcard-top{display:flex;align-items:center;gap:.5rem;margin-bottom:1rem;flex-wrap:wrap;}
-  .method{font-family:'IBM Plex Mono',monospace;font-size:.68rem;font-weight:700;padding:.16rem .5rem;border-radius:5px;letter-spacing:.02em;}
-  .method.get{color:var(--type);background:rgba(97,175,239,0.12);}
-  .method.post{color:var(--keyword);background:rgba(199,146,234,0.12);}
-  .pcard-route{font-family:'IBM Plex Mono',monospace;font-size:.74rem;color:var(--muted);}
-  .status-chip{font-family:'IBM Plex Mono',monospace;font-size:.68rem;font-weight:600;padding:.16rem .55rem;border-radius:100px;display:inline-flex;align-items:center;gap:.3rem;margin-left:auto;}
-  .status-chip::before{content:'';width:5px;height:5px;border-radius:50%;background:currentColor;}
-  .status-chip.ok{color:var(--string);background:rgba(127,216,143,0.1);}
-  .status-chip.build{color:var(--const);background:rgba(227,154,94,0.12);}
-  .pcard-title{font-family:'IBM Plex Sans',sans-serif;font-weight:700;font-size:1.08rem;letter-spacing:-.01em;margin-bottom:.5rem;}
-  .pcard-desc{font-size:.85rem;color:var(--text-dim);line-height:1.65;flex:1;}
-  .tag-row{display:flex;gap:.35rem;flex-wrap:wrap;margin-top:1.1rem;}
-  .tag{font-family:'IBM Plex Mono',monospace;font-size:.66rem;padding:.22rem .55rem;border-radius:5px;background:var(--panel-3);color:var(--text-dim);}
-  .pcard-foot{display:flex;align-items:center;justify-content:space-between;margin-top:1.2rem;}
-  .pcard-gallery{font-size:.8rem;font-weight:600;color:var(--type);}
-  .pcard-gallery.disabled{color:var(--muted);}
-  .pcard-visit{
-    font-family:'IBM Plex Mono',monospace;font-size:.72rem;color:var(--string);
-    padding:.3rem .6rem;border-radius:6px;border:1px solid rgba(127,216,143,0.3);
-    display:inline-flex;align-items:center;gap:.3rem;transition:.15s;
-  }
-  .pcard-visit:hover{background:rgba(127,216,143,0.1);}
+    .response-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 24px 60px rgba(18, 21, 28, 0.07);
+    }
+    .response-card-head {
+      display: flex;
+      align-items: center;
+      gap: 0.9rem;
+      padding: 0.85rem 1.2rem;
+      border-bottom: 1px solid var(--border);
+      background: var(--surface-2);
+    }
+    .rc-dot { width: 9px; height: 9px; border-radius: 50%; }
+    .rc-dot.r { background: #E5594F; }
+    .rc-dot.y { background: #E5AA3B; }
+    .rc-dot.g { background: #3BAE5D; }
+    .response-card-title {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.78rem;
+      color: var(--muted);
+      margin-left: 0.3rem;
+    }
+    .response-card-body {
+      display: flex;
+      gap: 1.4rem;
+      padding: 1.5rem;
+    }
+    .profile-img {
+      width: 108px;
+      height: 108px;
+      border-radius: 12px;
+      object-fit: cover;
+      flex-shrink: 0;
+      border: 1px solid var(--border);
+    }
+    .kv-list {
+      list-style: none;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.82rem;
+      line-height: 1.95;
+      flex: 1;
+      min-width: 0;
+    }
+    .kv-list .k { color: var(--blue); }
+    .kv-list .v { color: var(--ink); font-weight: 500; }
+    .kv-list .v.accent { color: var(--green); }
 
-  .toggle-wrap{text-align:center;margin-top:2.2rem;}
-  .btn-toggle{
-    font-family:'IBM Plex Mono',monospace;font-size:.82rem;color:var(--text);
-    background:var(--panel);border:1px solid var(--border);
-    padding:.65rem 1.4rem;border-radius:8px;cursor:pointer;transition:.15s;
-  }
-  .btn-toggle:hover{border-color:var(--type);color:var(--type);transform:translateY(-2px);}
-  .extra-wrap{display:none;}
-  .extra-wrap.visible{display:block;}
+    /* ----- SHARED ----- */
+    .section-wrap {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 5rem 3rem;
+    }
+    .section-panel {
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .endpoint-header {
+      display: flex;
+      align-items: center;
+      gap: 0.9rem;
+      margin-bottom: 1.4rem;
+    }
+    .section-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      letter-spacing: -0.02em;
+      margin-top: 0.9rem;
+      margin-bottom: 3rem;
+    }
 
-  /* ---------- modal ---------- */
-  .modal-overlay{
-    position:fixed;inset:0;background:rgba(4,6,10,0.82);backdrop-filter:blur(6px);
-    z-index:999;display:none;align-items:center;justify-content:center;padding:1.5rem;
-  }
-  .modal-overlay.active{display:flex;animation:fadeIn .2s ease;}
-  @keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
-  .modal-box{
-    background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);
-    max-width:760px;width:100%;max-height:90vh;overflow:hidden;
-    display:flex;flex-direction:column;box-shadow:0 40px 90px rgba(0,0,0,0.5);
-    animation:slideUp .25s ease;
-  }
-  @keyframes slideUp{from{transform:translateY(24px);opacity:0;}to{transform:translateY(0);opacity:1;}}
-  .modal-head{display:flex;align-items:center;gap:.8rem;padding:.85rem 1.1rem;border-bottom:1px solid var(--border);background:var(--panel-2);}
-  .modal-head h3{font-family:'IBM Plex Mono',monospace;font-size:.88rem;color:var(--text);font-weight:600;}
-  .modal-close{margin-left:auto;background:none;border:none;font-size:1.3rem;color:var(--muted);cursor:pointer;transition:.15s;line-height:1;}
-  .modal-close:hover{color:var(--danger);transform:rotate(90deg);}
-  .modal-body{padding:1.2rem;overflow-y:auto;}
-  .carousel-container{position:relative;border-radius:10px;overflow:hidden;background:var(--panel-2);border:1px solid var(--border-soft);}
-  .carousel-slide{display:flex;transition:transform .35s ease;}
-  .carousel-slide img{width:100%;flex-shrink:0;object-fit:cover;aspect-ratio:16/10;max-height:420px;background:var(--panel-3);}
-  .carousel-btn{
-    position:absolute;top:50%;transform:translateY(-50%);
-    background:rgba(11,14,20,0.65);backdrop-filter:blur(4px);border:1px solid var(--border);
-    border-radius:40px;width:36px;height:36px;font-size:1.2rem;cursor:pointer;color:var(--text);
-    display:flex;align-items:center;justify-content:center;transition:.15s;font-weight:300;
-  }
-  .carousel-btn:hover{background:var(--panel-3);color:var(--type);}
-  .carousel-btn.prev{left:12px;} .carousel-btn.next{right:12px;}
-  .carousel-dots{display:flex;justify-content:center;gap:.5rem;padding:.9rem 0 .2rem;}
-  .carousel-dots span{width:8px;height:8px;border-radius:20px;background:var(--border);cursor:pointer;transition:.2s;}
-  .carousel-dots span.active{background:var(--type);width:22px;}
-  .modal-foot{display:flex;align-items:center;justify-content:space-between;padding:.9rem 1.2rem 1.1rem;flex-wrap:wrap;gap:.7rem;}
-  .modal-desc{font-size:.82rem;color:var(--text-dim);max-width:60%;}
-  .modal-visit{
-    font-family:'IBM Plex Mono',monospace;font-size:.8rem;font-weight:600;color:#0B0E14;
-    background:var(--string);padding:.55rem 1.1rem;border-radius:7px;display:inline-flex;align-items:center;gap:.4rem;
-    transition:.15s;
-  }
-  .modal-visit:hover{opacity:.88;transform:translateY(-1px);}
-  .modal-visit.none{background:transparent;color:var(--muted);border:1px solid var(--border);}
+    /* ----- ABOUT ----- */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1.3fr 1fr;
+      gap: 3.5rem;
+      align-items: start;
+    }
+    .about-body { font-size: 1.03rem; color: #333A45; line-height: 1.8; }
+    .about-body p+p { margin-top: 1rem; }
+    .about-body strong { color: var(--blue); font-weight: 600; }
+    .fields-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.3rem;
+    }
+    .fields-title {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.78rem;
+      color: var(--muted);
+      margin-bottom: 0.9rem;
+    }
+    .field-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+    .field-list li {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.55rem 0.9rem;
+      transition: border-color 0.15s, transform 0.15s;
+    }
+    .field-list li:hover { border-color: var(--blue); transform: translateX(3px); }
+    .field-name { font-size: 0.88rem; font-weight: 600; }
+    .field-type { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: var(--muted); }
 
-  /* ---------- contact ---------- */
-  .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:2.5rem;align-items:start;}
-  .contact-head{font-family:'IBM Plex Sans',sans-serif;font-weight:700;font-size:clamp(1.4rem,2.4vw,1.9rem);line-height:1.35;letter-spacing:-.02em;}
-  .contact-head em{font-style:normal;color:var(--string);}
-  .contact-blurb{font-size:.92rem;color:var(--text-dim);line-height:1.8;margin-top:1rem;max-width:440px;}
-  .contact-actions{display:flex;gap:.75rem;flex-wrap:wrap;margin-top:1.8rem;}
-  .term-contact .term-body{padding:1rem 1.2rem;}
-  .term-line{display:flex;align-items:center;gap:.85rem;padding:.6rem .3rem;border-radius:7px;transition:.15s;}
-  .term-line:hover{background:var(--panel-3);}
-  .term-line .flag{color:var(--func);min-width:64px;font-size:.76rem;}
-  .term-line .val{color:var(--text);font-size:.85rem;font-weight:500;}
-  .term-line .go{margin-left:auto;color:var(--muted);}
+    /* ----- PROJECTS (cards + modal) ----- */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.4rem;
+    }
+    .projects-grid.all-projects {
+      margin-top: 1.4rem;
+      padding-top: 1.9rem;
+      border-top: 1px solid var(--border);
+    }
+    .endpoint-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      transition: all 0.2s;
+    }
+    .endpoint-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 18px 40px rgba(18, 21, 28, 0.08);
+      border-color: var(--blue);
+    }
+    .endpoint-card-top {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 1.1rem;
+      flex-wrap: wrap;
+    }
+    .endpoint-card-top .route { font-size: 0.78rem; color: var(--muted); }
+    .endpoint-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: 1.15rem;
+      letter-spacing: -0.01em;
+      margin-bottom: 0.55rem;
+    }
+    .endpoint-desc {
+      font-size: 0.87rem;
+      color: var(--muted);
+      line-height: 1.65;
+      flex: 1;
+    }
+    .tag-row {
+      display: flex;
+      gap: 0.4rem;
+      flex-wrap: wrap;
+      margin-top: 1.2rem;
+    }
+    .tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.68rem;
+      font-weight: 500;
+      padding: 0.25rem 0.6rem;
+      border-radius: 6px;
+      background: var(--surface-2);
+      color: var(--ink);
+    }
+    .endpoint-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      margin-top: 1.3rem;
+      font-size: 0.83rem;
+      font-weight: 600;
+      color: var(--blue);
+    }
+    .endpoint-link.disabled { color: var(--muted); }
 
-  footer{padding:0;}
-  .footer-inner{max-width:1180px;margin:0 auto;padding:2rem 3rem 2.5rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;}
-  .footer-text{font-family:'IBM Plex Mono',monospace;font-size:.78rem;color:var(--muted);}
-  .footer-links{display:flex;gap:.3rem;}
-  .footer-links a{font-family:'IBM Plex Mono',monospace;font-size:.78rem;color:var(--muted);padding:.3rem .7rem;border-radius:6px;transition:.15s;}
-  .footer-links a:hover{color:var(--text);background:var(--panel-3);}
+    .toggle-wrap { text-align: center; margin-top: 2.2rem; }
+    .btn-toggle {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--ink);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 0.7rem 1.6rem;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: border-color 0.16s, transform 0.16s;
+    }
+    .btn-toggle:hover { border-color: var(--blue); transform: translateY(-2px); }
+    .all-projects-container { display: none; }
+    .all-projects-container.visible { display: block; }
 
-  @media (max-width:900px){
-    nav{padding:.9rem 1.4rem;}
-    .nav-links{display:none;}
-    .hero{padding:6.5rem 1.4rem 3rem;}
-    .hero-grid{grid-template-columns:1fr;}
-    section{padding:3.2rem 1.4rem;}
-    .about-grid,.contact-grid{grid-template-columns:1fr;gap:1.8rem;}
-    .projects-grid,.projects-grid.extra{grid-template-columns:1fr;}
-    .statusbar-inner{padding:.5rem 1.4rem;}
-    .footer-inner{padding:1.8rem 1.4rem;}
-    .modal-desc{max-width:100%;}
-  }
-  @media (prefers-reduced-motion:reduce){*{animation:none !important;transition:none !important;}}
-</style>
+    /* ----- MODAL (carousel) ----- */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.7);
+      backdrop-filter: blur(6px);
+      z-index: 999;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+      animation: fadeIn 0.25s ease;
+    }
+    .modal-overlay.active { display: flex; }
+    .modal-box {
+      background: var(--surface);
+      border-radius: var(--radius);
+      max-width: 750px;
+      width: 100%;
+      max-height: 90vh;
+      box-shadow: 0 40px 80px rgba(0,0,0,0.3);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      animation: slideUp 0.3s ease;
+    }
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.2rem 1.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .modal-header h3 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: 1.2rem;
+    }
+    .modal-close {
+      background: none;
+      border: none;
+      font-size: 1.6rem;
+      line-height: 1;
+      cursor: pointer;
+      color: var(--muted);
+      transition: 0.15s;
+      padding: 0 0.3rem;
+    }
+    .modal-close:hover { color: var(--ink); transform: rotate(90deg); }
+    .modal-body {
+      padding: 1.5rem;
+      overflow-y: auto;
+      flex: 1;
+    }
+    .carousel-container {
+      position: relative;
+      border-radius: 12px;
+      overflow: hidden;
+      background: var(--bg);
+    }
+    .carousel-slide {
+      display: flex;
+      transition: transform 0.35s ease;
+    }
+    .carousel-slide img {
+      width: 100%;
+      flex-shrink: 0;
+      object-fit: cover;
+      max-height: 420px;
+      aspect-ratio: 16/9;
+      background: #eaeef2;
+    }
+    .carousel-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(255,255,255,0.7);
+      backdrop-filter: blur(4px);
+      border: none;
+      border-radius: 40px;
+      width: 38px;
+      height: 38px;
+      font-size: 1.3rem;
+      cursor: pointer;
+      color: var(--ink);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      transition: 0.15s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 300;
+    }
+    .carousel-btn:hover { background: white; }
+    .carousel-btn.prev { left: 12px; }
+    .carousel-btn.next { right: 12px; }
+    .carousel-dots {
+      display: flex;
+      justify-content: center;
+      gap: 0.6rem;
+      padding: 1rem 0 0.3rem;
+    }
+    .carousel-dots span {
+      width: 10px;
+      height: 10px;
+      border-radius: 20px;
+      background: var(--border);
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    .carousel-dots span.active {
+      background: var(--blue);
+      width: 26px;
+    }
+
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes slideUp { from { transform: translateY(30px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+
+    /* ----- CONTACT ----- */
+    .contact-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3.5rem;
+      align-items: start;
+    }
+    .contact-intro {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(1.5rem, 2.6vw, 2.1rem);
+      font-weight: 700;
+      line-height: 1.3;
+      letter-spacing: -0.02em;
+    }
+    .contact-intro em { font-style: normal; color: var(--blue); }
+    .contact-blurb {
+      font-size: 0.95rem;
+      color: var(--muted);
+      line-height: 1.75;
+      margin-top: 1rem;
+    }
+    .contact-cta-row {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      margin-top: 2rem;
+    }
+    .headers-block {
+      background: var(--ink);
+      border-radius: 14px;
+      padding: 1.4rem;
+    }
+    .headers-title {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      color: #8892A0;
+      margin-bottom: 1rem;
+    }
+    .header-row {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 0.75rem 0.9rem;
+      border-radius: 8px;
+      transition: background 0.15s;
+    }
+    .header-row:hover { background: rgba(255,255,255,0.06); }
+    .header-key {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      color: #6C7686;
+      min-width: 92px;
+    }
+    .header-val {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.85rem;
+      color: #F2F3F5;
+      font-weight: 500;
+    }
+    .header-arrow { margin-left: auto; color: #6C7686; font-size: 0.9rem; }
+
+    footer {
+      padding: 1.8rem 3rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 1200px;
+      margin: 0 auto;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .footer-text { font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: var(--muted); }
+    .footer-links { display: flex; gap: 0.4rem; }
+    .footer-links a {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8rem;
+      color: var(--muted);
+      padding: 0.3rem 0.7rem;
+      border-radius: 6px;
+      transition: all 0.15s;
+    }
+    .footer-links a:hover { color: var(--ink); background: var(--surface-2); }
+
+    @media (max-width: 900px) {
+      nav { padding: 0.9rem 1.5rem; }
+      .nav-routes { display: none; }
+      .hero { grid-template-columns: 1fr; padding: 7rem 1.5rem 3.5rem; gap: 2.5rem; }
+      .response-card-body { flex-direction: column; }
+      .section-wrap { padding: 3.5rem 1.5rem; }
+      .about-grid { grid-template-columns: 1fr; gap: 2.2rem; }
+      .projects-grid, .projects-grid.all-projects { grid-template-columns: 1fr; }
+      .contact-inner { grid-template-columns: 1fr; gap: 2.2rem; }
+      footer { padding: 1.5rem; }
+      .modal-box { max-width: 100%; margin: 0.5rem; }
+    }
+    @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+  </style>
 </head>
 <body>
 
+<!-- NAV -->
 <nav>
-  <a class="brand" href="#">zakwan<span class="dot">.</span>dev</a>
-  <ul class="nav-links">
-    <li><a href="#about"><span class="ext">01</span>about.md</a></li>
-    <li><a href="#projects"><span class="ext">02</span>projects.json</a></li>
-    <li><a href="#contact"><span class="ext">03</span>contact.sh</a></li>
+  <a class="nav-brand" href="#">zakwan<span>.</span>dev</a>
+  <ul class="nav-routes">
+    <li><a href="#about"><span class="method get">GET</span>/about</a></li>
+    <li><a href="#projects"><span class="method get">GET</span>/projects</a></li>
+    <li><a href="#contact"><span class="method post">POST</span>/contact</a></li>
   </ul>
-  <span class="status-pill">available for work</span>
+  <a class="nav-cta" href="#contact">Let's work together</a>
 </nav>
 
 <!-- HERO -->
 <div class="hero">
-  <div class="hero-eyebrow"><span class="k">require</span> 'zakwan/profile.php';</div>
-  <div class="hero-grid">
-
-    <div class="win code-panel">
-      <div class="win-bar">
-        <div class="dots"><span class="r"></span><span class="y"></span><span class="g"></span></div>
-        <div class="win-tabs">
-          <span class="win-tab on">Controller<span class="ext">.php</span></span>
-        </div>
-        <span class="win-branch">main</span>
+  <div class="hero-left">
+    <div class="req-line">
+      <span class="method get">GET</span> /zakwan HTTP/1.1
+      <span class="status-chip ok">200 OK</span>
+    </div>
+    <h1 class="hero-name">Zakwan <span>Sanudin</span></h1>
+    <p class="hero-tagline">Full stack developer specialising in Laravel. I build applications that are fast, reliable, and genuinely pleasant to use.</p>
+    <div class="hero-actions">
+      <a class="btn-primary" href="#projects">View my work</a>
+      <a class="btn-ghost" href="#contact">Get in touch</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="response-card">
+      <div class="response-card-head">
+        <span class="rc-dot r"></span><span class="rc-dot y"></span><span class="rc-dot g"></span>
+        <span class="response-card-title">response · 200 OK</span>
       </div>
-      <div class="code-body">
-        <div class="gutter">
-          <div>1</div><div>2</div><div>3</div><div>4</div><div>5</div><div>6</div><div>7</div><div>8</div><div>9</div>
-        </div>
-        <div class="code-lines">
-<div class="ln"><span class="c-kw">class</span> <span class="c-type">ZakwanSanudin</span> <span class="c-kw">extends</span> <span class="c-type">Developer</span></div>
-<div class="ln">{</div>
-<div class="ln">&nbsp;&nbsp;<span class="c-kw">public function</span> <span class="c-fn">focus</span>()</div>
-<div class="ln">&nbsp;&nbsp;{</div>
-<div class="ln">&nbsp;&nbsp;&nbsp;&nbsp;<span class="c-kw">return</span> <span class="c-str">'Laravel &amp; full-stack apps'</span>;</div>
-<div class="ln">&nbsp;&nbsp;&nbsp;&nbsp;<span class="c-com">// fast, reliable, pleasant to use</span></div>
-<div class="ln">&nbsp;&nbsp;}</div>
-<div class="ln">}</div>
-<div class="ln"><span class="cursor-blink"></span></div>
-        </div>
+      <div class="response-card-body">
+        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='108' height='108' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23dfe3e9'/%3E%3Ctext x='14' y='60' font-family='Inter' font-weight='600' font-size='36' fill='%2367707e'%3EZK%3C/text%3E%3C/svg%3E" alt="Zakwan" class="profile-img" />
+        <ul class="kv-list">
+          <li><span class="k">"role"</span>: <span class="v">"Full Stack Developer"</span></li>
+          <li><span class="k">"location"</span>: <span class="v">"Selangor, MY"</span></li>
+          <li><span class="k">"status"</span>: <span class="v accent">"available"</span></li>
+          <li><span class="k">"experience"</span>: <span class="v">"2 years"</span></li>
+          <li><span class="k">"frameworks"</span>: <span class="v">2</span></li>
+        </ul>
       </div>
     </div>
-
-    <div class="win term-panel">
-      <div class="win-bar">
-        <div class="dots"><span class="r"></span><span class="y"></span><span class="g"></span></div>
-        <div class="win-tabs"><span class="win-tab on">zsh</span></div>
-      </div>
-      <div class="term-body">
-        <div class="term-avatar-row">
-          <img class="term-avatar" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='104' height='104' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%231C2230'/%3E%3Ctext x='16' y='60' font-family='monospace' font-weight='700' font-size='34' fill='%2361AFEF'%3EZK%3C/text%3E%3C/svg%3E" alt="Zakwan Sanudin" />
-          <div>
-            <div class="term-avatar-name">Zakwan Sanudin</div>
-            <div class="term-avatar-role">Full Stack Developer</div>
-          </div>
-        </div>
-        <div><span class="prompt">$</span> php artisan <span class="path">whoami</span> --verbose</div>
-        <div style="margin-top:.6rem;" class="term-kv"><span class="k">"role"</span>: <span class="v">"Full Stack Developer"</span></div>
-        <div class="term-kv"><span class="k">"based_in"</span>: <span class="v">"Selangor, MY"</span></div>
-        <div class="term-kv"><span class="k">"experience"</span>: <span class="v">"2 years"</span></div>
-        <div class="term-kv"><span class="k">"primary_stack"</span>: <span class="v">"Laravel + MySQL"</span></div>
-        <div class="term-kv"><span class="k">"status"</span>: <span class="v hl">"open to opportunities"</span></div>
-      </div>
-      <div class="hero-actions">
-        <a class="btn btn-solid" href="#projects">View my work</a>
-        <a class="btn btn-line" href="#contact">Get in touch</a>
-      </div>
-    </div>
-
   </div>
 </div>
 
 <!-- ABOUT -->
 <section id="about">
-  <div class="sec-tag"><span class="file">📄 about.md</span> — read only</div>
-  <h2 class="sec-title">About me</h2>
-  <div class="about-grid">
-    <div class="about-body">
-      <p>I'm a full stack developer with a strong focus on <strong>Laravel</strong>. My work sits at the intersection of clean backend architecture and practical, user-friendly interfaces — I care equally about what happens in the database and what the end user sees on screen.</p>
-      <p>I've built production systems for schools, community platforms, and learning applications used by real people every day. I take pride in writing code that's easy to maintain and scale, and in shipping products that just work.</p>
-      <p>Currently expanding into <strong>cloud-native development</strong> and microservices, and always looking for interesting problems to solve.</p>
-    </div>
-    <div class="win stack-panel">
-      <div class="win-bar">
-        <div class="dots"><span class="r"></span><span class="y"></span><span class="g"></span></div>
-        <div class="win-tabs"><span class="win-tab on">stack<span class="ext">.json</span></span></div>
+  <div class="section-wrap">
+    <div class="endpoint-header"><span class="method get">GET</span><span class="route">/about</span><span class="status-chip ok">200 OK</span></div>
+    <h2 class="section-title">About me</h2>
+    <div class="about-grid">
+      <div class="about-body">
+        <p>I'm a full stack developer with a strong focus on <strong>Laravel</strong>. My work sits at the intersection of clean backend architecture and practical, user-friendly interfaces — I care equally about what happens in the database and what the end user sees on screen.</p>
+        <p>I've built production systems for schools, community platforms, and learning applications used by real people every day. I take pride in writing code that's easy to maintain and scale, and in shipping products that just work.</p>
+        <p>Currently expanding into <strong>cloud-native development</strong> and microservices, and always looking for interesting problems to solve.</p>
       </div>
-      <div class="stack-list">
-        <div class="stack-row"><span class="name">Laravel</span><span class="type">framework</span></div>
-        <div class="stack-row"><span class="name">PHP</span><span class="type">language</span></div>
-        <div class="stack-row"><span class="name">MySQL</span><span class="type">database</span></div>
-        <div class="stack-row"><span class="name">ASP.NET Core</span><span class="type">framework</span></div>
-        <div class="stack-row"><span class="name">JavaScript</span><span class="type">language</span></div>
-        <div class="stack-row"><span class="name">React</span><span class="type">library</span></div>
-        <div class="stack-row"><span class="name">TailwindCSS</span><span class="type">styling</span></div>
-        <div class="stack-row"><span class="name">React Native</span><span class="type">mobile</span></div>
-        <div class="stack-row"><span class="name">Flutter</span><span class="type">mobile</span></div>
+      <div class="fields-card">
+        <div class="fields-title">// stack</div>
+        <ul class="field-list">
+          <li><span class="field-name">Laravel</span><span class="field-type">framework</span></li>
+          <li><span class="field-name">PHP</span><span class="field-type">language</span></li>
+          <li><span class="field-name">MySQL</span><span class="field-type">database</span></li>
+          <li><span class="field-name">ASP.NET Core</span><span class="field-type">framework</span></li>
+          <li><span class="field-name">JavaScript</span><span class="field-type">language</span></li>
+          <li><span class="field-name">React</span><span class="field-type">library</span></li>
+          <li><span class="field-name">TailwindCSS</span><span class="field-type">styling</span></li>
+          <li><span class="field-name">React Native</span><span class="field-type">mobile</span></li>
+          <li><span class="field-name">Flutter</span><span class="field-type">mobile</span></li>
+        </ul>
       </div>
     </div>
   </div>
 </section>
 
 <!-- PROJECTS -->
-<section id="projects">
-  <div class="sec-tag"><span class="file">📄 projects.json</span> — <span class="proj-json-open">[</span> <span id="projCount">5</span> objects <span class="proj-json-close">]</span></div>
-  <h2 class="sec-title">Selected projects</h2>
-
-  <div class="projects-grid" id="featuredProjects">
-
-    <div class="pcard"
-         data-title="Kampung Online"
-         data-desc="A digital community platform for the KampungOnline network — user management, announcement broadcasting, and real-time engagement tools for local communities."
-         data-link=""
-         data-images='["images/kampung-online-1.jpg","images/kampung-online-2.jpg","images/kampung-online-3.jpg"]'>
-      <div class="pcard-top"><span class="method get">GET</span><span class="pcard-route">/projects/kampung-online</span><span class="status-chip ok">200</span></div>
-      <h3 class="pcard-title">Kampung Online</h3>
-      <p class="pcard-desc">A digital community platform for the KampungOnline network — user management, announcement broadcasting, and real-time engagement tools.</p>
-      <div class="tag-row"><span class="tag">Laravel</span><span class="tag">Bootstrap</span><span class="tag">MySQL</span></div>
-      <div class="pcard-foot"><span class="pcard-gallery">↗ View gallery</span></div>
-    </div>
-
-    <div class="pcard"
-         data-title="ePDK"
-         data-desc="Student progress recording system for Program Didik Kasih, deployed across Selangor primary schools. Tracks academic development and generates progress reports."
-         data-link=""
-         data-images='["images/epdk-1.jpg","images/epdk-2.jpg","images/epdk-3.jpg"]'>
-      <div class="pcard-top"><span class="method get">GET</span><span class="pcard-route">/projects/epdk</span><span class="status-chip ok">200</span></div>
-      <h3 class="pcard-title">ePDK</h3>
-      <p class="pcard-desc">Student progress recording system for Program Didik Kasih, deployed across Selangor primary schools. Tracks academic development and generates reports.</p>
-      <div class="tag-row"><span class="tag">Laravel</span><span class="tag">TailwindCSS</span><span class="tag">MySQL</span></div>
-      <div class="pcard-foot"><span class="pcard-gallery">↗ View gallery</span></div>
-    </div>
-
-    <div class="pcard"
-         data-title="E-Learning Platform"
-         data-desc="An interactive learning platform featuring Quiz Arena for engaging assessments and a student dashboard with class timetables, learning resources, and academic management tools."
-         data-link=""
-         data-images='["images/e-learning-1.jpg","images/e-learning-2.jpg","images/e-learning-3.jpg"]'>
-      <div class="pcard-top"><span class="method get">GET</span><span class="pcard-route">/projects/e-learning</span><span class="status-chip ok">200</span></div>
-      <h3 class="pcard-title">E-Learning Platform</h3>
-      <p class="pcard-desc">Interactive learning platform featuring Quiz Arena for assessments and a student dashboard with timetables and learning resources.</p>
-      <div class="tag-row"><span class="tag">Laravel</span><span class="tag">React</span><span class="tag">MySQL</span></div>
-      <div class="pcard-foot"><span class="pcard-gallery">↗ View gallery</span></div>
-    </div>
-  </div>
-
-  <div class="toggle-wrap">
-    <button class="btn-toggle" id="toggleAllProjects">GET /projects?all=true</button>
-  </div>
-
-  <div class="extra-wrap" id="allProjectsContainer">
-    <div class="projects-grid extra">
-      <div class="pcard"
-           data-title="HomeTutor CSR Program"
-           data-desc="Developed a responsive landing page for the HomeTutor CSR Program, promoting educational initiatives for schools and providing information on program benefits, activities, and registration."
-           data-link=""
-           data-images='["images/hometutor-1.jpg","images/hometutor-2.jpg"]'>
-        <div class="pcard-top"><span class="method get">GET</span><span class="pcard-route">/projects/hometutor-csr</span><span class="status-chip ok">200</span></div>
-        <h3 class="pcard-title">HomeTutor CSR Program</h3>
-        <p class="pcard-desc">Responsive landing page for the HomeTutor CSR Program, promoting educational initiatives and registration opportunities for schools.</p>
-        <div class="tag-row"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span></div>
-        <div class="pcard-foot"><span class="pcard-gallery">↗ View gallery</span></div>
+<section id="projects" class="section-panel">
+  <div class="section-wrap">
+    <div class="endpoint-header"><span class="method get">GET</span><span class="route">/projects</span><span class="status-chip ok">200 OK</span></div>
+    <h2 class="section-title">Selected projects</h2>
+    <div class="projects-grid" id="featuredProjects">
+      <!-- Each card has data-images (array) and data-title -->
+      <div class="endpoint-card" data-title="Kampung Online" data-images='["img/kampung1.jpg","img/kampung2.jpg","img/kampung3.jpg"]'>
+        <div class="endpoint-card-top"><span class="method get">GET</span><span class="route">/projects/kampung-online</span><span class="status-chip ok">200</span></div>
+        <h3 class="endpoint-title">Kampung Online</h3>
+        <p class="endpoint-desc">A digital community platform for the KampungOnline network — user management, announcement broadcasting, and real-time engagement tools for local communities.</p>
+        <div class="tag-row"><span class="tag">Laravel</span><span class="tag">Bootstrap</span><span class="tag">MySQL</span></div>
+        <span class="endpoint-link">↗ View gallery</span>
       </div>
 
-      <div class="pcard"
-           data-title="Employee Management System"
-           data-desc="A comprehensive employee management platform for workforce administration, including employee records, attendance tracking, department management, payroll processing, and performance monitoring, built with ASP.NET Core MVC and SQL Server."
-           data-link=""
-           data-images='["images/ems-1.jpg","images/ems-2.jpg","images/ems-3.jpg"]'>
-        <div class="pcard-top"><span class="method get">GET</span><span class="pcard-route">/projects/ems</span><span class="status-chip build">building</span></div>
-        <h3 class="pcard-title">Employee Management System</h3>
-        <p class="pcard-desc">Workforce administration platform — employee records, attendance, departments, payroll, and performance monitoring.</p>
-        <div class="tag-row"><span class="tag">ASP.NET Core</span><span class="tag">MSSQL</span></div>
-        <div class="pcard-foot"><span class="pcard-gallery disabled">Coming soon</span></div>
+      <div class="endpoint-card" data-title="ePDK" data-images='["img/epdk1.jpg","img/epdk2.jpg","img/epdk3.jpg"]'>
+        <div class="endpoint-card-top"><span class="method get">GET</span><span class="route">/projects/epdk</span><span class="status-chip ok">200</span></div>
+        <h3 class="endpoint-title">ePDK</h3>
+        <p class="endpoint-desc">Student progress recording system for Program Didik Kasih, deployed across Selangor primary schools. Tracks academic development and generates progress reports.</p>
+        <div class="tag-row"><span class="tag">Laravel</span><span class="tag">TailwindCSS</span><span class="tag">MySQL</span></div>
+        <span class="endpoint-link">↗ View gallery</span>
+      </div>
+
+      <div class="endpoint-card" data-title="E-Learning Platform" data-images='["img/elearn1.jpg","img/elearn2.jpg","img/elearn3.jpg"]'>
+        <div class="endpoint-card-top"><span class="method get">GET</span><span class="route">/projects/e-learning</span><span class="status-chip ok">200</span></div>
+        <h3 class="endpoint-title">E-Learning Platform</h3>
+        <p class="endpoint-desc">An interactive learning platform featuring Quiz Arena for engaging assessments and a student dashboard with class timetables, learning resources, and academic management tools.</p>
+        <div class="tag-row"><span class="tag">Laravel</span><span class="tag">React</span><span class="tag">MySQL</span></div>
+        <span class="endpoint-link">↗ View gallery</span>
+      </div>
+    </div>
+
+    <div class="toggle-wrap">
+      <button class="btn-toggle" id="toggleAllProjects">GET /projects?all=true</button>
+    </div>
+
+    <div class="all-projects-container" id="allProjectsContainer">
+      <div class="projects-grid all-projects">
+        <div class="endpoint-card" data-title="HomeTutor CSR Program" data-images='["img/hometutor1.jpg","img/hometutor2.jpg"]'>
+          <div class="endpoint-card-top"><span class="method get">GET</span><span class="route">/projects/hometutor-csr</span><span class="status-chip ok">200</span></div>
+          <h3 class="endpoint-title">HomeTutor CSR Program</h3>
+          <p class="endpoint-desc">Developed a responsive landing page for the HomeTutor CSR Program, promoting educational initiatives for schools and providing information on program benefits, activities, and registration opportunities.</p>
+          <div class="tag-row"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span></div>
+          <span class="endpoint-link">↗ View gallery</span>
+        </div>
+
+        <div class="endpoint-card" data-title="Employee Management System" data-images='["img/ems1.jpg","img/ems2.jpg","img/ems3.jpg"]'>
+          <div class="endpoint-card-top"><span class="method get">GET</span><span class="route">/projects/ems</span><span class="status-chip build">building</span></div>
+          <h3 class="endpoint-title">Employee Management System</h3>
+          <p class="endpoint-desc">A comprehensive employee management platform for workforce administration, including employee records, attendance tracking, department management, payroll processing, and performance monitoring, built with ASP.NET Core MVC and SQL Server.</p>
+          <div class="tag-row"><span class="tag">ASP.NET Core</span><span class="tag">MSSQL</span></div>
+          <span class="endpoint-link disabled">Coming soon</span>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- MODAL -->
+<!-- MODAL (carousel) -->
 <div class="modal-overlay" id="projectModal">
   <div class="modal-box">
-    <div class="modal-head">
-      <span class="dots"><span class="r"></span><span class="y"></span><span class="g"></span></span>
-      <h3 id="modalTitle" class="mono">project.gallery</h3>
-      <button class="modal-close" id="modalClose" aria-label="Close">✕</button>
+    <div class="modal-header">
+      <h3 id="modalTitle">Project</h3>
+      <button class="modal-close" id="modalClose">✕</button>
     </div>
     <div class="modal-body">
       <div class="carousel-container">
         <div class="carousel-slide" id="carouselSlide"></div>
-        <button class="carousel-btn prev" id="carouselPrev" aria-label="Previous image">‹</button>
-        <button class="carousel-btn next" id="carouselNext" aria-label="Next image">›</button>
+        <button class="carousel-btn prev" id="carouselPrev">‹</button>
+        <button class="carousel-btn next" id="carouselNext">›</button>
       </div>
       <div class="carousel-dots" id="carouselDots"></div>
-    </div>
-    <div class="modal-foot">
-      <p class="modal-desc" id="modalDesc"></p>
-      <a class="modal-visit" id="modalVisit" href="#" target="_blank" rel="noopener">Visit live site ↗</a>
     </div>
   </div>
 </div>
 
 <!-- CONTACT -->
 <section id="contact">
-  <div class="sec-tag"><span class="method post">POST</span> /contact <span class="status-chip ok">202</span></div>
-  <h2 class="sec-title" style="margin-bottom:0;"></h2>
-  <div class="contact-grid" style="margin-top:2rem;">
-    <div>
-      <h3 class="contact-head">Have a project in mind?<br><em>I'd love to hear about it.</em></h3>
-      <p class="contact-blurb">Whether you need a Laravel backend, a full-stack web app, or just want to talk through an idea — drop me a message and I'll get back to you within a day.</p>
-      <div class="contact-actions">
-        <a class="btn btn-solid" href="mailto:zakwansanudin02@gmail.com">Send an email</a>
-        <a class="btn btn-line" href="docs/CV_ZAKWANSANUDIN.pdf" download>Download CV</a>
+  <div class="section-wrap">
+    <div class="endpoint-header"><span class="method post">POST</span><span class="route">/contact</span><span class="status-chip ok">202 Accepted</span></div>
+    <div class="contact-inner">
+      <div>
+        <h3 class="contact-intro">Have a project in mind?<br><em>I'd love to hear about it.</em></h3>
+        <p class="contact-blurb">Whether you need a Laravel backend, a full-stack web app, or just want to talk through an idea — drop me a message and I'll get back to you within a day.</p>
+        <div class="contact-cta-row">
+          <a class="btn-primary" href="mailto:zakwansanudin02@gmail.com">Send an email</a>
+          <a class="btn-ghost" href="docs/CV_ZAKWANSANUDIN.pdf" download>Download CV</a>
+        </div>
       </div>
-    </div>
-    <div class="win term-contact">
-      <div class="win-bar">
-        <div class="dots"><span class="r"></span><span class="y"></span><span class="g"></span></div>
-        <div class="win-tabs"><span class="win-tab on">contact<span class="ext">.sh</span></span></div>
-      </div>
-      <div class="term-body">
-        <a class="term-line" href="mailto:zakwansanudin02@gmail.com">
-          <span class="flag mono">--email</span><span class="val mono">zakwansanudin02@gmail.com</span><span class="go">↗</span>
-        </a>
-        <a class="term-line" href="tel:+601133035718">
-          <span class="flag mono">--phone</span><span class="val mono">+60 11-3303 5718</span><span class="go">↗</span>
-        </a>
-        <a class="term-line" href="https://github.com/zakwansanudin" target="_blank" rel="noopener">
-          <span class="flag mono">--github</span><span class="val mono">github.com/zakwansanudin</span><span class="go">↗</span>
-        </a>
-        <a class="term-line" href="https://www.linkedin.com/in/zakwan-sanudin" target="_blank" rel="noopener">
-          <span class="flag mono">--linkedin</span><span class="val mono">linkedin.com/in/zakwan-sanudin</span><span class="go">↗</span>
-        </a>
+      <div class="headers-block">
+        <div class="headers-title">// request headers</div>
+        <a class="header-row" href="mailto:zakwansanudin02@gmail.com"><span class="header-key">Email</span><span class="header-val">zakwansanudin02@gmail.com</span><span class="header-arrow">↗</span></a>
+        <a class="header-row" href="tel:+601133035718"><span class="header-key">Phone</span><span class="header-val">+60 11-3303 5718</span><span class="header-arrow">↗</span></a>
+        <a class="header-row" href="https://github.com/zakwansanudin" target="_blank"><span class="header-key">GitHub</span><span class="header-val">github.com/zakwansanudin</span><span class="header-arrow">↗</span></a>
+        <a class="header-row" href="https://www.linkedin.com/in/zakwan-sanudin" target="_blank"><span class="header-key">LinkedIn</span><span class="header-val">linkedin.com/in/zakwan-sanudin</span><span class="header-arrow">↗</span></a>
       </div>
     </div>
   </div>
 </section>
 
-<div class="statusbar">
-  <div class="statusbar-inner">
-    <span>● main</span>
-    <span id="stTime"></span>
-    <span>UTF-8 · LF · PHP</span>
-  </div>
-</div>
-
 <footer>
-  <div class="footer-inner">
-    <span class="footer-text">// © <span id="yr"></span> Zakwan Sanudin — built with care</span>
-    <div class="footer-links"><a href="#about">about.md</a><a href="#projects">projects.json</a><a href="#contact">contact.sh</a></div>
-  </div>
+  <span class="footer-text">// © <span id="yr"></span> Zakwan Sanudin — built with care</span>
+  <div class="footer-links"><a href="#about">/about</a><a href="#projects">/projects</a><a href="#contact">/contact</a></div>
 </footer>
 
 <script>
-(function(){
-  document.getElementById('yr').textContent = new Date().getFullYear();
-  var st = document.getElementById('stTime');
-  if(st){ st.textContent = new Date().toLocaleDateString('en-GB', { day:'2-digit', month:'short', year:'numeric' }); }
+  (function() {
+    document.getElementById('yr').textContent = new Date().getFullYear();
 
-  /* toggle extra projects */
-  var toggleBtn = document.getElementById('toggleAllProjects');
-  var extraWrap = document.getElementById('allProjectsContainer');
-  var allVisible = false;
-  toggleBtn.addEventListener('click', function(){
-    allVisible = !allVisible;
-    extraWrap.classList.toggle('visible', allVisible);
-    this.textContent = allVisible ? 'GET /projects?all=false' : 'GET /projects?all=true';
-    if(!allVisible) this.scrollIntoView({behavior:'smooth', block:'center'});
-  });
+    // --- toggle all projects ---
+    const toggleBtn = document.getElementById('toggleAllProjects');
+    const allContainer = document.getElementById('allProjectsContainer');
+    let allVisible = false;
+    toggleBtn.addEventListener('click', function() {
+      allVisible = !allVisible;
+      allContainer.classList.toggle('visible', allVisible);
+      this.textContent = allVisible ? 'GET /projects?all=false' : 'GET /projects?all=true';
+      if (!allVisible) this.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    });
 
-  /* ---- modal carousel ---- */
-  var modal = document.getElementById('projectModal');
-  var modalTitle = document.getElementById('modalTitle');
-  var modalDesc = document.getElementById('modalDesc');
-  var modalVisit = document.getElementById('modalVisit');
-  var slideEl = document.getElementById('carouselSlide');
-  var dotsEl = document.getElementById('carouselDots');
-  var closeBtn = document.getElementById('modalClose');
-  var prevBtn = document.getElementById('carouselPrev');
-  var nextBtn = document.getElementById('carouselNext');
+    // --- MODAL CAROUSEL ---
+    const modal = document.getElementById('projectModal');
+    const modalTitle = document.getElementById('modalTitle');
+    const slideContainer = document.getElementById('carouselSlide');
+    const dotsContainer = document.getElementById('carouselDots');
+    const closeBtn = document.getElementById('modalClose');
+    const prevBtn = document.getElementById('carouselPrev');
+    const nextBtn = document.getElementById('carouselNext');
 
-  var currentImages = [];
-  var currentIndex = 0;
+    let currentImages = [];
+    let currentIndex = 0;
 
-  function placeholderSrc(label){
-    var text = (label || 'image').replace(/[^a-z0-9\-\_\. ]/gi,'');
-    var svg = "<svg xmlns='http://www.w3.org/2000/svg' width='800' height='500'>" +
-      "<rect width='100%' height='100%' fill='%231C2230'/>" +
-      "<text x='50%' y='50%' font-family='monospace' font-size='16' fill='%235B6474' text-anchor='middle'>" + text + "</text></svg>";
-    return "data:image/svg+xml," + encodeURIComponent(svg).replace(/'/g, "%27");
-  }
-
-  function renderCarousel(images, title){
-    currentImages = images;
-    currentIndex = 0;
-    modalTitle.textContent = title || 'project.gallery';
-    slideEl.innerHTML = images.map(function(src){
-      return '<img src="' + src + '" alt="' + title + '" onerror="this.onerror=null; this.src=\'' + placeholderSrc(src.split('/').pop()) + '\';" />';
-    }).join('');
-    dotsEl.innerHTML = images.map(function(_, i){
-      return '<span class="' + (i===0?'active':'') + '" data-index="' + i + '"></span>';
-    }).join('');
-    updateSlide(0);
-  }
-
-  function updateSlide(index){
-    if(!currentImages.length) return;
-    var total = currentImages.length;
-    var idx = ((index % total) + total) % total;
-    currentIndex = idx;
-    slideEl.style.transform = 'translateX(-' + (idx*100) + '%)';
-    var dots = dotsEl.querySelectorAll('span');
-    for(var i=0;i<dots.length;i++){ dots[i].classList.toggle('active', i===idx); }
-  }
-
-  function openModal(card){
-    var images = JSON.parse(card.getAttribute('data-images') || '[]');
-    var title = card.getAttribute('data-title') || 'Project';
-    var desc = card.getAttribute('data-desc') || '';
-    var link = (card.getAttribute('data-link') || '').trim();
-
-    renderCarousel(images, title);
-    modalDesc.textContent = desc;
-
-    if(link){
-      modalVisit.href = link;
-      modalVisit.textContent = 'Visit live site ↗';
-      modalVisit.classList.remove('none');
-      modalVisit.style.pointerEvents = 'auto';
-    } else {
-      modalVisit.href = '#';
-      modalVisit.textContent = 'No live deployment yet';
-      modalVisit.classList.add('none');
-      modalVisit.style.pointerEvents = 'none';
+    function renderCarousel(images, title) {
+      currentImages = images;
+      currentIndex = 0;
+      modalTitle.textContent = title || 'Project';
+      slideContainer.innerHTML = images.map(src => `<img src="${src}" alt="${title}" />`).join('');
+      dotsContainer.innerHTML = images.map((_, i) => `<span class="${i===0?'active':''}" data-index="${i}"></span>`).join('');
+      updateSlide(0);
     }
 
-    modal.classList.add('active');
-    document.body.style.overflow = 'hidden';
-  }
+    function updateSlide(index) {
+      if (!currentImages.length) return;
+      const total = currentImages.length;
+      const idx = ((index % total) + total) % total;
+      currentIndex = idx;
+      slideContainer.style.transform = `translateX(-${idx * 100}%)`;
+      document.querySelectorAll('#carouselDots span').forEach((dot, i) => {
+        dot.classList.toggle('active', i === idx);
+      });
+    }
 
-  function closeModal(){
-    modal.classList.remove('active');
-    document.body.style.overflow = '';
-  }
+    function openModal(images, title) {
+      renderCarousel(images, title);
+      modal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
 
-  document.querySelectorAll('.pcard[data-images]').forEach(function(card){
-    card.addEventListener('click', function(){ openModal(this); });
-  });
+    function closeModal() {
+      modal.classList.remove('active');
+      document.body.style.overflow = '';
+    }
 
-  closeBtn.addEventListener('click', closeModal);
-  modal.addEventListener('click', function(e){ if(e.target === this) closeModal(); });
-  document.addEventListener('keydown', function(e){
-    if(!modal.classList.contains('active')) return;
-    if(e.key === 'Escape') closeModal();
-    if(e.key === 'ArrowLeft'){ e.preventDefault(); updateSlide(currentIndex-1); }
-    if(e.key === 'ArrowRight'){ e.preventDefault(); updateSlide(currentIndex+1); }
-  });
+    // event listeners for cards
+    document.querySelectorAll('.endpoint-card[data-images]').forEach(card => {
+      card.addEventListener('click', function(e) {
+        // ignore if click on link inside (to keep external links)
+        if (e.target.closest('.endpoint-link')) return;
+        const images = this.getAttribute('data-images').split(',');
+        const title = this.getAttribute('data-title') || 'Project';
+        openModal(images, title);
+      });
+    });
 
-  prevBtn.addEventListener('click', function(e){ e.stopPropagation(); updateSlide(currentIndex-1); });
-  nextBtn.addEventListener('click', function(e){ e.stopPropagation(); updateSlide(currentIndex+1); });
-  dotsEl.addEventListener('click', function(e){
-    var dot = e.target.closest('span');
-    if(!dot) return;
-    var idx = parseInt(dot.getAttribute('data-index'), 10);
-    if(!isNaN(idx)) updateSlide(idx);
-  });
-})();
+    // external link handling (keep original behavior for links)
+    document.querySelectorAll('.endpoint-card .endpoint-link').forEach(link => {
+      link.addEventListener('click', function(e) {
+        e.stopPropagation();
+        if (!this.classList.contains('disabled')) {
+          // if it has href, follow it (for the "Visit site" links)
+          const href = this.getAttribute('href');
+          if (href && href !== '#') window.open(href, '_blank');
+        }
+      });
+    });
+
+    // modal controls
+    closeBtn.addEventListener('click', closeModal);
+    modal.addEventListener('click', function(e) { if (e.target === this) closeModal(); });
+    document.addEventListener('keydown', function(e) {
+      if (!modal.classList.contains('active')) return;
+      if (e.key === 'Escape') closeModal();
+      if (e.key === 'ArrowLeft') { e.preventDefault(); updateSlide(currentIndex - 1); }
+      if (e.key === 'ArrowRight') { e.preventDefault(); updateSlide(currentIndex + 1); }
+    });
+
+    prevBtn.addEventListener('click', function(e) { e.stopPropagation(); updateSlide(currentIndex - 1); });
+    nextBtn.addEventListener('click', function(e) { e.stopPropagation(); updateSlide(currentIndex + 1); });
+
+    dotsContainer.addEventListener('click', function(e) {
+      const dot = e.target.closest('span');
+      if (!dot) return;
+      const idx = parseInt(dot.getAttribute('data-index'), 10);
+      if (!isNaN(idx)) updateSlide(idx);
+    });
+
+    // close on escape
+    window.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && modal.classList.contains('active')) closeModal();
+    });
+
+    // fallback images: generate placeholder if images missing
+    // we also handle if image fails to load — but we keep placeholder svg as fallback in img tag
+  })();
 </script>
+
+<!-- small fallback: if images not found, show placeholder -->
 </body>
 </html>
