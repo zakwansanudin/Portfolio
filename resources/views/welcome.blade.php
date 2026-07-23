@@ -155,6 +155,10 @@
 
   .term-panel{display:flex;flex-direction:column;}
   .term-body{padding:1.2rem 1.3rem;font-family:'IBM Plex Mono',monospace;font-size:.84rem;line-height:1.9;flex:1;}
+  .term-avatar-row{display:flex;align-items:center;gap:.9rem;margin-bottom:1rem;padding-bottom:1rem;border-bottom:1px solid var(--border-soft);}
+  .term-avatar{width:52px;height:52px;border-radius:9px;object-fit:cover;border:1px solid var(--border);flex-shrink:0;}
+  .term-avatar-name{font-family:'IBM Plex Sans',sans-serif;font-weight:700;font-size:.95rem;color:var(--text);}
+  .term-avatar-role{font-family:'IBM Plex Mono',monospace;font-size:.72rem;color:var(--muted);margin-top:.2rem;}
   .term-body .prompt{color:var(--string);}
   .term-body .path{color:var(--type);}
   .term-kv{color:var(--text-dim);}
@@ -369,6 +373,13 @@
         <div class="win-tabs"><span class="win-tab on">zsh</span></div>
       </div>
       <div class="term-body">
+        <div class="term-avatar-row">
+          <img class="term-avatar" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='104' height='104' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%231C2230'/%3E%3Ctext x='16' y='60' font-family='monospace' font-weight='700' font-size='34' fill='%2361AFEF'%3EZK%3C/text%3E%3C/svg%3E" alt="Zakwan Sanudin" />
+          <div>
+            <div class="term-avatar-name">Zakwan Sanudin</div>
+            <div class="term-avatar-role">Full Stack Developer</div>
+          </div>
+        </div>
         <div><span class="prompt">$</span> php artisan <span class="path">whoami</span> --verbose</div>
         <div style="margin-top:.6rem;" class="term-kv"><span class="k">"role"</span>: <span class="v">"Full Stack Developer"</span></div>
         <div class="term-kv"><span class="k">"based_in"</span>: <span class="v">"Selangor, MY"</span></div>
@@ -426,7 +437,7 @@
          data-title="Kampung Online"
          data-desc="A digital community platform for the KampungOnline network — user management, announcement broadcasting, and real-time engagement tools for local communities."
          data-link=""
-         data-images='["images/kampung-online-1.png","images/kampung-online-2.png","images/kampung-online-3.png"]'>
+         data-images='["images/kampung-online-1.jpg","images/kampung-online-2.jpg","images/kampung-online-3.jpg"]'>
       <div class="pcard-top"><span class="method get">GET</span><span class="pcard-route">/projects/kampung-online</span><span class="status-chip ok">200</span></div>
       <h3 class="pcard-title">Kampung Online</h3>
       <p class="pcard-desc">A digital community platform for the KampungOnline network — user management, announcement broadcasting, and real-time engagement tools.</p>
