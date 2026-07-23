@@ -1249,7 +1249,7 @@
                 url: 'https://kampungonline.my',
                 status: 'ok',
                 images: [
-                    'img/projects/kampung-online-1.png',
+                    'img/kampung-online-1.png',
                     'img/kampung-online-2.png',
                     'img/kampung-online-3.png'
                 ],
