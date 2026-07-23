@@ -437,7 +437,7 @@
          data-title="Kampung Online"
          data-desc="A digital community platform for the KampungOnline network — user management, announcement broadcasting, and real-time engagement tools for local communities."
          data-link=""
-         data-images='["img/kampung-online-1.jpg","img/kampung-online-2.jpg","img/kampung-online-3.jpg"]'>
+         data-images='["img/kampung-online-1.png","img/kampung-online-2.png","img/kampung-online-3.png"]'>
       <div class="pcard-top"><span class="method get">GET</span><span class="pcard-route">/projects/kampung-online</span><span class="status-chip ok">200</span></div>
       <h3 class="pcard-title">Kampung Online</h3>
       <p class="pcard-desc">A digital community platform for the KampungOnline network — user management, announcement broadcasting, and real-time engagement tools.</p>
