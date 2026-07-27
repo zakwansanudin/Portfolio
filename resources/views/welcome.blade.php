@@ -764,7 +764,7 @@
 
 <!-- NAV -->
 <nav>
-  <a class="nav-brand" href="#">wan<span>.</span>dev</a>
+  <a class="nav-brand" href="#">zakwan<span>.</span>dev</a>
   <ul class="nav-routes">
     <li><a href="#about"><span class="method get">GET</span>/about</a></li>
     <li><a href="#projects"><span class="method get">GET</span>/projects</a></li>
